@@ -4,8 +4,18 @@
     <string name="app_name">CloudApp</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="post">Laden</string>
+    <string name="anmelden">Login</string>
     <string name="passwort">Paswort:</string>
     <string name="email">E-Mail:</string>
+    <string name="login_info"></string>
+    <string name="aktVerb">Sensor/Aktorverbünde</string>
+    <string name="nutzerStmmdtn">Nutzerdaten</string>
+    <string name="event">Event</string>
+    <string name="gruppe">Gruppe/Mandant</string>
+    <string name="chart">Charts</string>
+    <string name="service">Servicelinie</string>
+    <string name="title_activity_auswahlseite">Auswahlseite</string>
+    <string name="title_activity_nutzerStammdaten">NutzerStammdaten</string>
+    
 
 </resources>

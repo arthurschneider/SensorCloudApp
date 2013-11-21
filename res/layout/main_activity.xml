@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity" 
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center">
     
     <TextView
-            style=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="19sp"
             android:text="@string/email" >
     </TextView>
 
@@ -16,33 +17,37 @@
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"></EditText>
+            android:inputType="textEmailAddress">
+  	</EditText>
             
      <TextView
-            style=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/passwort" ></TextView>
+            android:textSize="19sp"
+            android:text="@string/passwort" >
+     </TextView>
    
 
     <EditText
             android:id="@+id/passwort"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="text"></EditText>
+            android:inputType="textPassword" > 
+    </EditText>
             
      <Button
-            android:id="@+id/bn_post"
+            android:id="@+id/bn_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="postData"
-            android:text="@string/post" />
+            android:onClick="anmelden"
+            android:text="@string/anmelden" />
+
      <TextView
-            style=""
-            android:id="@+id/ausgabe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Null" ></TextView>
+         android:id="@+id/txtView_info"
+         android:text="@string/login_info"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" >
+	</TextView>
             
 
 </LinearLayout>

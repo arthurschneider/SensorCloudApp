@@ -22,27 +22,56 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
+        public static final int sencloudlogo=0x7f020001;
     }
     public static final class id {
-        public static final int action_settings=0x7f080004;
-        public static final int ausgabe=0x7f080003;
-        public static final int bn_post=0x7f080002;
-        public static final int email=0x7f080000;
-        public static final int passwort=0x7f080001;
+        public static final int action_settings=0x7f080013;
+        public static final int bn_aktVerb=0x7f080001;
+        public static final int bn_chart=0x7f080004;
+        public static final int bn_event=0x7f080002;
+        public static final int bn_gruppe=0x7f080003;
+        public static final int bn_login=0x7f080008;
+        public static final int bn_nutzerStmmdtn=0x7f080000;
+        public static final int bn_service=0x7f080005;
+        public static final int email=0x7f080006;
+        public static final int frameLinks=0x7f08000b;
+        public static final int frameRechts=0x7f08000d;
+        public static final int linearLayout_default=0x7f08000a;
+        public static final int linearLayout_large_land=0x7f08000c;
+        public static final int passwort=0x7f080007;
+        public static final int spinnerAdresse=0x7f08000f;
+        public static final int spinnerEmail=0x7f080011;
+        public static final int spinnerSicherheit=0x7f080012;
+        public static final int spinnerStammdaten=0x7f08000e;
+        public static final int spinnerTelefon=0x7f080010;
+        public static final int txtView_info=0x7f080009;
     }
     public static final class layout {
-        public static final int main_activity=0x7f030000;
+        public static final int auswahlseite_activity=0x7f030000;
+        public static final int main_activity=0x7f030001;
+        public static final int nutzerstammdaten_activity=0x7f030002;
+        public static final int nutzeruebersicht_fragment=0x7f030003;
     }
     public static final class menu {
-        public static final int main=0x7f070000;
+        public static final int auswahlseite=0x7f070000;
+        public static final int main=0x7f070001;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
+        public static final int aktVerb=0x7f050007;
+        public static final int anmelden=0x7f050003;
         public static final int app_name=0x7f050000;
+        public static final int chart=0x7f05000b;
         public static final int email=0x7f050005;
+        public static final int event=0x7f050009;
+        public static final int gruppe=0x7f05000a;
         public static final int hello_world=0x7f050002;
+        public static final int login_info=0x7f050006;
+        public static final int nutzerStmmdtn=0x7f050008;
         public static final int passwort=0x7f050004;
-        public static final int post=0x7f050003;
+        public static final int service=0x7f05000c;
+        public static final int title_activity_auswahlseite=0x7f05000d;
+        public static final int title_activity_nutzerStammdaten=0x7f05000e;
     }
     public static final class style {
         /** 

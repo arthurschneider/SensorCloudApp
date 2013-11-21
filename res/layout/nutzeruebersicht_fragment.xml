@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center" >
+    
+    <Spinner
+        android:id="@+id/spinnerStammdaten"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    
+    <Spinner
+        android:id="@+id/spinnerAdresse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    
+    <Spinner
+        android:id="@+id/spinnerTelefon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    
+    <Spinner
+        android:id="@+id/spinnerEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    
+    <Spinner
+        android:id="@+id/spinnerSicherheit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    
+</LinearLayout>

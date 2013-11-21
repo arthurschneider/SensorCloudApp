@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AuswahlseiteActivity"
+    android:orientation="vertical"
+    android:gravity="center"	>
+	
+    <Button
+	    android:id="@+id/bn_nutzerStmmdtn"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:onClick="goToNutzerStammdaten"
+	    android:text="@string/nutzerStmmdtn" />
+
+    <Button
+	    android:id="@+id/bn_aktVerb"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:onClick="goToSenAktVerbund"
+	    android:text="@string/aktVerb" />
+    
+    <Button
+	    android:id="@+id/bn_event"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:onClick="goToEvent"
+	    android:text="@string/event" />
+    
+    <Button
+	    android:id="@+id/bn_gruppe"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:onClick="goToGruppe"
+	    android:text="@string/gruppe" />
+    
+    <Button
+	    android:id="@+id/bn_chart"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:onClick="goToChart"
+	    android:text="@string/chart" />
+    
+    <Button
+	    android:id="@+id/bn_service"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:onClick="goToService"
+	    android:text="@string/service" />
+	
+</LinearLayout>

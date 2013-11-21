@@ -8,7 +8,6 @@ public class NutzerStammdaten {
 	private String nutStaVor;
 	private String nutStaFir;
 	private String nutStaDatEin;
-
 	
 	public String getNutStaID() {
 		return nutStaID;
