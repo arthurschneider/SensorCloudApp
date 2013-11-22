@@ -1,6 +1,5 @@
 package de.sensorcloud.android.helpertools;
 
-import de.sensorcloud.android.entitaet.NutzerStammdaten;
 
 public class Foo {
 

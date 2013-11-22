@@ -6,12 +6,12 @@
     android:orientation="vertical"
     android:gravity="center"	>
 	
-    <Button
-	    android:id="@+id/bn_nutzerStmmdtn"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:onClick="goToNutzerStammdaten"
-	    android:text="@string/nutzerStmmdtn" />
+    <Spinner
+        android:id="@+id/spinnerNutStmmdtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/auswahl_daten" />
+   
 
     <Button
 	    android:id="@+id/bn_aktVerb"

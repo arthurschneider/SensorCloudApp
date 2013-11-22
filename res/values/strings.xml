@@ -11,11 +11,15 @@
     <string name="aktVerb">Sensor/Aktorverbünde</string>
     <string name="nutzerStmmdtn">Nutzerdaten</string>
     <string name="event">Event</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="insert">Insert</string>
+    <string name="auswahl_daten">Welches wollen sie anzeigen?</string>
     <string name="gruppe">Gruppe/Mandant</string>
     <string name="chart">Charts</string>
     <string name="service">Servicelinie</string>
     <string name="title_activity_auswahlseite">Auswahlseite</string>
     <string name="title_activity_nutzerStammdaten">NutzerStammdaten</string>
-    
+    <string name="title_activity_telefon">Telefon</string>
 
 </resources>

@@ -32,6 +32,10 @@
             android:name="de.sensorcloud.android.activity.NutzerStammdatenActivity"
             android:label="@string/title_activity_nutzerStammdaten" >
         </activity>
+        <activity
+            android:name="de.sensorcloud.android.activity.TelefonActivity"
+            android:label="@string/title_activity_telefon" >
+        </activity>
     </application>
 
 </manifest>

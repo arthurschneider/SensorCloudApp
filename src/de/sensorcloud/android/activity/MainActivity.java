@@ -61,7 +61,7 @@ public class MainActivity extends Activity {
 		
 		AsyncHttpClient client = new AsyncHttpClient();
 		se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-		client.post(null, "http://10.0.2.2:8080/SensorCloudRest/crud/Login/authetifizieren", se, "application/json", new AsyncHttpResponseHandler() {
+		client.post(null, "http://babeauf.nt.fh-koeln.de:8080/SensorCloudRest/crud/Login/authetifizieren", se, "application/json", new AsyncHttpResponseHandler() {
 		    @Override
 		    public void onSuccess(String response) {
 		        Log.i("Test", response);
