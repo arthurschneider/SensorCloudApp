@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <Spinner
+        android:id="@+id/spinnerSicherheit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+     
+     <EditText
+            android:id="@+id/sicherheit_pas"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text">
+  	</EditText>
+  	
+  	 <EditText
+            android:id="@+id/sicherheit_pubKey"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text">
+  	</EditText>
+  	
+  	 <EditText
+            android:id="@+id/sicherheit_priKey"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text">
+  	</EditText>
+  	
+  	 <Button
+	        android:id="@+id/sic_update"
+	        android:layout_weight="1"
+	        android:onClick="updateSicherheit"
+	        android:layout_gravity="center_horizontal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/update"
+	         />
+
+</LinearLayout>

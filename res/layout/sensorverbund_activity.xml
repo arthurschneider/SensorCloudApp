@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <Spinner
+        android:id="@+id/spinnerSenVerbBez"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Spinner
+        android:id="@+id/spinnerSenVerbSensoren"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    
+     <EditText
+            android:id="@+id/senBezeichnung"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text">
+  	</EditText>
+  	
+  	 <EditText
+            android:id="@+id/senPosition"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text">
+    </EditText>     
+       
+  	<EditText
+            android:id="@+id/senRaum"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text">
+  	</EditText>
+  	
+  	 <EditText
+            android:id="@+id/senDatum"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text">
+	</EditText>
+	
+</LinearLayout>

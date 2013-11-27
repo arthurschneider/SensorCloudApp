@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+     <Spinner
+        android:id="@+id/spinnerAdrStmmdtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+     
+     <EditText
+            android:id="@+id/adr_bez"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text">
+  	</EditText>
+  	
+  	 <EditText
+            android:id="@+id/adr_str"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text">
+  	</EditText>
+  	
+  	 <EditText
+            android:id="@+id/adr_plz"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text">
+  	</EditText>
+  	
+  	 <EditText
+            android:id="@+id/adr_ort"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text">
+  	</EditText>
+  	
+  	 <EditText
+            android:id="@+id/adr_lan"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text">
+  	</EditText>
+  	
+  	 <Button
+	        android:id="@+id/adr_update"
+	        android:layout_weight="1"
+	        android:onClick="updateAdresse"
+	        android:layout_gravity="center_horizontal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="0dp"
+	        android:text="@string/update"
+	         />
+
+</LinearLayout>
