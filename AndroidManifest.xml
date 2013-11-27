@@ -36,6 +36,26 @@
             android:name="de.sensorcloud.android.activity.TelefonActivity"
             android:label="@string/title_activity_telefon" >
         </activity>
+        <activity
+            android:name="de.sensorcloud.android.activity.EmailActivity"
+            android:label="@string/title_activity_email" >
+        </activity>
+        <activity
+            android:name="de.sensorcloud.android.activity.AdresseActivity"
+            android:label="@string/title_activity_adresse" >
+        </activity>
+        <activity
+            android:name="de.sensorcloud.android.activity.StammdatenActivity"
+            android:label="@string/title_activity_stammdaten" >
+        </activity>
+        <activity
+            android:name="de.sensorcloud.android.activity.SicherheitActivity"
+            android:label="@string/title_activity_sicherheit" >
+        </activity>
+        <activity
+            android:name="de.sensorcloud.android.activity.SensorVerbundActivity"
+            android:label="@string/title_activity_verbund" >
+        </activity>
     </application>
 
 </manifest>

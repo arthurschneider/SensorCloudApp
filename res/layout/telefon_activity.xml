@@ -36,6 +36,7 @@
 	    <Button
 	        android:id="@+id/tel_update"
 	        android:layout_weight="1"
+	        android:onClick="updateTel"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="@string/update"
@@ -44,6 +45,7 @@
 	    <Button
 	        android:id="@+id/tel_insert"
 	        android:layout_weight="1"
+	        android:onClick="insertTel"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="@string/insert"
@@ -52,6 +54,7 @@
 	    <Button
 	        android:id="@+id/tel_delete"
 	        android:layout_weight="1"
+	        android:onClick="deleteTel"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="@string/delete"

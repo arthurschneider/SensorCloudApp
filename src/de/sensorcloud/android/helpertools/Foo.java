@@ -17,7 +17,8 @@ public class Foo {
 //	nutEma.setNutEmaBez("privat");
 //	nutEma.setNutEmaID("8bdcdd8f-5129-4bba-9a72-ce24ddb6a27f");
 //	nutEma.setNutEmaNutStaID("c24d959d-9aa1-47e1-92b4-4ebdd89583f0");
-//	NutzerTelefon nutTel = new NutzerTelefon();
+
+	//	NutzerTelefon nutTel = new NutzerTelefon();
 //	nutTel.setNutTelBez("privat");
 //	nutTel.setNutTelID("ac4b3cae-fec5-4c32-b61d-447aaf7b6c31");
 //	nutTel.setNutTelNum("017777890");

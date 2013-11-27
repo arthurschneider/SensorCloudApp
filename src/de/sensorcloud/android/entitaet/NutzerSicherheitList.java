@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class NutzerSicherheitList {
 
-	private ArrayList<NutzerSicherheit> list = new ArrayList<NutzerSicherheit>();
+	private ArrayList<NutzerSicherheit> list;
 
 	public ArrayList<NutzerSicherheit> getList() {
 		return list;

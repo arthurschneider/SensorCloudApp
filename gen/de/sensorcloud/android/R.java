@@ -25,33 +25,74 @@ public final class R {
         public static final int sencloudlogo=0x7f020001;
     }
     public static final class id {
-        public static final int action_settings=0x7f080010;
-        public static final int bn_aktVerb=0x7f080001;
-        public static final int bn_chart=0x7f080004;
-        public static final int bn_event=0x7f080002;
-        public static final int bn_gruppe=0x7f080003;
-        public static final int bn_login=0x7f080008;
-        public static final int bn_service=0x7f080005;
-        public static final int email=0x7f080006;
-        public static final int passwort=0x7f080007;
-        public static final int spinnerNutStmmdtn=0x7f080000;
-        public static final int spinnerTelStmmdtn=0x7f08000a;
-        public static final int tel_bez=0x7f08000b;
-        public static final int tel_delete=0x7f08000f;
-        public static final int tel_insert=0x7f08000e;
-        public static final int tel_num=0x7f08000c;
-        public static final int tel_update=0x7f08000d;
-        public static final int txtView_info=0x7f080009;
+        public static final int action_settings=0x7f08002f;
+        public static final int adr_bez=0x7f080001;
+        public static final int adr_lan=0x7f080005;
+        public static final int adr_ort=0x7f080004;
+        public static final int adr_plz=0x7f080003;
+        public static final int adr_str=0x7f080002;
+        public static final int adr_update=0x7f080006;
+        public static final int bn_aktVerb=0x7f080008;
+        public static final int bn_chart=0x7f08000b;
+        public static final int bn_event=0x7f080009;
+        public static final int bn_gruppe=0x7f08000a;
+        public static final int bn_login=0x7f080015;
+        public static final int bn_service=0x7f08000c;
+        public static final int ema_adr=0x7f08000f;
+        public static final int ema_bez=0x7f08000e;
+        public static final int ema_delete=0x7f080012;
+        public static final int ema_insert=0x7f080011;
+        public static final int ema_update=0x7f080010;
+        public static final int email=0x7f080013;
+        public static final int passwort=0x7f080014;
+        public static final int senBezeichnung=0x7f080019;
+        public static final int senDatum=0x7f08001c;
+        public static final int senPosition=0x7f08001a;
+        public static final int senRaum=0x7f08001b;
+        public static final int sic_update=0x7f080021;
+        public static final int sicherheit_pas=0x7f08001e;
+        public static final int sicherheit_priKey=0x7f080020;
+        public static final int sicherheit_pubKey=0x7f08001f;
+        public static final int spinnerAdrStmmdtn=0x7f080000;
+        public static final int spinnerEmaStmmdtn=0x7f08000d;
+        public static final int spinnerNutStmmdtn=0x7f080007;
+        public static final int spinnerSenVerbBez=0x7f080017;
+        public static final int spinnerSenVerbSensoren=0x7f080018;
+        public static final int spinnerSicherheit=0x7f08001d;
+        public static final int spinnerStmmdtnStmmdtn=0x7f080022;
+        public static final int spinnerTelStmmdtn=0x7f080029;
+        public static final int stmmdtn_anrede=0x7f080023;
+        public static final int stmmdtn_datumeintritt=0x7f080027;
+        public static final int stmmdtn_firma=0x7f080026;
+        public static final int stmmdtn_name=0x7f080024;
+        public static final int stmmdtn_update=0x7f080028;
+        public static final int stmmdtn_vorname=0x7f080025;
+        public static final int tel_bez=0x7f08002a;
+        public static final int tel_delete=0x7f08002e;
+        public static final int tel_insert=0x7f08002d;
+        public static final int tel_num=0x7f08002b;
+        public static final int tel_update=0x7f08002c;
+        public static final int txtView_info=0x7f080016;
     }
     public static final class layout {
-        public static final int auswahlseite_activity=0x7f030000;
-        public static final int main_activity=0x7f030001;
-        public static final int telefon_activity=0x7f030002;
+        public static final int adresse_activity=0x7f030000;
+        public static final int auswahlseite_activity=0x7f030001;
+        public static final int email_activity=0x7f030002;
+        public static final int main_activity=0x7f030003;
+        public static final int sensorverbund_activity=0x7f030004;
+        public static final int sicherheit_activity=0x7f030005;
+        public static final int stammdaten_activity=0x7f030006;
+        public static final int telefon_activity=0x7f030007;
     }
     public static final class menu {
-        public static final int auswahlseite=0x7f070000;
-        public static final int main=0x7f070001;
-        public static final int telefon=0x7f070002;
+        public static final int adresse=0x7f070000;
+        public static final int auswahlseite=0x7f070001;
+        public static final int email=0x7f070002;
+        public static final int main=0x7f070003;
+        public static final int sicherheit=0x7f070004;
+        public static final int stammdaten=0x7f070005;
+        public static final int telefon=0x7f070006;
+        public static final int verbund=0x7f070007;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
@@ -70,9 +111,14 @@ public final class R {
         public static final int nutzerStmmdtn=0x7f050008;
         public static final int passwort=0x7f050004;
         public static final int service=0x7f050010;
+        public static final int title_activity_adresse=0x7f050015;
         public static final int title_activity_auswahlseite=0x7f050011;
+        public static final int title_activity_email=0x7f050014;
         public static final int title_activity_nutzerStammdaten=0x7f050012;
+        public static final int title_activity_sicherheit=0x7f050017;
+        public static final int title_activity_stammdaten=0x7f050016;
         public static final int title_activity_telefon=0x7f050013;
+        public static final int title_activity_verbund=0x7f050018;
         public static final int update=0x7f05000a;
     }
     public static final class style {

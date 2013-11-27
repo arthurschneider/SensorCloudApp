@@ -24,6 +24,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import de.sensorcloud.android.R;
 import de.sensorcloud.android.entitaet.Login;
+import de.sensorcloud.android.helpertools.Helper;
 
 
 public class MainActivity extends Activity {
@@ -61,7 +62,7 @@ public class MainActivity extends Activity {
 		
 		AsyncHttpClient client = new AsyncHttpClient();
 		se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-		client.post(null, "http://babeauf.nt.fh-koeln.de:8080/SensorCloudRest/crud/Login/authetifizieren", se, "application/json", new AsyncHttpResponseHandler() {
+		client.post(null, Helper.BASE_URL+"/SensorCloudRest/crud/Login/authetifizieren", se, "application/json", new AsyncHttpResponseHandler() {
 		    @Override
 		    public void onSuccess(String response) {
 		        Log.i("Test", response);
