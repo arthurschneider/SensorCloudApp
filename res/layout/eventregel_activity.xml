@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" 
+    android:gravity="center"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+        
+        <Spinner
+        android:id="@+id/spinnerEventBez"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content" />
+        
+        
+        
+        <Spinner
+	        android:id="@+id/spinnerSensorEvent"
+	        android:layout_width="match_parent"
+	        android:layout_gravity="center_horizontal"
+	        android:layout_height="wrap_content" />
+        
+         <LinearLayout
+	        android:layout_width="fill_parent" 
+	        android:layout_gravity="center_horizontal"
+	        android:layout_height="fill_parent"
+	        android:orientation="horizontal">
+       
+             <EditText
+	            android:id="@+id/eve_seneve_bez"
+	            android:layout_gravity="center"
+	            android:layout_weight="1"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+		  	</EditText>
+		  	 <EditText
+	            android:id="@+id/eve_seneve_parameter"
+	            android:layout_gravity="center"
+	            android:layout_weight="1"
+	            android:layout_width="fill_parent" 
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  		</EditText>
+    	</LinearLayout>
+    	<LinearLayout
+	        android:layout_width="fill_parent" 
+	        android:layout_gravity="center_horizontal"
+	        android:layout_height="fill_parent"
+	        android:orientation="horizontal">
+       
+             <EditText
+	            android:id="@+id/eve_seneve_operator"
+	            android:layout_gravity="center"
+	            android:layout_weight="1"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+		  	</EditText>
+		  	 <EditText
+	            android:id="@+id/eve_seneve_schwwert"
+	            android:layout_gravity="center"
+	            android:layout_weight="1"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  		</EditText>
+    	</LinearLayout>
+    	
+    	<Button
+	        android:id="@+id/eve_seneve_save"
+	        android:layout_weight="1"
+	        android:onClick="insertEmail"
+	        android:layout_width="wrap_content"
+	        android:layout_height="0dp"
+	        android:text="@string/save"
+	         />
+    	
+         <Spinner
+	        android:id="@+id/spinnerEveAktion"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" />
+         
+         <LinearLayout
+	        android:layout_width="fill_parent" 
+	        android:layout_gravity="center_horizontal"
+	        android:layout_height="fill_parent"
+	        android:orientation="horizontal">
+       
+             <EditText
+	            android:id="@+id/eve_eveakt_akt"
+	            android:layout_gravity="center"
+	            android:layout_weight="1"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+		  	</EditText>
+		  	 <EditText
+	            android:id="@+id/eve_eveakt_bez"
+	            android:layout_weight="1"
+	            android:layout_gravity="center"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  		</EditText>
+    	</LinearLayout>
+    	<LinearLayout
+	        android:layout_width="fill_parent" 
+	        android:layout_gravity="center_horizontal"
+	        android:layout_height="fill_parent"
+	        android:orientation="horizontal">
+       
+             <EditText
+	            android:id="@+id/eve_eveakt_funkt"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_weight="1"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+		  	</EditText>
+		  	
+		  	 <EditText
+	            android:id="@+id/eve_eveakt_wert"
+	            android:layout_gravity="center"
+	            android:layout_weight="1"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  		</EditText>
+    	</LinearLayout>
+    	<Button
+	        android:id="@+id/eve_eveakt_save"
+	        android:layout_weight="1"
+	        android:onClick="insertEmail"
+	        android:layout_width="wrap_content"
+	        android:layout_height="0dp"
+	        android:text="@string/save"
+	         />
+    	
+    	
+    	<Button
+	        android:id="@+id/eve_update"
+	        android:layout_weight="1"
+	        android:onClick="insertEmail"
+	        android:layout_width="wrap_content"
+	        android:layout_height="0dp"
+	        android:text="@string/update"
+	         />
+    	
+    </LinearLayout>
+
+</ScrollView>

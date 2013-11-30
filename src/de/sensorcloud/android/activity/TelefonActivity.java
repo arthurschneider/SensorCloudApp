@@ -59,14 +59,14 @@ public class TelefonActivity extends Activity implements OnItemSelectedListener 
 	public void getDatensatz(){
 		AsyncHttpClient client = new AsyncHttpClient();
 		Gson gson = new Gson();
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(TelefonActivity.this); 
 		String json = mPrefs.getString("NutzerObj", null);
 		String nutStaID = gson.fromJson(json, NutzerStammdaten.class).getNutStaID();
 		client.get( Helper.BASE_URL+"/SensorCloudRest/crud/NutzerTelefon/NutStaID/"+nutStaID, new AsyncHttpResponseHandler() {
 		    @Override
 		    public void onSuccess(String response) {
 		        Log.i("Test", response);
-		        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(TelefonActivity.this);
 		        SharedPreferences.Editor editor = sharedPreferences.edit();
 				editor.putString("TelefonListe", response);
 				editor.commit();
@@ -81,8 +81,10 @@ public class TelefonActivity extends Activity implements OnItemSelectedListener 
 		Gson gson = new Gson();
 		List<String> list = new ArrayList<String>();
 		list.clear();
-	
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 
+		
+		spinnerTelStmmdtn.setAdapter(null);
+		spinnerTelStmmdtn.postInvalidate();
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(TelefonActivity.this); 
 		String json = mPrefs.getString("TelefonListe", null);
 		telefonListe = gson.fromJson(json, NutzerTelefonList.class);
 		
@@ -90,10 +92,13 @@ public class TelefonActivity extends Activity implements OnItemSelectedListener 
         	list.add(tel.getNutTelNum());
         }
 	
-		ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
-		dAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//		list.add("müüüüüüggggggggg");
+//		list.add("zuoooooooooooo");list.add("ffffffffffffff");
+		ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(TelefonActivity.this, android.R.layout.simple_spinner_item, list);
 		dAdapter.notifyDataSetChanged();
-		spinnerTelStmmdtn.postInvalidate();
+		dAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	
+		
 		spinnerTelStmmdtn.setAdapter(dAdapter);
 		
 		spinnerTelStmmdtn.setOnItemSelectedListener(this);
@@ -101,9 +106,9 @@ public class TelefonActivity extends Activity implements OnItemSelectedListener 
 
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
-			Log.i("Select", "endlich getriggert");
+			
 			Gson gson = new Gson();
-			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 
+			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(TelefonActivity.this); 
 			String json = mPrefs.getString("TelefonListe", null);
 			telefonListe = gson.fromJson(json, NutzerTelefonList.class);
 			telObj  = telefonListe.getList().get(position);
@@ -111,8 +116,7 @@ public class TelefonActivity extends Activity implements OnItemSelectedListener 
 			
 			telBezTxt.setText(telObj.getNutTelBez());
 			telNumTxt.setText(telObj.getNutTelNum());
-		String data = spinnerTelStmmdtn.getItemAtPosition(position).toString();
-        Toast.makeText(TelefonActivity.this, data, Toast.LENGTH_SHORT).show();
+		
 	}
 
 
@@ -141,8 +145,7 @@ public class TelefonActivity extends Activity implements OnItemSelectedListener 
 		client.post(null,  Helper.BASE_URL+"/SensorCloudRest/crud/NutzerTelefon", se, "application/json", new AsyncHttpResponseHandler() {
 			 @Override
 			    public void onSuccess(String response) {
-			        Log.i("Test", response);
-			        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+			        Toast.makeText(TelefonActivity.this, response, Toast.LENGTH_LONG).show();
 		 }
 	    
 		});
@@ -171,8 +174,7 @@ public class TelefonActivity extends Activity implements OnItemSelectedListener 
 		client.put(null,  Helper.BASE_URL+"/SensorCloudRest/crud/NutzerTelefon", se, "application/json", new AsyncHttpResponseHandler() {
 			 @Override
 			    public void onSuccess(String response) {
-			        Log.i("Test", response);
-			        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+			        Toast.makeText(TelefonActivity.this, response, Toast.LENGTH_LONG).show();
 		 }
 	    
 		});
@@ -201,8 +203,7 @@ public class TelefonActivity extends Activity implements OnItemSelectedListener 
 		client.post(null,  Helper.BASE_URL+"/SensorCloudRest/crud/NutzerTelefon/delete", se, "application/json", new AsyncHttpResponseHandler() {
 			 @Override
 			    public void onSuccess(String response) {
-			        Log.i("Test", response);
-			        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+			        Toast.makeText(TelefonActivity.this, response, Toast.LENGTH_LONG).show();
 		 }
 	    
 		});

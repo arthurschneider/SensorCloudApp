@@ -45,13 +45,15 @@ public class MainActivity extends Activity {
 	
 	public void anmelden(View vw) {
 		infoLbl.setText("");
+		
 		final Intent intent  = new Intent(this, AuswahlseiteActivity.class);
+		
 		Login login = new Login();
 		login.setEmail(eMailTxt.getText().toString());
 		login.setPasswort(passwortTxt.getText().toString());
+		
         Gson gson = new Gson();
-        JsonElement jsonElement = null;
-        jsonElement = gson.toJsonTree(login);
+        JsonElement jsonElement = gson.toJsonTree(login);
 		StringEntity se = null;
 		
 		try {
@@ -72,7 +74,7 @@ public class MainActivity extends Activity {
 		        	infoLbl.setTextColor(Color.RED);
 		        	infoLbl.setText("Anmeldung nicht gelungen");
 				} else {
-					SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+					SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 			        SharedPreferences.Editor editor = sharedPreferences.edit();
 					editor.putString("NutzerObj", response);
 					editor.commit();

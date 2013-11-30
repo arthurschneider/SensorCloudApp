@@ -62,7 +62,7 @@ public class StammdatenActivity extends Activity implements OnItemSelectedListen
 		public void getDatensatz(){
 			AsyncHttpClient client = new AsyncHttpClient();
 			Gson gson = new Gson();
-			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 
+			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(StammdatenActivity.this); 
 			String json = mPrefs.getString("NutzerObj", null);
 			nutStaID = gson.fromJson(json, NutzerStammdaten.class).getNutStaID();
 			client.get(Helper.BASE_URL+"/SensorCloudRest/crud/NutzerStammdaten/NutStaID/"+nutStaID, new AsyncHttpResponseHandler() {
@@ -70,7 +70,7 @@ public class StammdatenActivity extends Activity implements OnItemSelectedListen
 			    public void onSuccess(String response) {
 			        Log.i("Test", response);
 			        
-			        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+			        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(StammdatenActivity.this);
 			        SharedPreferences.Editor editor = sharedPreferences.edit();
 					editor.putString("NutzerObj", response);
 					editor.commit();
@@ -86,7 +86,7 @@ public class StammdatenActivity extends Activity implements OnItemSelectedListen
 			Gson gson = new Gson();
 			List<String> list = new ArrayList<String>();
 			list.clear();
-			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 
+			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(StammdatenActivity.this); 
 			String json = mPrefs.getString("NutzerObj", null);
 			stammObj = gson.fromJson(json, NutzerStammdaten.class);
 			
@@ -106,7 +106,7 @@ public class StammdatenActivity extends Activity implements OnItemSelectedListen
 		@Override
 		public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 			Gson gson = new Gson();
-			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 
+			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(StammdatenActivity.this); 
 			String json = mPrefs.getString("NutzerObj", null);
 			stammObj = gson.fromJson(json, NutzerStammdaten.class);
 			nutAnrTxt.setText(stammObj.getNutStaAnr());
@@ -148,7 +148,7 @@ public class StammdatenActivity extends Activity implements OnItemSelectedListen
 				 @Override
 				    public void onSuccess(String response) {
 				        Log.i("Test", response);
-				        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+				        Toast.makeText(StammdatenActivity.this, response, Toast.LENGTH_LONG).show();
 			 }
 		    
 			});

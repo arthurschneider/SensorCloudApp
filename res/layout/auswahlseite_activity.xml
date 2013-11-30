@@ -6,20 +6,32 @@
     tools:context=".AuswahlseiteActivity"
     android:orientation="vertical"
     android:gravity="center"	>
-	
+	<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:text="Zu den Nutzerdaten:" >
+   	 </TextView>
     <Spinner
         android:id="@+id/spinnerNutStmmdtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:prompt="@string/auswahl_daten" />
    
-
-    <Button
-	    android:id="@+id/bn_aktVerb"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:onClick="goToSenAktVerbund"
-	    android:text="@string/aktVerb" />
+	<TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_gravity="center"
+       android:textSize="15sp"
+       android:text="Zu den Sensoren und Aktoren" >
+   	 </TextView>
+    <Spinner
+        android:id="@+id/spinnerVerbund"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/auswahl_daten" />
+    
     
     <Button
 	    android:id="@+id/bn_event"

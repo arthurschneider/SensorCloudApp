@@ -1,40 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_gravity="center"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical" >
-<TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:text="Verbundname:" >
-   	 </TextView>
-    <Spinner
-        android:id="@+id/spinnerSenVerbBez"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="15sp"
-            android:text="Sensoren:" >
-   	 </TextView>
-    <Spinner
-        android:id="@+id/spinnerSenVerbSensoren"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:text="Sensorbezeichnung:" >
+            android:text="Nachricht:" >
    	 </TextView>
      <EditText
-            android:id="@+id/senBezeichnung"
+            android:id="@+id/evedia_nachricht"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,24 +23,24 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="15sp"
-            android:text="Position:" >
+            android:text="Eventart:" >
    	 </TextView>
-  	 <EditText
-            android:id="@+id/senPosition"
+     <EditText
+            android:id="@+id/evedia_art"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text">
-    </EditText>     
-       <TextView
+  	</EditText>
+  	<TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="15sp"
-            android:text="Raum:" >
+            android:text="Adresse/Telefon:" >
    	 </TextView>
-  	<EditText
-            android:id="@+id/senRaum"
+     <EditText
+            android:id="@+id/evedia_weg"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,12 +53,12 @@
             android:textSize="15sp"
             android:text="Erstellungsdatum:" >
    	 </TextView>
-  	 <EditText
-            android:id="@+id/senDatum"
+     <EditText
+            android:id="@+id/evedia_time"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text">
-	</EditText>
-	
+  	</EditText>
+
 </LinearLayout>

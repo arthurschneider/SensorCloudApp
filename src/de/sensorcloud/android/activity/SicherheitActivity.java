@@ -61,7 +61,7 @@ public class SicherheitActivity extends Activity implements OnItemSelectedListen
 	public void getDatensatz(){
 		AsyncHttpClient client = new AsyncHttpClient();
 		Gson gson = new Gson();
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SicherheitActivity.this); 
 		String json = mPrefs.getString("NutzerObj", null);
 		String nutStaID = gson.fromJson(json, NutzerStammdaten.class).getNutStaID();
 		client.get( Helper.BASE_URL+"/SensorCloudRest/crud/NutzerSicherheit/NutStaID/"+nutStaID, new AsyncHttpResponseHandler() {
@@ -69,7 +69,7 @@ public class SicherheitActivity extends Activity implements OnItemSelectedListen
 		    public void onSuccess(String response) {
 		        Log.i("Test", response);
 		        
-		        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(SicherheitActivity.this);
 		        SharedPreferences.Editor editor = sharedPreferences.edit();
 				editor.putString("NSicherheitList", response);
 				editor.commit();
@@ -84,14 +84,15 @@ public class SicherheitActivity extends Activity implements OnItemSelectedListen
 		List<String> list = new ArrayList<String>();
 		list.clear();
 		
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SicherheitActivity.this); 
 		String json = mPrefs.getString("NSicherheitList", null);
 		sicherList = gson.fromJson(json, NutzerSicherheitList.class);
 		
 		for (NutzerSicherheit sicher : sicherList.getList()) {
 			list.add(sicher.getNutSicPas());
 		}
-     	
+//		list.add("müüüüüüggggggggg");
+//		list.add("zuoooooooooooo");list.add("ffffffffffffff");
 		ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
 		dAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		dAdapter.notifyDataSetChanged();
@@ -103,10 +104,9 @@ public class SicherheitActivity extends Activity implements OnItemSelectedListen
 	
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
-		Log.i("Select", "endlich getriggert");
 		
 		Gson gson = new Gson();
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SicherheitActivity.this); 
 		String json = mPrefs.getString("NSicherheitList", null);
 		sicherList = gson.fromJson(json, NutzerSicherheitList.class);
 		sicherObj = sicherList.getList().get(position);
@@ -148,8 +148,7 @@ public class SicherheitActivity extends Activity implements OnItemSelectedListen
 		client.post(null,  Helper.BASE_URL+"/SensorCloudRest/crud/NutzerSicherheit", se, "application/json", new AsyncHttpResponseHandler() {
 			 @Override
 			    public void onSuccess(String response) {
-			        Log.i("Test", response);
-			        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+			        Toast.makeText(SicherheitActivity.this, response, Toast.LENGTH_LONG).show();
 		 }
 	    
 		});

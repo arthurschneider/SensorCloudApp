@@ -63,7 +63,7 @@ public class AdresseActivity extends Activity implements OnItemSelectedListener 
 	public void getDatensatz(){
 		AsyncHttpClient client = new AsyncHttpClient();
 		Gson gson = new Gson();
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(AdresseActivity.this); 
 		String json = mPrefs.getString("NutzerObj", null);
 		nutStaAdrID = gson.fromJson(json, NutzerStammdaten.class).getNutStaAdrID();
 		client.get(Helper.BASE_URL+"/SensorCloudRest/crud/Adresse/AdrID/"+nutStaAdrID, new AsyncHttpResponseHandler() {
@@ -71,7 +71,7 @@ public class AdresseActivity extends Activity implements OnItemSelectedListener 
 		    public void onSuccess(String response) {
 		        Log.i("Test", response);
 		        
-		        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(AdresseActivity.this);
 		        SharedPreferences.Editor editor = sharedPreferences.edit();
 				editor.putString("AdressObj", response);
 				editor.commit();
@@ -85,16 +85,16 @@ public class AdresseActivity extends Activity implements OnItemSelectedListener 
 		List<String> list = new ArrayList<String>();
 		list.clear();
 		
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(AdresseActivity.this); 
 		String json = mPrefs.getString("AdressObj", null);
-		adrObj = gson.fromJson(json, Adresse.class);
+		Adresse adrObj = gson.fromJson(json, Adresse.class);
 		
      	list.add(adrObj.getAdrBez());
 //     	list.add("maaaaaaä");
 //     	list.add("maadadadadaaaaaä");
 //     	list.add("maaadadadadadadadaaaaä");
      	
-		ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
+		ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(AdresseActivity.this, android.R.layout.simple_spinner_item, list);
 		dAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		dAdapter.notifyDataSetChanged();
 		spinnerAdrStmmdtn.postInvalidate();
@@ -109,17 +109,16 @@ public class AdresseActivity extends Activity implements OnItemSelectedListener 
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
 		
 		Gson gson = new Gson();
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(AdresseActivity.this); 
 		String json = mPrefs.getString("AdressObj", null);
-		adrObj = gson.fromJson(json, Adresse.class);
+		Adresse adrObj = gson.fromJson(json, Adresse.class);
 		
 			adrBezTxt.setText(adrObj.getAdrBez());
 			adrStrTxt.setText(adrObj.getAdrStr());
 			adrOrtTxt.setText(adrObj.getAdrOrt());
 			adrPlzTxt.setText(adrObj.getAdrPlz());
 			adrLanTxt.setText(adrObj.getAdrLan());
-		String data = spinnerAdrStmmdtn.getItemAtPosition(position).toString();
-        Toast.makeText(AdresseActivity.this, data, Toast.LENGTH_SHORT).show();
+		
 			
 	}
 
@@ -154,7 +153,7 @@ public class AdresseActivity extends Activity implements OnItemSelectedListener 
 			 @Override
 			    public void onSuccess(String response) {
 			        Log.i("Test", response);
-			        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+			        Toast.makeText(AdresseActivity.this, response, Toast.LENGTH_LONG).show();
 		 }
 	    
 		});

@@ -16,20 +16,23 @@ import de.sensorcloud.android.R;
 public class AuswahlseiteActivity extends Activity {
 
 	Spinner spinnerNutStmmdtn;
+	Spinner spinnerVerbund;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.auswahlseite_activity);
 		addItemsOnSpinnerAuswahl();
-		addListenerOnSpinnerItemSelection();
+		addListenerOnSpinnerAuswahlItemSelection();
+		addItemsOnSpinnerVerbund();
+		addListenerOnSpinnerVerbundItemSelection();
 	}
 
 	
 	public void addItemsOnSpinnerAuswahl() {
 		 
 		spinnerNutStmmdtn = (Spinner) findViewById(R.id.spinnerNutStmmdtn);
-		
+		spinnerVerbund = (Spinner) findViewById(R.id.spinnerVerbund);
 		List<String> list = new ArrayList<String>();
 		list.add("--------");
 		list.add("Adresse");
@@ -37,16 +40,37 @@ public class AuswahlseiteActivity extends Activity {
 		list.add("Telefon");
 		list.add("Email");
 		list.add("Sicherheit");
-		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(AuswahlseiteActivity.this, android.R.layout.simple_spinner_item, list);
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinnerNutStmmdtn.setAdapter(dataAdapter);
 		spinnerNutStmmdtn.setSelection(0);
 	}
 	
-	public void addListenerOnSpinnerItemSelection() {
+	public void addListenerOnSpinnerAuswahlItemSelection() {
 		
 		spinnerNutStmmdtn = (Spinner) findViewById(R.id.spinnerNutStmmdtn);
 		spinnerNutStmmdtn.setOnItemSelectedListener(new AuswahlNutStmmdtnListener());
+	}	
+	
+	
+	public void addItemsOnSpinnerVerbund() {
+		 
+		spinnerVerbund = (Spinner) findViewById(R.id.spinnerVerbund);
+		
+		List<String> list = new ArrayList<String>();
+		list.add("--------");
+		list.add("Aktor/Verbund");
+		list.add("Sensor/Verbund");
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(AuswahlseiteActivity.this, android.R.layout.simple_spinner_item, list);
+		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinnerVerbund.setAdapter(dataAdapter);
+		spinnerVerbund.setSelection(0);
+	}
+	
+	public void addListenerOnSpinnerVerbundItemSelection() {
+		
+		spinnerVerbund = (Spinner) findViewById(R.id.spinnerVerbund);
+		spinnerVerbund.setOnItemSelectedListener(new AuswahlVerbundListener());
 	}	
 	
 	public class AuswahlNutStmmdtnListener implements OnItemSelectedListener {
@@ -54,23 +78,23 @@ public class AuswahlseiteActivity extends Activity {
 		public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
 			
 			if (position == 1){
-				Intent intent  = new Intent(getApplicationContext(), AdresseActivity.class);
+				Intent intent  = new Intent(AuswahlseiteActivity.this, AdresseActivity.class);
 				startActivity(intent);
 			}
 			if (position == 2){
-				Intent intent  = new Intent(getApplicationContext(), StammdatenActivity.class);
+				Intent intent  = new Intent(AuswahlseiteActivity.this, StammdatenActivity.class);
 				startActivity(intent);
 			}
 			if (position == 3){
-				Intent intent  = new Intent(getApplicationContext(), TelefonActivity.class);
+				Intent intent  = new Intent(AuswahlseiteActivity.this, TelefonActivity.class);
 				startActivity(intent);
 			}
 			if (position == 4){
-				Intent intent  = new Intent(getApplicationContext(), EmailActivity.class);
+				Intent intent  = new Intent(AuswahlseiteActivity.this, EmailActivity.class);
 				startActivity(intent);
 			}
 			if (position == 5){
-				Intent intent  = new Intent(getApplicationContext(), SicherheitActivity.class);
+				Intent intent  = new Intent(AuswahlseiteActivity.this, SicherheitActivity.class);
 				startActivity(intent);
 			}
 			
@@ -82,8 +106,29 @@ public class AuswahlseiteActivity extends Activity {
 		}
 	}
 	
-	public void goToSenAktVerbund(View view){
-		Intent intent  = new Intent(getApplicationContext(), SensorVerbundActivity.class);
+	public class AuswahlVerbundListener implements OnItemSelectedListener {
+		
+		public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
+			
+			if (position == 1){
+				Intent intent  = new Intent(AuswahlseiteActivity.this, AktorVerbundActivity.class);
+				startActivity(intent);
+			}
+			if (position == 2){
+				Intent intent  = new Intent(AuswahlseiteActivity.this, SensorVerbundActivity.class);
+				startActivity(intent);
+			}
+			
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> arg0) {
+		}
+	}
+	
+	public void goToEvent(View view){
+		Intent intent  = new Intent(AuswahlseiteActivity.this, EventRegelActivity.class);
 		startActivity(intent);
 	}
+	
 }
