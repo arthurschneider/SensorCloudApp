@@ -3,7 +3,8 @@ package de.sensorcloud.android.entitaet;
 public class SensorEvent {
 
 	private String senEveID;
-	private String senEveSenID;
+	private String SenEveQueID;
+	private String SenEveQue;
 	private String senEvePhyNam;
 	private String senEveVop;
 	private String senEveWer;
@@ -16,12 +17,20 @@ public class SensorEvent {
 		this.senEveID = senEveID;
 	}
 
-	public String getSenEveSenID() {
-		return senEveSenID;
+	public String getSenEveQueID() {
+		return SenEveQueID;
 	}
 
-	public void setSenEveSenID(String senEveSenID) {
-		this.senEveSenID = senEveSenID;
+	public void setSenEveQueID(String senEveQueID) {
+		SenEveQueID = senEveQueID;
+	}
+
+	public String getSenEveQue() {
+		return SenEveQue;
+	}
+
+	public void setSenEveQue(String senEveQue) {
+		SenEveQue = senEveQue;
 	}
 
 	public String getSenEvePhyNam() {

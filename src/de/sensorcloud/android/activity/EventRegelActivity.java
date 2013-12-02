@@ -22,6 +22,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import de.sensorcloud.android.R;
 import de.sensorcloud.android.entitaet.Event;
+import de.sensorcloud.android.entitaet.EventAktion;
 import de.sensorcloud.android.entitaet.EventList;
 import de.sensorcloud.android.entitaet.EventRegel;
 import de.sensorcloud.android.entitaet.NutzerStammdaten;
@@ -108,7 +109,7 @@ public class EventRegelActivity extends Activity {
 		spinnerEventBez.postInvalidate();
 		spinnerEventBez.setAdapter(dAdapter);
 		
-		spinnerEventBez.setOnItemSelectedListener(new AuswahlSensor());
+		spinnerEventBez.setOnItemSelectedListener(new AuswahlSensorListener());
 	}
 	
 	
@@ -116,7 +117,7 @@ public class EventRegelActivity extends Activity {
 		AsyncHttpClient client = new AsyncHttpClient();
 		Gson gson = new Gson();
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(EventRegelActivity.this); 
-		String json = mPrefs.getString("SVerbundListe", null);
+		String json = mPrefs.getString("EventBez", null);
 		eventList = gson.fromJson(json, EventList.class);
 	
 		Event event = eventList.getList().get(position);
@@ -146,12 +147,12 @@ public class EventRegelActivity extends Activity {
 		EventRegel eventRegel = gson.fromJson(json, EventRegel.class);
 		
 		for (SensorEvent senEve : eventRegel.getSensorEvent()) {
-        	list2.add(senEve.getSenEveSenID());
+        	list2.add(senEve.getSenEveQueID());
 		}
 //     list2.add("müüüüüüüüh");
 //     list2.add("lööööööö");
 //     list2.add("cfffffffffff");
-     
+//     
 		
 		ArrayAdapter<String> senAdapter = new ArrayAdapter<String>(EventRegelActivity.this, android.R.layout.simple_spinner_item, list2);
 		senAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -162,13 +163,66 @@ public class EventRegelActivity extends Activity {
 		spinnerSensorEvent.setOnItemSelectedListener(new SensorEventListener());
 	}
 	
+	
+	public void setEventAktion(int position){
+//		AsyncHttpClient client = new AsyncHttpClient();
+//		Gson gson = new Gson();
+//		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(EventRegelActivity.this); 
+//		String json = mPrefs.getString("EventBez", null);
+//		eventList = gson.fromJson(json, EventList.class);
+//	
+//		Event event = eventList.getList().get(position);
+//        	
+//		
+//		client.get(Helper.BASE_URL+"/SensorCloudRest/crud/Event/EveID/"+event.getEveID(), new AsyncHttpResponseHandler() {
+//		    @Override
+//		    public void onSuccess(String response) {
+//		        Log.i("Test", response);
+//		        
+//		        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(EventRegelActivity.this);
+//		        SharedPreferences.Editor editor = sharedPreferences.edit();
+////		        editor.remove("SVerbundListe");
+//				editor.putString("EventRegel", response);
+//				editor.commit();
+//		        
+//		    }
+//		    
+//		});
+		Gson gson = new Gson();
+		
+		List<String> list3 = new ArrayList<String>();
+		list3.clear();
+		
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(EventRegelActivity.this); 
+		String json = mPrefs.getString("EventRegel", null);
+		EventRegel eventRegel = gson.fromJson(json, EventRegel.class);
+		
+		for (EventAktion eveAkt : eventRegel.getEventAktion()) {
+        	list3.add(eveAkt.getEveAktiZieID());
+		}
+//     list3.add("müüüüüüüüh");
+//     list3.add("lööööööö");
+//     list3.add("cfffffffffff");
+     
+		
+		ArrayAdapter<String> aktAdapter = new ArrayAdapter<String>(EventRegelActivity.this, android.R.layout.simple_spinner_item, list3);
+		aktAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		aktAdapter.notifyDataSetChanged();
+		spinnerEveAktion.postInvalidate();
+		spinnerEveAktion.setAdapter(aktAdapter);
+		
+		spinnerEveAktion.setOnItemSelectedListener(new EventAktionListener());
+	}
+	
+	
+	
 
-	public class AuswahlSensor implements OnItemSelectedListener {
+	public class AuswahlSensorListener implements OnItemSelectedListener {
 		
 		public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
 			
 			setSenorEvent(position);
-			//setEventAktion(position);
+			setEventAktion(position);
 		}
 
 		@Override
@@ -179,9 +233,48 @@ public class EventRegelActivity extends Activity {
 	public class SensorEventListener implements OnItemSelectedListener {
 		
 		public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
+			Gson gson =new Gson();
+		
+			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(EventRegelActivity.this); 
+			String json = mPrefs.getString("EventRegel", null);
+			EventRegel eventRegel = gson.fromJson(json, EventRegel.class);
 			
-			String data = spinnerSensorEvent.getItemAtPosition(position).toString();
-	        Toast.makeText(EventRegelActivity.this, data, Toast.LENGTH_SHORT).show();
+			SensorEvent senEve =  eventRegel.getSensorEvent().get(position);
+			eve_seneve_bez.setText(senEve.getSenEveQue()+":"+senEve.getSenEveQueID());
+			eve_seneve_parameter.setText(senEve.getSenEvePhyNam());
+			eve_seneve_operator.setText(senEve.getSenEveVop());
+			eve_seneve_schwwert.setText(senEve.getSenEveWer());
+			
+			
+//			String data = spinnerSensorEvent.getItemAtPosition(position).toString();
+//	        Toast.makeText(EventRegelActivity.this, data, Toast.LENGTH_SHORT).show();
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> arg0) {
+		}
+	}
+	
+	
+	public class EventAktionListener implements OnItemSelectedListener {
+		
+		public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
+			
+			Gson gson =new Gson();
+			
+			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(EventRegelActivity.this); 
+			String json = mPrefs.getString("EventRegel", null);
+			EventRegel eventRegel = gson.fromJson(json, EventRegel.class);
+			
+			EventAktion eveAkt =  eventRegel.getEventAktion().get(position);
+			eve_eveakt_akt.setText(eveAkt.getEveAktiZie()+":"+eveAkt.getEveAktiZieID());
+			eve_eveakt_bez.setText(eveAkt.getEveAktiBez());
+			eve_eveakt_funkt.setText(eveAkt.getEveAktiZiePar());
+			eve_eveakt_wert.setText(eveAkt.getEveAktiZieWer());
+			
+			
+//			String data = spinnerEveAktion.getItemAtPosition(position).toString();
+//	        Toast.makeText(EventRegelActivity.this, data, Toast.LENGTH_SHORT).show();
 		}
 
 		@Override

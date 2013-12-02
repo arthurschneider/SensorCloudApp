@@ -14,6 +14,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
@@ -169,8 +170,8 @@ public class SensorVerbundActivity extends Activity implements OnItemSelectedLis
 				senRaumTxt.setText(sen.getSenRauID());
 				senDatumTxt.setText(sen.getSenDatEin());
 
-//		String data = spinnerSenVerbSensoren.getItemAtPosition(position).toString();
-//        Toast.makeText(SensorVerbundActivity.this, data, Toast.LENGTH_SHORT).show();
+		String data = spinnerSenVerbSensoren.getItemAtPosition(position).toString();
+        Toast.makeText(SensorVerbundActivity.this, data, Toast.LENGTH_SHORT).show();
 			
 	}
 

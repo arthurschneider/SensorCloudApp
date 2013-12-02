@@ -127,8 +127,7 @@ public class AktorVerbundActivity extends Activity implements OnItemSelectedList
 		    }
 		    
 		});
-		
-	
+
 		List<String> list2 = new ArrayList<String>();
 		list2.clear();
 		
@@ -168,8 +167,8 @@ public class AktorVerbundActivity extends Activity implements OnItemSelectedList
 				aktRaumTxt.setText(akt.getAktRauID());
 				aktDatumTxt.setText(akt.getAktDatEin());
 
-		String data = spinnerAktVerbAktoren.getItemAtPosition(position).toString();
-        Toast.makeText(AktorVerbundActivity.this, data, Toast.LENGTH_SHORT).show();
+//		String data = spinnerAktVerbAktoren.getItemAtPosition(position).toString();
+//        Toast.makeText(AktorVerbundActivity.this, data, Toast.LENGTH_SHORT).show();
 			
 	}
 

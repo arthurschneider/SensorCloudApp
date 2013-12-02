@@ -84,10 +84,12 @@ public class AdresseActivity extends Activity implements OnItemSelectedListener 
 		Gson gson = new Gson();
 		List<String> list = new ArrayList<String>();
 		list.clear();
+		spinnerAdrStmmdtn.setAdapter(null);
+		spinnerAdrStmmdtn.postInvalidate();
 		
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(AdresseActivity.this); 
 		String json = mPrefs.getString("AdressObj", null);
-		Adresse adrObj = gson.fromJson(json, Adresse.class);
+		adrObj = gson.fromJson(json, Adresse.class);
 		
      	list.add(adrObj.getAdrBez());
 //     	list.add("maaaaaaä");
@@ -95,9 +97,8 @@ public class AdresseActivity extends Activity implements OnItemSelectedListener 
 //     	list.add("maaadadadadadadadaaaaä");
      	
 		ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(AdresseActivity.this, android.R.layout.simple_spinner_item, list);
-		dAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		dAdapter.notifyDataSetChanged();
-		spinnerAdrStmmdtn.postInvalidate();
+		dAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinnerAdrStmmdtn.setAdapter(dAdapter);
 		
 		spinnerAdrStmmdtn.setOnItemSelectedListener(this);
@@ -107,11 +108,11 @@ public class AdresseActivity extends Activity implements OnItemSelectedListener 
 	
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
-		
-		Gson gson = new Gson();
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(AdresseActivity.this); 
-		String json = mPrefs.getString("AdressObj", null);
-		Adresse adrObj = gson.fromJson(json, Adresse.class);
+//		
+//		Gson gson = new Gson();
+//		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(AdresseActivity.this); 
+//		String json = mPrefs.getString("AdressObj", null);
+//		adrObj = gson.fromJson(json, Adresse.class);
 		
 			adrBezTxt.setText(adrObj.getAdrBez());
 			adrStrTxt.setText(adrObj.getAdrStr());
@@ -129,7 +130,7 @@ public class AdresseActivity extends Activity implements OnItemSelectedListener 
 	}
 	
 	public void updateAdresse(View view){
-		
+		Log.i("Adresse", ""+adrObj.getAdrID()+" "+ adrObj.getAdrLan());
 		adrObj.setAdrBez(adrBezTxt.getText().toString());
 		adrObj.setAdrStr(adrStrTxt.getText().toString());
 		adrObj.setAdrOrt(adrOrtTxt.getText().toString());
@@ -149,6 +150,7 @@ public class AdresseActivity extends Activity implements OnItemSelectedListener 
 		
 		AsyncHttpClient client = new AsyncHttpClient();
 		se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+		
 		client.post(null, Helper.BASE_URL+"/SensorCloudRest/crud/Adresse", se, "application/json", new AsyncHttpResponseHandler() {
 			 @Override
 			    public void onSuccess(String response) {

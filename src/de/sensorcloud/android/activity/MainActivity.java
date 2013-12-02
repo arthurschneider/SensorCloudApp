@@ -41,6 +41,7 @@ public class MainActivity extends Activity {
 		eMailTxt = (EditText) findViewById(R.id.email);
 		passwortTxt = (EditText) findViewById(R.id.passwort);
 		infoLbl = (TextView) findViewById(R.id.txtView_info);
+		Log.i("Debug", "oncreate läuft");
 	}
 	
 	public void anmelden(View vw) {
@@ -55,7 +56,7 @@ public class MainActivity extends Activity {
         Gson gson = new Gson();
         JsonElement jsonElement = gson.toJsonTree(login);
 		StringEntity se = null;
-		
+		Log.i("Debug", "Werte eingelesen");
 		try {
 		    se = new StringEntity(jsonElement.toString());
 		} catch (UnsupportedEncodingException e) {

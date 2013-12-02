@@ -1,10 +1,10 @@
 package de.sensorcloud.android.entitaet;
 
 public class EventAktion {
-	
+
 	private String eveAktiID;
 	private String eveAktiEveID;
-	private String eveAktiZieBez;
+	private String eveAktiBez;
 	private String eveAktiZie;
 	private String eveAktiZieID;
 	private String eveAktiZiePar;
@@ -28,12 +28,12 @@ public class EventAktion {
 		this.eveAktiEveID = eveAktiEveID;
 	}
 
-	public String getEveAktiZieBez() {
-		return eveAktiZieBez;
+	public String getEveAktiBez() {
+		return eveAktiBez;
 	}
 
-	public void setEveAktiZieBez(String eveAktiZieBez) {
-		this.eveAktiZieBez = eveAktiZieBez;
+	public void setEveAktiBez(String eveAktiBez) {
+		this.eveAktiBez = eveAktiBez;
 	}
 
 	public String getEveAktiZie() {

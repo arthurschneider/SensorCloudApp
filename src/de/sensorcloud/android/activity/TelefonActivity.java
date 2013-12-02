@@ -116,6 +116,8 @@ public class TelefonActivity extends Activity implements OnItemSelectedListener 
 			
 			telBezTxt.setText(telObj.getNutTelBez());
 			telNumTxt.setText(telObj.getNutTelNum());
+//			String data = spinnerTelStmmdtn.getItemAtPosition(position).toString();
+//	        Toast.makeText(TelefonActivity.this, data, Toast.LENGTH_SHORT).show();
 		
 	}
 
