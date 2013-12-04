@@ -15,9 +15,11 @@
     <string name="delete">Delete</string>
     <string name="insert">Insert</string>
     <string name="auswahl_daten">Welches wollen sie anzeigen?</string>
-    <string name="gruppe">Gruppe/Mandant</string>
+    <string name="gruppe">Gruppe</string>
     <string name="chart">Charts</string>
+    <string name="close">Schließen</string>
     <string name="save">Speichern</string>
+    <string name="showEveContent">Zeige Dialog</string>
     <string name="service">Servicelinie</string>
     <string name="title_activity_auswahlseite">Auswahlseite</string>
     <string name="title_activity_nutzerStammdaten">NutzerStammdaten</string>

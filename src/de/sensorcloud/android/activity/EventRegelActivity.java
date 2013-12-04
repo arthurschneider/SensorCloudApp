@@ -1,9 +1,16 @@
 package de.sensorcloud.android.activity;
 
+import java.io.UnsupportedEncodingException;
+import java.sql.NClob;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.entity.StringEntity;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.protocol.HTTP;
+
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -12,11 +19,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -30,6 +39,9 @@ import de.sensorcloud.android.entitaet.SensorEvent;
 import de.sensorcloud.android.helpertools.Helper;
 
 public class EventRegelActivity extends Activity {
+	
+	Button showDialog;
+	Dialog custom;
 	
 	Spinner spinnerEventBez;
 	Spinner spinnerSensorEvent;
@@ -46,7 +58,9 @@ public class EventRegelActivity extends Activity {
 	EditText eve_eveakt_wert;
 	
 	EventList eventList;
-
+	EventRegel eventRegel;
+	int senEvePosition, eveAktPosition, eventPosition;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,11 +78,16 @@ public class EventRegelActivity extends Activity {
 		spinnerSensorEvent = (Spinner) findViewById(R.id.spinnerSensorEvent);
 		spinnerEveAktion = (Spinner) findViewById(R.id.spinnerEveAktion);
 		
-		getDatensatzVerbund();
+		showDialog = (Button)findViewById(R.id.eve_dialog_show);
+		
+		
+		getDatensatzEventBez();
 		setDataToSpinner();
 		
 	}
-	public void getDatensatzVerbund(){
+	
+	public void getDatensatzEventBez(){
+		eventRegel = null;
 		AsyncHttpClient client = new AsyncHttpClient();
 		Gson gson = new Gson();
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(EventRegelActivity.this); 
@@ -77,9 +96,9 @@ public class EventRegelActivity extends Activity {
 		client.get(Helper.BASE_URL+"/SensorCloudRest/crud/Event/NutStaID/"+nutStaID, new AsyncHttpResponseHandler() {
 		    @Override
 		    public void onSuccess(String response) {
+		    	Log.i("Debug", response);
 		        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(EventRegelActivity.this);
 		        SharedPreferences.Editor editor = sharedPreferences.edit();
-		        
 				editor.putString("EventBez", response);
 				editor.commit();
 		    }
@@ -95,7 +114,7 @@ public class EventRegelActivity extends Activity {
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(EventRegelActivity.this); 
 		String json = mPrefs.getString("EventBez", null);
 		EventList eventList = gson.fromJson(json, EventList.class);
-		
+//		
 		for (Event event : eventList.getList()) {
         	list.add(event.getEveBez());
 		}
@@ -109,7 +128,7 @@ public class EventRegelActivity extends Activity {
 		spinnerEventBez.postInvalidate();
 		spinnerEventBez.setAdapter(dAdapter);
 		
-		spinnerEventBez.setOnItemSelectedListener(new AuswahlSensorListener());
+		spinnerEventBez.setOnItemSelectedListener(new AuswahlEventListener());
 	}
 	
 	
@@ -144,7 +163,7 @@ public class EventRegelActivity extends Activity {
 		
 		
 		json = mPrefs.getString("EventRegel", null);
-		EventRegel eventRegel = gson.fromJson(json, EventRegel.class);
+		eventRegel = gson.fromJson(json, EventRegel.class);
 		
 		for (SensorEvent senEve : eventRegel.getSensorEvent()) {
         	list2.add(senEve.getSenEveQueID());
@@ -152,7 +171,7 @@ public class EventRegelActivity extends Activity {
 //     list2.add("müüüüüüüüh");
 //     list2.add("lööööööö");
 //     list2.add("cfffffffffff");
-//     
+     
 		
 		ArrayAdapter<String> senAdapter = new ArrayAdapter<String>(EventRegelActivity.this, android.R.layout.simple_spinner_item, list2);
 		senAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -165,29 +184,6 @@ public class EventRegelActivity extends Activity {
 	
 	
 	public void setEventAktion(int position){
-//		AsyncHttpClient client = new AsyncHttpClient();
-//		Gson gson = new Gson();
-//		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(EventRegelActivity.this); 
-//		String json = mPrefs.getString("EventBez", null);
-//		eventList = gson.fromJson(json, EventList.class);
-//	
-//		Event event = eventList.getList().get(position);
-//        	
-//		
-//		client.get(Helper.BASE_URL+"/SensorCloudRest/crud/Event/EveID/"+event.getEveID(), new AsyncHttpResponseHandler() {
-//		    @Override
-//		    public void onSuccess(String response) {
-//		        Log.i("Test", response);
-//		        
-//		        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(EventRegelActivity.this);
-//		        SharedPreferences.Editor editor = sharedPreferences.edit();
-////		        editor.remove("SVerbundListe");
-//				editor.putString("EventRegel", response);
-//				editor.commit();
-//		        
-//		    }
-//		    
-//		});
 		Gson gson = new Gson();
 		
 		List<String> list3 = new ArrayList<String>();
@@ -195,7 +191,7 @@ public class EventRegelActivity extends Activity {
 		
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(EventRegelActivity.this); 
 		String json = mPrefs.getString("EventRegel", null);
-		EventRegel eventRegel = gson.fromJson(json, EventRegel.class);
+		eventRegel = gson.fromJson(json, EventRegel.class);
 		
 		for (EventAktion eveAkt : eventRegel.getEventAktion()) {
         	list3.add(eveAkt.getEveAktiZieID());
@@ -203,24 +199,59 @@ public class EventRegelActivity extends Activity {
 //     list3.add("müüüüüüüüh");
 //     list3.add("lööööööö");
 //     list3.add("cfffffffffff");
-     
+//     
 		
 		ArrayAdapter<String> aktAdapter = new ArrayAdapter<String>(EventRegelActivity.this, android.R.layout.simple_spinner_item, list3);
 		aktAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		aktAdapter.notifyDataSetChanged();
 		spinnerEveAktion.postInvalidate();
 		spinnerEveAktion.setAdapter(aktAdapter);
-		
 		spinnerEveAktion.setOnItemSelectedListener(new EventAktionListener());
 	}
 	
-	
-	
+	public class OnShowDialogListener implements View.OnClickListener {
 
-	public class AuswahlSensorListener implements OnItemSelectedListener {
+		@Override
+		public void onClick(View v) {
+			custom = new Dialog(EventRegelActivity.this);
+			custom.setContentView(R.layout.event_dialog);
+			EditText nachricht = (EditText)custom.findViewById(R.id.evedia_nachricht);
+			EditText art = (EditText)custom.findViewById(R.id.evedia_art);
+			EditText nachrichtWeg = (EditText)custom.findViewById(R.id.evedia_weg);
+			EditText timestmp = (EditText)custom.findViewById(R.id.evedia_time);
+			Button canbtn = (Button)custom.findViewById(R.id.dialog_close);
+			
+			
+			Gson gson = new Gson();
+			
+			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(EventRegelActivity.this); 
+			String json = mPrefs.getString("EventRegel", null);
+			eventRegel = gson.fromJson(json, EventRegel.class);
+			
+			nachricht.setText(eventRegel.getEvent().getEveNac());
+			art.setText(eventRegel.getEvent().getEveArt());
+			nachrichtWeg.setText(eventRegel.getEventBen().getEveBenWeg());
+			timestmp.setText(eventRegel.getEvent().getEveTimSta());
+			
+			canbtn.setOnClickListener(new View.OnClickListener() {
+				
+                @Override
+                public void onClick(View view) {
+                    // TODO Auto-generated method stub
+                    custom.dismiss();
+
+                }
+            });
+            custom.show();
+		}
+		
+	}
+
+	public class AuswahlEventListener implements OnItemSelectedListener {
 		
 		public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
-			
+			showDialog.setOnClickListener(new OnShowDialogListener());
+			eventPosition = position;
 			setSenorEvent(position);
 			setEventAktion(position);
 		}
@@ -234,10 +265,11 @@ public class EventRegelActivity extends Activity {
 		
 		public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
 			Gson gson =new Gson();
-		
+			senEvePosition = position;
+			
 			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(EventRegelActivity.this); 
 			String json = mPrefs.getString("EventRegel", null);
-			EventRegel eventRegel = gson.fromJson(json, EventRegel.class);
+			eventRegel = gson.fromJson(json, EventRegel.class);
 			
 			SensorEvent senEve =  eventRegel.getSensorEvent().get(position);
 			eve_seneve_bez.setText(senEve.getSenEveQue()+":"+senEve.getSenEveQueID());
@@ -255,16 +287,15 @@ public class EventRegelActivity extends Activity {
 		}
 	}
 	
-	
 	public class EventAktionListener implements OnItemSelectedListener {
 		
 		public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
 			
-			Gson gson =new Gson();
+			Gson gson = new Gson();
 			
 			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(EventRegelActivity.this); 
 			String json = mPrefs.getString("EventRegel", null);
-			EventRegel eventRegel = gson.fromJson(json, EventRegel.class);
+			eventRegel = gson.fromJson(json, EventRegel.class);
 			
 			EventAktion eveAkt =  eventRegel.getEventAktion().get(position);
 			eve_eveakt_akt.setText(eveAkt.getEveAktiZie()+":"+eveAkt.getEveAktiZieID());
@@ -280,5 +311,65 @@ public class EventRegelActivity extends Activity {
 		@Override
 		public void onNothingSelected(AdapterView<?> arg0) {
 		}
+	}
+	
+	
+	
+	public void saveSenEveContent(View view) {
+		Gson gson = new Gson();
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(EventRegelActivity.this); 
+		String json = mPrefs.getString("EventRegel", null);
+		eventRegel = gson.fromJson(json, EventRegel.class);
+		SensorEvent senEve =  eventRegel.getSensorEvent().get(senEvePosition);
+		
+		senEve.setSenEveVop(eve_seneve_operator.getText().toString());
+		senEve.setSenEveWer(eve_seneve_schwwert.getText().toString());
+		
+		eventRegel.getSensorEvent().set(senEvePosition, senEve);
+		
+//		Toast.makeText(EventRegelActivity.this, "saveSenEveContent-Methode", Toast.LENGTH_SHORT).show();
+	}
+	
+	
+	public void saveEveAktContent(View view) {
+		Gson gson = new Gson();
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(EventRegelActivity.this); 
+		String json = mPrefs.getString("EventRegel", null);
+		eventRegel = gson.fromJson(json, EventRegel.class);
+		EventAktion eveAkt =  eventRegel.getEventAktion().get(eveAktPosition);
+		
+		eveAkt.setEveAktiZiePar(eve_eveakt_funkt.getText().toString());
+		eveAkt.setEveAktiZieWer(eve_eveakt_wert.getText().toString());
+		
+		eventRegel.getEventAktion().set(eveAktPosition, eveAkt);
+	}
+	
+	
+	public void updateEventRegel(View view){
+		
+		
+		Gson gson = new Gson();
+		JsonElement jsonElement = gson.toJsonTree(eventRegel);
+		
+		StringEntity se = null;
+	
+		try {
+		    se = new StringEntity(jsonElement.toString());
+		} catch (UnsupportedEncodingException e) {
+			Log.e("Fehler", "Json-String konnte nicht verarbeitet werden!");
+		}		
+		
+		AsyncHttpClient client = new AsyncHttpClient();
+		se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+		client.post(null,  Helper.BASE_URL+"/SensorCloudRest/crud/Event", se, "application/json", new AsyncHttpResponseHandler() {
+			 @Override
+			    public void onSuccess(String response) {
+			        Toast.makeText(EventRegelActivity.this, response, Toast.LENGTH_LONG).show();
+		 }
+	    
+		});
+		
+		getDatensatzEventBez();
+		setDataToSpinner();
 	}
 }

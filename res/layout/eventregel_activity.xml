@@ -74,7 +74,7 @@
     	<Button
 	        android:id="@+id/eve_seneve_save"
 	        android:layout_weight="1"
-	        android:onClick="insertEmail"
+	        android:onClick="saveSenEveContent"
 	        android:layout_width="wrap_content"
 	        android:layout_height="0dp"
 	        android:text="@string/save"
@@ -132,10 +132,11 @@
 	            android:inputType="text">
 	  		</EditText>
     	</LinearLayout>
+    	
     	<Button
 	        android:id="@+id/eve_eveakt_save"
 	        android:layout_weight="1"
-	        android:onClick="insertEmail"
+	        android:onClick="saveEveAktContent"
 	        android:layout_width="wrap_content"
 	        android:layout_height="0dp"
 	        android:text="@string/save"
@@ -143,9 +144,18 @@
     	
     	
     	<Button
+	        android:id="@+id/eve_dialog_show"
+	        android:layout_weight="1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="0dp"
+	        android:text="@string/showEveContent"
+	         />
+    	
+    	
+    	<Button
 	        android:id="@+id/eve_update"
 	        android:layout_weight="1"
-	        android:onClick="insertEmail"
+	        android:onClick="updateEventRegel"
 	        android:layout_width="wrap_content"
 	        android:layout_height="0dp"
 	        android:text="@string/update"

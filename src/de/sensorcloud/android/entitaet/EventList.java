@@ -3,6 +3,7 @@ package de.sensorcloud.android.entitaet;
 import java.util.ArrayList;
 
 public class EventList {
+	
 	private ArrayList<Event> list;
 
 	public ArrayList<Event> getList() {

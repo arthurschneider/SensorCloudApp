@@ -37,13 +37,15 @@ public class SensorVerbundActivity extends Activity implements OnItemSelectedLis
 	EditText senRaumTxt;
 	EditText senDatumTxt;
 	
+	int verbundPosition; 
+	String nutStaID;
 	SensorVerbundList verbundList;
+	SensorList senList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.sensorverbund_activity);
-		
 		senBezeichnungTxt = (EditText) findViewById(R.id.senBezeichnung);
 		senPositionTxt = (EditText) findViewById(R.id.senPosition);
 		senRaumTxt = (EditText) findViewById(R.id.senRaum);
@@ -61,18 +63,17 @@ public class SensorVerbundActivity extends Activity implements OnItemSelectedLis
 		Gson gson = new Gson();
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SensorVerbundActivity.this); 
 		String json = mPrefs.getString("NutzerObj", null);
-		String nutStaID = gson.fromJson(json, NutzerStammdaten.class).getNutStaID();
+		nutStaID = gson.fromJson(json, NutzerStammdaten.class).getNutStaID();
 		client.get(Helper.BASE_URL+"/SensorCloudRest/crud/SensorVerbund/NutStaID/"+nutStaID, new AsyncHttpResponseHandler() {
 		    @Override
 		    public void onSuccess(String response) {
 		        Log.i("Test", response);
-		        
 		        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(SensorVerbundActivity.this);
 		        SharedPreferences.Editor editor = sharedPreferences.edit();
 		        
 				editor.putString("SVerbundListe", response);
 				editor.commit();
-		        
+		    
 		    }
 		    
 		});
@@ -86,15 +87,15 @@ public class SensorVerbundActivity extends Activity implements OnItemSelectedLis
 		
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SensorVerbundActivity.this); 
 		String json = mPrefs.getString("SVerbundListe", null);
-		SensorVerbundList verbundList = gson.fromJson(json, SensorVerbundList.class);
-		
+		verbundList = gson.fromJson(json, SensorVerbundList.class);
+		list.add("--Alle Sensoren anzeigen--");
 		for (SensorVerbund verb : verbundList.getSenVerbundList()) {
         	list.add(verb.getSenVerBez());
 		}
 //		 list.add("müüüüüü1111111üüh");
 //	     list.add("lööööö111111111öö");
 //	     list.add("cffffff1111111111fffff");
-		
+//		
 		ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(SensorVerbundActivity.this, android.R.layout.simple_spinner_item, list);
 		dAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		dAdapter.notifyDataSetChanged();
@@ -106,37 +107,61 @@ public class SensorVerbundActivity extends Activity implements OnItemSelectedLis
 
 	
 	public void setSpinnerSenVerbSensor(int position){
-		AsyncHttpClient client = new AsyncHttpClient();
 		Gson gson = new Gson();
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SensorVerbundActivity.this); 
-		String json = mPrefs.getString("SVerbundListe", null);
-		verbundList = gson.fromJson(json, SensorVerbundList.class);
+		AsyncHttpClient client = new AsyncHttpClient();
+
+		Log.i("Debug", "Position : "+position);
+		if (position == 0) {
+			
+			client.get(Helper.BASE_URL+"/SensorCloudRest/crud/Sensor/NutStaID/"+nutStaID, new AsyncHttpResponseHandler() {
+			    @Override
+			    public void onSuccess(String response) {
+			        Log.i("Debug", response);
+			        
+			        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(SensorVerbundActivity.this);
+			        SharedPreferences.Editor editor = sharedPreferences.edit();
+//			        editor.remove("SVerbundListe");
+					editor.putString("SensorV1Liste", response);
+					editor.commit();
+			       
+			    }
+			    
+			});
+			
+		} else {
+			
+			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SensorVerbundActivity.this); 
+			String json = mPrefs.getString("SVerbundListe", null);
+			verbundList = gson.fromJson(json, SensorVerbundList.class);
+			SensorVerbund verb = verbundList.getSenVerbundList().get(position-1);
+
+			client.get(Helper.BASE_URL+"/SensorCloudRest/crud/SensorVerbund/SenVerID/"+verb.getSenVerID(), new AsyncHttpResponseHandler() {
+			    @Override
+			    public void onSuccess(String response) {
+			        Log.i("Debug", response);
+			        
+			        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(SensorVerbundActivity.this);
+			        SharedPreferences.Editor editor = sharedPreferences.edit();
+					editor.putString("SensorV2Liste", response);
+					editor.commit();
+			      
+			    }
+			    
+			});
+		}
 	
-		SensorVerbund verb = verbundList.getSenVerbundList().get(position);
-        	
-		
-		client.get(Helper.BASE_URL+"/SensorCloudRest/crud/SensorVerbund/SenVerID/"+verb.getSenVerID(), new AsyncHttpResponseHandler() {
-		    @Override
-		    public void onSuccess(String response) {
-		        Log.i("Test", response);
-		        
-		        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(SensorVerbundActivity.this);
-		        SharedPreferences.Editor editor = sharedPreferences.edit();
-//		        editor.remove("SVerbundListe");
-				editor.putString("SensorVListe", response);
-				editor.commit();
-		        
-		    }
-		    
-		});
-		
 	
 		List<String> list2 = new ArrayList<String>();
 		list2.clear();
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SensorVerbundActivity.this);
+		String json; 
+		if (position == 0) {
+			json = mPrefs.getString("SensorV1Liste", null);
+		} else {
+			json = mPrefs.getString("SensorV2Liste", null);
+		}
 		
-		
-		json = mPrefs.getString("SensorVListe", null);
-		SensorList senList = gson.fromJson(json, SensorList.class);
+		senList = gson.fromJson(json, SensorList.class);
 		
 		for (Sensor sen : senList.getSensorList()) {
         	list2.add(sen.getSenID());
@@ -161,18 +186,16 @@ public class SensorVerbundActivity extends Activity implements OnItemSelectedLis
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SensorVerbundActivity.this); 
 		String json = mPrefs.getString("SensorVListe", null);
 		SensorList senList = gson.fromJson(json, SensorList.class);
-		
+
 		Sensor sen = senList.getSensorList().get(position);
-        	
-				
+    
 				senBezeichnungTxt.setText(sen.getSenBez());
 				senPositionTxt.setText(sen.getSenPos());
 				senRaumTxt.setText(sen.getSenRauID());
 				senDatumTxt.setText(sen.getSenDatEin());
-
-		String data = spinnerSenVerbSensoren.getItemAtPosition(position).toString();
-        Toast.makeText(SensorVerbundActivity.this, data, Toast.LENGTH_SHORT).show();
-			
+//		String data = spinnerSenVerbSensoren.getItemAtPosition(position).toString();
+//        Toast.makeText(SensorVerbundActivity.this, data, Toast.LENGTH_SHORT).show();
+        
 	}
 
 
@@ -181,10 +204,12 @@ public class SensorVerbundActivity extends Activity implements OnItemSelectedLis
 		
 	}
 	
+	
+	
 	public class AuswahlSensor implements OnItemSelectedListener {
 		
 		public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
-			
+			verbundPosition = position;
 			setSpinnerSenVerbSensor(position);
 		}
 
