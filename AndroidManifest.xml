@@ -64,6 +64,17 @@
             android:name="de.sensorcloud.android.activity.EventRegelActivity"
             android:label="@string/title_activity_event_regel" >
         </activity>
+        <activity
+            android:name="de.sensorcloud.android.activity.ChartActivity"
+            android:label="@string/title_activity_chart" >
+            
+        </activity>
+        <activity
+            android:name="de.sensorcloud.android.ShowChartActivity"
+            android:label="@string/title_activity_show_chart"
+            android:screenOrientation="landscape" > 
+            
+        </activity>
     </application>
 
 </manifest>

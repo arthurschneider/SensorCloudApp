@@ -1,8 +1,6 @@
 package de.sensorcloud.android.activity;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -25,15 +23,10 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-
-
-
-
 import de.sensorcloud.android.R;
 import de.sensorcloud.android.entitaet.NutzerStammdaten;
 import de.sensorcloud.android.entitaet.SensorVerbund;
 import de.sensorcloud.android.entitaet.SensorVerbundList;
-import de.sensorcloud.android.helpertools.AsyncResponse;
 import de.sensorcloud.android.helpertools.Helper;
 
 public class SensorVerbundActivity extends Activity implements OnItemSelectedListener{
@@ -73,48 +66,18 @@ public class SensorVerbundActivity extends Activity implements OnItemSelectedLis
          wst.execute();
 	}
 
-	private String readStream(InputStream in) {
-	  BufferedReader reader = null;
-	  String line = "httttt";
-	  try {
-	    reader = new BufferedReader(new InputStreamReader(in));
-	    
-	    while ((line = reader.readLine()) != null) {
-	      System.out.println(line);
-	      
-	    }
-	    return line;
-	  } catch (IOException e) {
-	    e.printStackTrace();
-	  } finally {
-	    if (reader != null) {
-	      try {
-	        reader.close();
-	      } catch (IOException e) {
-	        e.printStackTrace();
-	        }
-	    }
-	  }
-	return line;
-	} 
+	
 	
 	public void setDataToSpinner() {
 		
-		Gson gson = new Gson();
 		List<String> list = new ArrayList<String>();
 		list.clear();
 		
-		Log.i("AusgabeString", ausgabe);
-//		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SensorVerbundActivity.this); 
-//		String json = mPrefs.getString("SVerbundListe", null);
-//		verbundList = gson.fromJson(json, SensorVerbundList.class);
 		
 		for (SensorVerbund verb : verbundList.getSenVerbundList()) {
         	list.add(verb.getSenVerBez());
 		}
-//		 list.add("müüüüüü1111111üüh");
-//	     list.add("lööööö111111111öö");
-//	     list.add("cffffff1111111111fffff");
+		
 		ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(SensorVerbundActivity.this, android.R.layout.simple_spinner_item, list);
 		dAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		dAdapter.notifyDataSetChanged();

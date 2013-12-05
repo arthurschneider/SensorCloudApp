@@ -29,5 +29,7 @@
     <string name="title_activity_verbund">Sensor- Aktor/verbund</string>
     <string name="title_activity_aktorverbund">Aktorverbund</string>
     <string name="title_activity_event_regel">EventRegel</string>
+    <string name="title_activity_chart">Charts</string>
+    <string name="title_activity_show_chart">ShowChart</string>
 
 </resources>

@@ -131,4 +131,8 @@ public class AuswahlseiteActivity extends Activity {
 		startActivity(intent);
 	}
 	
+	public void goToChart(View view){
+		Intent intent  = new Intent(AuswahlseiteActivity.this, ChartActivity.class);
+		startActivity(intent);
+	}
 }
