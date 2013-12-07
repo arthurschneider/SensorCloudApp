@@ -4,18 +4,24 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+    <LinearLayout
+	     android:layout_width="fill_parent" 
+	     android:layout_gravity="center_horizontal"
+	     android:layout_height="wrap_content"
+	     android:orientation="horizontal">
      <Spinner
         android:id="@+id/spinnerAuswahlSensor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:prompt="@string/auswahl_daten" />
      <Spinner
         android:id="@+id/spinnerAuswahlSenWer"
         android:layout_width="match_parent"
+        android:layout_weight="1"
         android:layout_height="wrap_content"/>
-     
+     </LinearLayout>
 	<LinearLayout
-	    android:id="@+id/tv_title"
 	     android:layout_width="fill_parent" 
 	     android:layout_gravity="center_horizontal"
 	     android:layout_height="wrap_content"
@@ -26,7 +32,7 @@
 		    android:layout_height="wrap_content"
 		    android:layout_weight="1"
 		    android:onClick="showDatePicker"
-		    android:text="DateTime" />
+		    android:text="@string/datepicker" />
 	    
 	    <Button
 		    android:id="@+id/bn_drawchart"
@@ -34,7 +40,7 @@
 		    android:layout_height="wrap_content"
 		    android:layout_weight="1"
 		    android:onClick="startChart"
-		    android:text="Zeichne Chart" />
+		    android:text="@string/drawChart" />
     
     </LinearLayout>
     

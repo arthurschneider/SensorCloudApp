@@ -22,6 +22,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -42,6 +43,7 @@ import de.sensorcloud.android.entitaet.MesswertTime;
 import de.sensorcloud.android.entitaet.NutzerStammdaten;
 import de.sensorcloud.android.entitaet.Sensor;
 import de.sensorcloud.android.entitaet.SensorList;
+import de.sensorcloud.android.entitaet.SensorProduktSemantik;
 import de.sensorcloud.android.helpertools.Helper;
 
 public class ChartActivity extends Activity implements OnItemSelectedListener {
@@ -54,6 +56,8 @@ public class ChartActivity extends Activity implements OnItemSelectedListener {
 	public  int year,month,day;
 	private int mYear, mMonth, mDay;
 	
+	int senPosition, senWerPosition;
+	SensorProduktSemantik semantik;
 	String senID, senWer;
 	SensorList sensorList;
 	DatasetMitSemantik datenSatz;
@@ -72,13 +76,15 @@ public class ChartActivity extends Activity implements OnItemSelectedListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.chart_activity);
 		btnSelectDate = (Button)findViewById(R.id.bn_datepicker);
+		
+		btnSelectDate.setText("Datum : "+mDay+"-"+mMonth+"-"+mYear);
 		spinnerAuswahlSensor = (Spinner) findViewById(R.id.spinnerAuswahlSensor);
 		spinnerAuswahlSenWer = (Spinner) findViewById(R.id.spinnerAuswahlSenWer);
-		getDatensatz();
+		getDatensatzSensor();
 	}
 
 	
-	public void getDatensatz(){
+	public void getDatensatzSensor(){
 		AsyncHttpClient client = new AsyncHttpClient();
 		Gson gson = new Gson();
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ChartActivity.this); 
@@ -90,7 +96,8 @@ public class ChartActivity extends Activity implements OnItemSelectedListener {
 		    	Gson gson = new Gson();
 				sensorList = gson.fromJson(response, SensorList.class);
 				setDataToSensorSpinner();
-				setDataToSenWerSpinner();
+				getDatensatzSensorSemantik();
+				
 		    }
 		    
 		});
@@ -112,22 +119,45 @@ public class ChartActivity extends Activity implements OnItemSelectedListener {
 		spinnerAuswahlSensor.setOnItemSelectedListener(ChartActivity.this);
 	}
 	
+	@Override
+	public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
+			senPosition = position;
+			getDatensatzSensorSemantik();
+			senID  = sensorList.getSensorList().get(position).getSenID();
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {}
+	
+	
+	
+	public void getDatensatzSensorSemantik(){
+		AsyncHttpClient client = new AsyncHttpClient();
+		
+		client.get(Helper.BASE_URL+"/SensorCloudRest/crud/SensorProdukt/SenProID/"+sensorList.getSensorList().get(senPosition).getSenSenProID(), new AsyncHttpResponseHandler() {
+		    @Override
+		    public void onSuccess(String response) {
+		    	Gson gson = new Gson();
+		    	Log.i("Chart", response);
+				semantik = gson.fromJson(response, SensorProduktSemantik.class);
+				
+				setDataToSenWerSpinner();
+		    }
+		    
+		});
+	}
+	
 	
 	public void setDataToSenWerSpinner() {
-		
-//		Gson gson = new Gson();
 		List<String> list2 = new ArrayList<String>();
 		list2.clear();
 		spinnerAuswahlSenWer.setAdapter(null);
 		spinnerAuswahlSenWer.invalidate();
-//		List emailListe = gson.fromJson(json, NutzerEmailList.class);
-//	
-//		for (Sensor sen : sensorList.getSensorList()) {
-//        	list2.add(sen.getSenID()+" : "+sen.getSenBez());
-//		}
-		list2.add("Temperatur");
-		list2.add("Luftfeuchte");
-		list2.add("Luftqualitaet");
+	
+		for (int i = 0; i < semantik.getN(); i++) {
+		    list2.add(semantik.getParvor().get(i).getPn());
+		}
+
 		ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(ChartActivity.this, android.R.layout.simple_spinner_item, list2);
 		dAdapter.notifyDataSetChanged();
 		dAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -135,14 +165,7 @@ public class ChartActivity extends Activity implements OnItemSelectedListener {
 		spinnerAuswahlSenWer.setOnItemSelectedListener(new AuswahlSenWerListener());
 	}
 	
-	@Override
-	public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
 	
-			senID  = sensorList.getSensorList().get(position).getSenID();
-	}
-
-	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {}
 	
 	public void showDatePicker(View view){
 		showDialog(DATE_DIALOG_ID);
@@ -156,7 +179,7 @@ public class ChartActivity extends Activity implements OnItemSelectedListener {
                     year = yearSelected;
                     month = monthOfYear+1;
                     day = dayOfMonth;
-                    btnSelectDate.setText("Date selected : "+day+"-"+month+"-"+year);
+                    btnSelectDate.setText("Datum : "+day+"-"+month+"-"+year);
                  }
              };
              
@@ -175,6 +198,7 @@ public class ChartActivity extends Activity implements OnItemSelectedListener {
     
     
     public void startChart(View view){
+    	 Toast.makeText(getBaseContext(),"zeichne Chart",Toast.LENGTH_SHORT).show();
     	  AsyncHttpClient client = new AsyncHttpClient();
     	  client.get(Helper.BASE_URL+"/SensorCloudRest/crud/Messwert/SenID/"+senID+"/MesWerNam/"+senWer+"/MesWerTimYea/"+year+"/MesWerTimMon/"+month+"/MesWerTimDay/"+day, new AsyncHttpResponseHandler() {
   		    @Override
@@ -189,46 +213,42 @@ public class ChartActivity extends Activity implements OnItemSelectedListener {
     
     public void drawChart(){
     	TimeSeries messWertSeries = new TimeSeries("Messwerte");
-
-    	for(MesswertTime mTData : datenSatz.getMesswertTime()){
-    		messWertSeries.add(new Date(Long.parseLong(mTData.getMesWerTimSta())), Long.parseLong(mTData.getMesWerWer(), 16)/100.0);
-        }
-
+    	if (datenSatz.getParVor().getUfkt().equals("hex2dec($W)/100")) {
+    		for(MesswertTime mTData : datenSatz.getMesswertTime()){
+        		messWertSeries.add(new Date(Long.parseLong(mTData.getMesWerTimSta())), Long.parseLong(mTData.getMesWerWer(), 16)/100.0);
+            }
+		} else if (datenSatz.getParVor().getUfkt().equals("hex2dec($W)")) {
+			for(MesswertTime mTData : datenSatz.getMesswertTime()){
+        		messWertSeries.add(new Date(Long.parseLong(mTData.getMesWerTimSta())), Long.parseLong(mTData.getMesWerWer(), 16));
+            }
+		} else if (datenSatz.getParVor().getUfkt().equals("(bool)($W)")) {
+			for(MesswertTime mTData : datenSatz.getMesswertTime()){
+        		messWertSeries.add(new Date(Long.parseLong(mTData.getMesWerTimSta())), Integer.parseInt(mTData.getMesWerWer().substring(1, 2)));
+            }
+		}
+    
     	
     	 XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
-    	 
-   
          dataset.addSeries(messWertSeries);
   
+         XYSeriesRenderer renderer = new XYSeriesRenderer();
+         renderer.setColor(Color.RED);
+         renderer.setPointStyle(PointStyle.CIRCLE);
+         renderer.setFillPoints(true);
+         renderer.setLineWidth(0);
+         renderer.setDisplayChartValues(false);
   
-         XYSeriesRenderer visitsRenderer = new XYSeriesRenderer();
-         visitsRenderer.setColor(Color.RED);
-         visitsRenderer.setPointStyle(PointStyle.CIRCLE);
-         visitsRenderer.setFillPoints(true);
-         visitsRenderer.setLineWidth(2);
-         visitsRenderer.setDisplayChartValues(false);
-  
-        
-  
-         // Creating a XYMultipleSeriesRenderer to customize the whole chart
          XYMultipleSeriesRenderer multiRenderer = new XYMultipleSeriesRenderer();
-  
          multiRenderer.setChartTitle(senWer+" des Tages "+day+"/"+month+"/"+year);
          multiRenderer.setXTitle("Stunden");
-         multiRenderer.setYTitle(senWer);
+         multiRenderer.setYTitle(senWer+" in " + datenSatz.getParVor().getEh());
          multiRenderer.setZoomButtonsVisible(true);
+         multiRenderer.addSeriesRenderer(renderer);
   
-         // Adding visitsRenderer and viewsRenderer to multipleRenderer
-         // Note: The order of adding dataseries to dataset and renderers to multipleRenderer
-         // should be same
-         multiRenderer.addSeriesRenderer(visitsRenderer);
-  
-         // Getting a reference to LinearLayout of the MainActivity Layout
          LinearLayout chartContainer = (LinearLayout) findViewById(R.id.chart_container);
   
-         // Creating a Time Chart
          mChart = (GraphicalView) ChartFactory.getTimeChartView(getBaseContext(), dataset, multiRenderer,"H:mm");
-
+         
          multiRenderer.setClickEnabled(true);
          multiRenderer.setSelectableBuffer(10);
   
@@ -259,21 +279,22 @@ public class ChartActivity extends Activity implements OnItemSelectedListener {
                      // Displaying Toast Message
                      Toast.makeText(
                          getBaseContext(),
-                         selectedSeries + " um "  + strDate + " Uhr  = " + amount + " °C",
+                         selectedSeries + " um "  + strDate + " Uhr  = " + amount + " "+datenSatz.getParVor().getEh(),
                          Toast.LENGTH_SHORT).show();
                      }
                  }
              });
-  
+         	Toast.makeText(getBaseContext(),"Chart gezeichnet",Toast.LENGTH_SHORT).show();
              // Adding the Line Chart to the LinearLayout
          	 chartContainer.removeAllViews();
              chartContainer.addView(mChart);
+             
     }
     	  
     public class AuswahlSenWerListener implements OnItemSelectedListener {
 		
 		public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
-		
+			senWerPosition = position;
 			senWer = (String)parent.getItemAtPosition(position);
 		}
 
