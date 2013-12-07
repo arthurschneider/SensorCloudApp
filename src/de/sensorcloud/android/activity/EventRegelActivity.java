@@ -1,7 +1,6 @@
 package de.sensorcloud.android.activity;
 
 import java.io.UnsupportedEncodingException;
-import java.sql.NClob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
