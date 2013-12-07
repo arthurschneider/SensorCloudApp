@@ -39,6 +39,7 @@ public class EmailActivity extends Activity implements OnItemSelectedListener {
 	EditText emaBezTxt;
 
 	NutzerEmail mailObj;
+	NutzerEmailList emailListe;
 	
 	 
 	@Override
@@ -52,7 +53,7 @@ public class EmailActivity extends Activity implements OnItemSelectedListener {
 		spinnerEmaStmmdtn = (Spinner) findViewById(R.id.spinnerEmaStmmdtn);
 		
 		getDatensatz();
-		setDataToSpinner();
+		
 		
 	}	
 	
@@ -66,11 +67,9 @@ public class EmailActivity extends Activity implements OnItemSelectedListener {
 		client.get(Helper.BASE_URL+"/SensorCloudRest/crud/NutzerEmail/NutStaID/"+nutStaID, new AsyncHttpResponseHandler() {
 		    @Override
 		    public void onSuccess(String response) {
-		        
-		        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(EmailActivity.this);
-		        SharedPreferences.Editor editor = sharedPreferences.edit();
-				editor.putString("EmailListe", response);
-				editor.commit();
+		    	Gson gson = new Gson();
+				emailListe = gson.fromJson(response, NutzerEmailList.class);
+				setDataToSpinner();
 		    }
 		    
 		});
@@ -78,21 +77,15 @@ public class EmailActivity extends Activity implements OnItemSelectedListener {
 	
 	public void setDataToSpinner() {
 		
-		Gson gson = new Gson();
 		List<String> list = new ArrayList<String>();
 		list.clear();
 		spinnerEmaStmmdtn.setAdapter(null);
 		spinnerEmaStmmdtn.invalidate();
 		
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(EmailActivity.this); 
-		String json = mPrefs.getString("EmailListe", null);
-		NutzerEmailList emailListe = gson.fromJson(json, NutzerEmailList.class);
-	
 		for (NutzerEmail mail : emailListe.getList()) {
         	list.add(mail.getNutEmaAdr());
 		}
-//		list.add("müüüüüüggggggggg");
-//		list.add("zuoooooooooooo");list.add("ffffffffffffff");
+		
 		ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(EmailActivity.this, android.R.layout.simple_spinner_item, list);
 		dAdapter.notifyDataSetChanged();
 		dAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -102,20 +95,16 @@ public class EmailActivity extends Activity implements OnItemSelectedListener {
 
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
-	
-			Gson gson = new Gson();
-			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(EmailActivity.this); 
-			String json = mPrefs.getString("EmailListe", null);
-			NutzerEmailList emailListe = gson.fromJson(json, NutzerEmailList.class);
-			mailObj  = emailListe.getList().get(position);
-		 
-			emaBezTxt.setText(mailObj.getNutEmaBez());
-			emaAdrTxt.setText(mailObj.getNutEmaAdr());
+		mailObj  = emailListe.getList().get(position);
+	 
+		emaBezTxt.setText(mailObj.getNutEmaBez());
+		emaAdrTxt.setText(mailObj.getNutEmaAdr());
 
 	}
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {}
+	
 	
 	public void updateEmail(View view){
 		
@@ -144,7 +133,6 @@ public class EmailActivity extends Activity implements OnItemSelectedListener {
 		});
 		
 		getDatensatz();
-		setDataToSpinner();
 	}
 	
 	public void insertEmail(View view){
@@ -173,7 +161,6 @@ public class EmailActivity extends Activity implements OnItemSelectedListener {
 		});
 		
 		getDatensatz();
-		setDataToSpinner();
 	}
 	
 	
@@ -202,7 +189,6 @@ public class EmailActivity extends Activity implements OnItemSelectedListener {
 		});
 	
 		getDatensatz();
-		setDataToSpinner();
 	}
 
 

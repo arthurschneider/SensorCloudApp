@@ -1,10 +1,15 @@
 package de.sensorcloud.android.activity;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -17,18 +22,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import de.sensorcloud.android.R;
 import de.sensorcloud.android.entitaet.NutzerStammdaten;
-import de.sensorcloud.android.entitaet.Sensor;
-import de.sensorcloud.android.entitaet.SensorList;
 import de.sensorcloud.android.entitaet.SensorVerbund;
 import de.sensorcloud.android.entitaet.SensorVerbundList;
 import de.sensorcloud.android.helpertools.Helper;
 
-public class SensorVerbundActivity extends Activity implements OnItemSelectedListener {
+public class SensorVerbundActivity extends Activity implements OnItemSelectedListener{
 	
 	Spinner spinnerSenVerbBez;
 	Spinner spinnerSenVerbSensoren;
@@ -37,11 +38,18 @@ public class SensorVerbundActivity extends Activity implements OnItemSelectedLis
 	EditText senRaumTxt;
 	EditText senDatumTxt;
 	
+<<<<<<< HEAD
 	int verbundPosition; 
 	String nutStaID;
 	SensorVerbundList verbundList;
 	SensorList senList;
 
+=======
+	public String ausgabe = new String();
+	SensorVerbundList verbundList;
+	WebServiceTask wst = new WebServiceTask();
+	
+>>>>>>> loopj
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,13 +60,15 @@ public class SensorVerbundActivity extends Activity implements OnItemSelectedLis
 		senDatumTxt = (EditText) findViewById(R.id.senDatum);
 		spinnerSenVerbBez = (Spinner) findViewById(R.id.spinnerSenVerbBez);
 		spinnerSenVerbSensoren = (Spinner) findViewById(R.id.spinnerSenVerbSensoren);
+
 		
 		getDatensatzVerbund();
-		setDataToSpinner();
+		
 		
 	}
 
 	public void getDatensatzVerbund(){
+<<<<<<< HEAD
 		AsyncHttpClient client = new AsyncHttpClient();
 		Gson gson = new Gson();
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SensorVerbundActivity.this); 
@@ -77,14 +87,21 @@ public class SensorVerbundActivity extends Activity implements OnItemSelectedLis
 		    }
 		    
 		});
+=======
+		WebServiceTask wst = new WebServiceTask();
+         
+         wst.execute();
+>>>>>>> loopj
 	}
+
+	
 	
 	public void setDataToSpinner() {
 		
-		Gson gson = new Gson();
 		List<String> list = new ArrayList<String>();
 		list.clear();
 		
+<<<<<<< HEAD
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SensorVerbundActivity.this); 
 		String json = mPrefs.getString("SVerbundListe", null);
 		verbundList = gson.fromJson(json, SensorVerbundList.class);
@@ -96,6 +113,13 @@ public class SensorVerbundActivity extends Activity implements OnItemSelectedLis
 //	     list.add("lööööö111111111öö");
 //	     list.add("cffffff1111111111fffff");
 //		
+=======
+		
+		for (SensorVerbund verb : verbundList.getSenVerbundList()) {
+        	list.add(verb.getSenVerBez());
+		}
+		
+>>>>>>> loopj
 		ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(SensorVerbundActivity.this, android.R.layout.simple_spinner_item, list);
 		dAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		dAdapter.notifyDataSetChanged();
@@ -107,6 +131,7 @@ public class SensorVerbundActivity extends Activity implements OnItemSelectedLis
 
 	
 	public void setSpinnerSenVerbSensor(int position){
+<<<<<<< HEAD
 		Gson gson = new Gson();
 		AsyncHttpClient client = new AsyncHttpClient();
 
@@ -169,6 +194,46 @@ public class SensorVerbundActivity extends Activity implements OnItemSelectedLis
 //     list2.add("müüüüüüüüh");
 //     list2.add("lööööööö");
 //     list2.add("cfffffffffff");
+=======
+//		AsyncHttpClient client = new AsyncHttpClient();
+//		Gson gson = new Gson();
+//		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SensorVerbundActivity.this); 
+//		String json = mPrefs.getString("SVerbundListe", null);
+//		verbundList = gson.fromJson(json, SensorVerbundList.class);
+//	
+//		SensorVerbund verb = verbundList.getSenVerbundList().get(position);
+//        	
+//		
+//		client.get(Helper.BASE_URL+"/SensorCloudRest/crud/SensorVerbund/SenVerID/"+verb.getSenVerID(), new AsyncHttpResponseHandler() {
+//		    @Override
+//		    public void onSuccess(String response) {
+//		        Log.i("Test", response);
+//		        
+//		        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(SensorVerbundActivity.this);
+//		        SharedPreferences.Editor editor = sharedPreferences.edit();
+////		        editor.remove("SVerbundListe");
+//				editor.putString("SensorVListe", response);
+//				editor.commit();
+//		        
+//		    }
+//		    
+//		});
+//		
+//	
+		List<String> list2 = new ArrayList<String>();
+		list2.clear();
+//		
+//		
+//		json = mPrefs.getString("SensorVListe", null);
+//		SensorList senList = gson.fromJson(json, SensorList.class);
+//		
+//		for (Sensor sen : senList.getSensorList()) {
+//        	list2.add(sen.getSenID());
+//		}
+     list2.add("müüüüüüüüh");
+     list2.add("lööööööö");
+     list2.add("cfffffffffff");
+>>>>>>> loopj
      
 		
 		ArrayAdapter<String> senAdapter = new ArrayAdapter<String>(SensorVerbundActivity.this, android.R.layout.simple_spinner_item, list2);
@@ -182,6 +247,7 @@ public class SensorVerbundActivity extends Activity implements OnItemSelectedLis
 	
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
+<<<<<<< HEAD
 		Gson gson = new Gson();
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SensorVerbundActivity.this); 
 		String json = mPrefs.getString("SensorVListe", null);
@@ -196,6 +262,24 @@ public class SensorVerbundActivity extends Activity implements OnItemSelectedLis
 //		String data = spinnerSenVerbSensoren.getItemAtPosition(position).toString();
 //        Toast.makeText(SensorVerbundActivity.this, data, Toast.LENGTH_SHORT).show();
         
+=======
+//		Gson gson = new Gson();
+//		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SensorVerbundActivity.this); 
+//		String json = mPrefs.getString("SensorVListe", null);
+//		SensorList senList = gson.fromJson(json, SensorList.class);
+//		
+//		Sensor sen = senList.getSensorList().get(position);
+//        	
+//				
+//				senBezeichnungTxt.setText(sen.getSenBez());
+//				senPositionTxt.setText(sen.getSenPos());
+//				senRaumTxt.setText(sen.getSenRauID());
+//				senDatumTxt.setText(sen.getSenDatEin());
+
+		String data = spinnerSenVerbSensoren.getItemAtPosition(position).toString();
+        Toast.makeText(SensorVerbundActivity.this, data, Toast.LENGTH_SHORT).show();
+			
+>>>>>>> loopj
 	}
 
 
@@ -217,4 +301,43 @@ public class SensorVerbundActivity extends Activity implements OnItemSelectedLis
 		public void onNothingSelected(AdapterView<?> arg0) {
 		}
 	}
+	
+	
+	 private class WebServiceTask  extends AsyncTask<String, Void, String> {
+			@Override
+			protected String doInBackground(String... arg0) {
+				Gson gson = new Gson();
+				SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SensorVerbundActivity.this); 
+				String json = mPrefs.getString("NutzerObj", null);
+				String nutStaID = gson.fromJson(json, NutzerStammdaten.class).getNutStaID();
+				String response = new String();
+				try {
+					  URL url = new URL(Helper.BASE_URL+"/SensorCloudRest/crud/SensorVerbund/NutStaID/"+nutStaID);
+					  HttpURLConnection con = (HttpURLConnection) url
+					    .openConnection();
+					  BufferedReader buffer = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			          String s = "";
+			          while ((s = buffer.readLine()) != null) {
+			            response += s;
+			          }
+					  } catch (Exception e) {
+					  e.printStackTrace();
+					}
+				return response;
+			}
+			
+			@Override
+	        protected void onPostExecute(String response) {
+				super.onPostExecute(response);
+				Gson gson = new Gson();
+				ausgabe = response;
+				
+				Log.d("Debug", response);
+			    verbundList = gson.fromJson(response, SensorVerbundList.class);
+				setDataToSpinner();
+			}
+		 }
+
+
+	
 }

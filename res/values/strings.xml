@@ -21,6 +21,8 @@
     <string name="save">Speichern</string>
     <string name="showEveContent">Zeige Dialog</string>
     <string name="service">Servicelinie</string>
+    <string name="datepicker">Datum :</string>
+    <string name="drawChart">Chart zeichnen</string>
     <string name="title_activity_auswahlseite">Auswahlseite</string>
     <string name="title_activity_nutzerStammdaten">NutzerStammdaten</string>
     <string name="title_activity_telefon">Telefon</string>
@@ -31,5 +33,7 @@
     <string name="title_activity_verbund">Sensor- Aktor/verbund</string>
     <string name="title_activity_aktorverbund">Aktorverbund</string>
     <string name="title_activity_event_regel">EventRegel</string>
+    <string name="title_activity_chart">Charts</string>
+    <string name="title_activity_show_chart">ShowChart</string>
 
 </resources>
