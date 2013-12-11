@@ -35,5 +35,8 @@
     <string name="title_activity_event_regel">EventRegel</string>
     <string name="title_activity_chart">Charts</string>
     <string name="title_activity_show_chart">ShowChart</string>
+    <string name="title_activity_gruppen">GruppenActivity</string>
+    <string name="title_activity_gruppe_erstellen">Gruppe erstellen</string>
+    <string name="title_activity_gruppen_mit_einladen">Gruppen Mitglied einladen</string>
 
 </resources>

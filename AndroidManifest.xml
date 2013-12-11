@@ -67,9 +67,20 @@
         <activity
             android:name="de.sensorcloud.android.activity.ChartActivity"
             android:label="@string/title_activity_chart"
-            android:screenOrientation="landscape" > 
+            android:screenOrientation="landscape" >
         </activity>
-       
+        <activity
+            android:name="de.sensorcloud.android.activity.GruppenAnzeigenActivity"
+            android:label="@string/title_activity_gruppen" >
+        </activity>
+        <activity
+            android:name="de.sensorcloud.android.activity.GruppeErstellenActivity"
+            android:label="@string/title_activity_gruppe_erstellen" >
+        </activity>
+        <activity
+            android:name="de.sensorcloud.android.activity.GruppenMitEinladenActivity"
+            android:label="@string/title_activity_gruppen_mit_einladen" >
+        </activity>
     </application>
 
 </manifest>

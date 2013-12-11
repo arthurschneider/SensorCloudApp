@@ -17,6 +17,7 @@ public class AuswahlseiteActivity extends Activity {
 
 	Spinner spinnerNutStmmdtn;
 	Spinner spinnerVerbund;
+	Spinner spinnerAusGruppen;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class AuswahlseiteActivity extends Activity {
 		addListenerOnSpinnerAuswahlItemSelection();
 		addItemsOnSpinnerVerbund();
 		addListenerOnSpinnerVerbundItemSelection();
+		addItemsOnSpinnerGruppenAuswahl();
 	}
 
 	
@@ -51,6 +53,45 @@ public class AuswahlseiteActivity extends Activity {
 		spinnerNutStmmdtn = (Spinner) findViewById(R.id.spinnerNutStmmdtn);
 		spinnerNutStmmdtn.setOnItemSelectedListener(new AuswahlNutStmmdtnListener());
 	}	
+	
+	public void addItemsOnSpinnerGruppenAuswahl() {
+		 
+		spinnerAusGruppen = (Spinner) findViewById(R.id.spinnerAusGruppen);
+		
+		List<String> list = new ArrayList<String>();
+		list.add("--------");
+		list.add("Gruppe erstellen");
+		list.add("Mitglied in Gruppe einladen");
+		list.add("Gruppen anzeigen");
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(AuswahlseiteActivity.this, android.R.layout.simple_spinner_item, list);
+		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinnerAusGruppen.setAdapter(dataAdapter);
+		spinnerAusGruppen.setSelection(0);
+		spinnerAusGruppen.setOnItemSelectedListener(new GruppenAuswahlListener());
+	}
+	
+	public class GruppenAuswahlListener implements OnItemSelectedListener {
+		
+		public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
+			
+			if (position == 1){
+				Intent intent  = new Intent(AuswahlseiteActivity.this, GruppeErstellenActivity.class);
+				startActivity(intent);
+			}
+			if (position == 2){
+				Intent intent  = new Intent(AuswahlseiteActivity.this, GruppenMitEinladenActivity.class);
+				startActivity(intent);
+			}
+			if (position == 3){
+				Intent intent  = new Intent(AuswahlseiteActivity.this, GruppenAnzeigenActivity.class);
+				startActivity(intent);
+			}	
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> arg0) {
+		}
+	}
 	
 	
 	public void addItemsOnSpinnerVerbund() {
@@ -133,6 +174,12 @@ public class AuswahlseiteActivity extends Activity {
 	
 	public void goToChart(View view){
 		Intent intent  = new Intent(AuswahlseiteActivity.this, ChartActivity.class);
+		startActivity(intent);
+	}
+	
+	
+	public void goToGruppe(View view){
+		Intent intent  = new Intent(AuswahlseiteActivity.this, GruppenAnzeigenActivity.class);
 		startActivity(intent);
 	}
 }

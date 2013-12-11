@@ -40,12 +40,18 @@
 	    android:onClick="goToEvent"
 	    android:text="@string/event" />
     
-    <Button
-	    android:id="@+id/bn_gruppe"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:onClick="goToGruppe"
-	    android:text="@string/gruppe" />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:text="Zu den Gruppen:" >
+   	 </TextView>
+    <Spinner
+        android:id="@+id/spinnerAusGruppen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/auswahl_daten" />
     
     <Button
 	    android:id="@+id/bn_chart"

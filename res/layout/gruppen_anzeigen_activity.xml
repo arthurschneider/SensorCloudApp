@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+             android:layout_gravity="center"
+            android:text="Gruppe:" >
+   	 </TextView>
+    
+    <Spinner
+        android:id="@+id/spinnerGruppe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+             android:layout_gravity="center"
+            android:text="Gruppen-Mitglieder:" >
+   	 </TextView>
+
+    <Spinner
+        android:id="@+id/spinnerGruppenMitglied"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    
+     <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+             android:layout_gravity="center"
+            android:text="Name des Mitgliedes:" >
+   	 </TextView>
+    
+    <EditText
+            android:id="@+id/grp_mitg_name"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text">
+  	</EditText>
+  	
+  	<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+             android:layout_gravity="center"
+            android:text="E-Mail des Mitgliedes:" >
+   	 </TextView>
+      
+   	 <Spinner
+        android:id="@+id/spinnerGrpMitgldEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+		    
+	    <Button
+	        android:id="@+id/grp_verlassen"
+	        android:layout_gravity="center"
+	        android:onClick="verlasseGruppe"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Gruppe verlassen" />
+
+    
+</LinearLayout>
