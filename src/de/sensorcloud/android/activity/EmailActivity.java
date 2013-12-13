@@ -40,11 +40,9 @@ public class EmailActivity extends Activity implements OnItemSelectedListener {
 
 	NutzerEmail mailObj;
 	NutzerEmailList emailListe;
-	
-	 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.email_activity);
 		
@@ -53,8 +51,6 @@ public class EmailActivity extends Activity implements OnItemSelectedListener {
 		spinnerEmaStmmdtn = (Spinner) findViewById(R.id.spinnerEmaStmmdtn);
 		
 		getDatensatz();
-		
-		
 	}	
 	
 	public void getDatensatz(){
@@ -76,11 +72,8 @@ public class EmailActivity extends Activity implements OnItemSelectedListener {
 	}
 	
 	public void setDataToSpinner() {
-		
 		List<String> list = new ArrayList<String>();
 		list.clear();
-		spinnerEmaStmmdtn.setAdapter(null);
-		spinnerEmaStmmdtn.invalidate();
 		
 		for (NutzerEmail mail : emailListe.getList()) {
         	list.add(mail.getNutEmaAdr());
@@ -99,7 +92,6 @@ public class EmailActivity extends Activity implements OnItemSelectedListener {
 	 
 		emaBezTxt.setText(mailObj.getNutEmaBez());
 		emaAdrTxt.setText(mailObj.getNutEmaAdr());
-
 	}
 
 	@Override
@@ -107,7 +99,6 @@ public class EmailActivity extends Activity implements OnItemSelectedListener {
 	
 	
 	public void updateEmail(View view){
-		
 		mailObj.setNutEmaBez(emaBezTxt.getText().toString());
 		mailObj.setNutEmaAdr(emaAdrTxt.getText().toString());
 		Gson gson = new Gson();
@@ -128,15 +119,12 @@ public class EmailActivity extends Activity implements OnItemSelectedListener {
 			    public void onSuccess(String response) {
 			        Log.i("Test", response);
 			        Toast.makeText(EmailActivity.this, response, Toast.LENGTH_LONG).show();
+			        getDatensatz();
 		 }
-	    
 		});
-		
-		getDatensatz();
 	}
 	
 	public void insertEmail(View view){
-		
 		mailObj.setNutEmaBez(emaBezTxt.getText().toString());
 		mailObj.setNutEmaAdr(emaAdrTxt.getText().toString());
 		Gson gson = new Gson();
@@ -156,17 +144,13 @@ public class EmailActivity extends Activity implements OnItemSelectedListener {
 			 @Override
 			    public void onSuccess(String response) {
 			        Toast.makeText(EmailActivity.this, response, Toast.LENGTH_LONG).show();
+					getDatensatz();
 		 }
-	    
 		});
-		
-		getDatensatz();
 	}
 	
 	
 	public void deleteEmail(View view){
-		
-		
 		Gson gson = new Gson();
 		JsonElement jsonElement = gson.toJsonTree(mailObj.getNutEmaID());
 		
@@ -184,13 +168,9 @@ public class EmailActivity extends Activity implements OnItemSelectedListener {
 			 @Override
 			    public void onSuccess(String response) {
 			        Toast.makeText(EmailActivity.this, response, Toast.LENGTH_LONG).show();
+			        getDatensatz();
 		 }
-	    
 		});
-	
-		getDatensatz();
 	}
-
-
 
 }

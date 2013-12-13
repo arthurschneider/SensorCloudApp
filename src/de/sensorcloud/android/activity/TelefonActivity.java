@@ -44,7 +44,6 @@ public class TelefonActivity extends Activity implements OnItemSelectedListener 
 	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.telefon_activity);
 		
@@ -53,7 +52,7 @@ public class TelefonActivity extends Activity implements OnItemSelectedListener 
 		spinnerTelStmmdtn = (Spinner) findViewById(R.id.spinnerTelStmmdtn);
 		
 		getDatensatz();
-		setDataToSpinner();
+		
 	}	
 	
 	public void getDatensatz(){
@@ -65,11 +64,9 @@ public class TelefonActivity extends Activity implements OnItemSelectedListener 
 		client.get( Helper.BASE_URL+"/SensorCloudRest/crud/NutzerTelefon/NutStaID/"+nutStaID, new AsyncHttpResponseHandler() {
 		    @Override
 		    public void onSuccess(String response) {
-		        Log.i("Test", response);
-		        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(TelefonActivity.this);
-		        SharedPreferences.Editor editor = sharedPreferences.edit();
-				editor.putString("TelefonListe", response);
-				editor.commit();
+		    	Gson gson = new Gson();
+		    	telefonListe = gson.fromJson(response, NutzerTelefonList.class);
+		    	setDataToSpinner();
 		    }
 		    
 		});
@@ -77,58 +74,38 @@ public class TelefonActivity extends Activity implements OnItemSelectedListener 
 	}
 	
 	public void setDataToSpinner(){
-		
-		Gson gson = new Gson();
 		List<String> list = new ArrayList<String>();
 		list.clear();
 		
 		spinnerTelStmmdtn.setAdapter(null);
 		spinnerTelStmmdtn.postInvalidate();
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(TelefonActivity.this); 
-		String json = mPrefs.getString("TelefonListe", null);
-		telefonListe = gson.fromJson(json, NutzerTelefonList.class);
 		
 		for (NutzerTelefon tel : telefonListe.getList()) {
         	list.add(tel.getNutTelNum());
         }
 	
-//		list.add("müüüüüüggggggggg");
-//		list.add("zuoooooooooooo");list.add("ffffffffffffff");
 		ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(TelefonActivity.this, android.R.layout.simple_spinner_item, list);
 		dAdapter.notifyDataSetChanged();
 		dAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	
-		
 		spinnerTelStmmdtn.setAdapter(dAdapter);
-		
 		spinnerTelStmmdtn.setOnItemSelectedListener(this);
 	}
 
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
-			
-			Gson gson = new Gson();
-			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(TelefonActivity.this); 
-			String json = mPrefs.getString("TelefonListe", null);
-			telefonListe = gson.fromJson(json, NutzerTelefonList.class);
 			telObj  = telefonListe.getList().get(position);
 	
-			
 			telBezTxt.setText(telObj.getNutTelBez());
 			telNumTxt.setText(telObj.getNutTelNum());
-//			String data = spinnerTelStmmdtn.getItemAtPosition(position).toString();
-//	        Toast.makeText(TelefonActivity.this, data, Toast.LENGTH_SHORT).show();
-		
 	}
 
 
 	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {
-		
-	}
+	public void onNothingSelected(AdapterView<?> arg0) {}
+	
 	
 	public void updateTel(View view){
-		
 		telObj.setNutTelBez(telBezTxt.getText().toString());
 		telObj.setNutTelNum(telNumTxt.getText().toString());
 		Gson gson = new Gson();
@@ -148,16 +125,13 @@ public class TelefonActivity extends Activity implements OnItemSelectedListener 
 			 @Override
 			    public void onSuccess(String response) {
 			        Toast.makeText(TelefonActivity.this, response, Toast.LENGTH_LONG).show();
+			    	getDatensatz();
 		 }
 	    
 		});
-		
-		getDatensatz();
-		setDataToSpinner();
 	}
 	
 	public void insertTel(View view){
-		
 		telObj.setNutTelBez(telBezTxt.getText().toString());
 		telObj.setNutTelNum(telNumTxt.getText().toString());
 		Gson gson = new Gson();
@@ -177,21 +151,15 @@ public class TelefonActivity extends Activity implements OnItemSelectedListener 
 			 @Override
 			    public void onSuccess(String response) {
 			        Toast.makeText(TelefonActivity.this, response, Toast.LENGTH_LONG).show();
+			        getDatensatz();
 		 }
-	    
 		});
-		
-		getDatensatz();
-		setDataToSpinner();
 	}
 	
 	
 	public void deleteTel(View view){
-		
-		
 		Gson gson = new Gson();
 		JsonElement jsonElement = gson.toJsonTree(telObj.getNutTelID());
-		
 		StringEntity se = null;
 		
 		try {
@@ -206,10 +174,8 @@ public class TelefonActivity extends Activity implements OnItemSelectedListener 
 			 @Override
 			    public void onSuccess(String response) {
 			        Toast.makeText(TelefonActivity.this, response, Toast.LENGTH_LONG).show();
+			        getDatensatz();
 		 }
-	    
 		});
-		getDatensatz();
-		setDataToSpinner();
 	}
 }

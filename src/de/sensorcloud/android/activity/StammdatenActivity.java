@@ -1,8 +1,8 @@
 package de.sensorcloud.android.activity;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.http.entity.StringEntity;
 import org.apache.http.message.BasicHeader;
@@ -14,11 +14,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -30,9 +26,8 @@ import de.sensorcloud.android.R;
 import de.sensorcloud.android.entitaet.NutzerStammdaten;
 import de.sensorcloud.android.helpertools.Helper;
 
-public class StammdatenActivity extends Activity implements OnItemSelectedListener {
-	
-	Spinner spinnerStmmdtnStmmdtn;
+public class StammdatenActivity extends Activity {
+
 	EditText nutAnrTxt;
 	EditText nutStaNamTxt;
 	EditText nutStaVorTxt;
@@ -53,10 +48,8 @@ public class StammdatenActivity extends Activity implements OnItemSelectedListen
 		nutStaFirTxt = (EditText) findViewById(R.id.stmmdtn_firma);
 		nutStaDatEinTxt = (EditText) findViewById(R.id.stmmdtn_datumeintritt);
 		
-		spinnerStmmdtnStmmdtn = (Spinner) findViewById(R.id.spinnerStmmdtnStmmdtn);
-		
 		getDatensatz();
-		setDataToSpinner();
+		
 		
 	}	
 		public void getDatensatz(){
@@ -68,13 +61,9 @@ public class StammdatenActivity extends Activity implements OnItemSelectedListen
 			client.get(Helper.BASE_URL+"/SensorCloudRest/crud/NutzerStammdaten/NutStaID/"+nutStaID, new AsyncHttpResponseHandler() {
 			    @Override
 			    public void onSuccess(String response) {
-			        Log.i("Test", response);
-			        
-			        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(StammdatenActivity.this);
-			        SharedPreferences.Editor editor = sharedPreferences.edit();
-					editor.putString("NutzerObj", response);
-					editor.commit();
-			
+			    	Gson gson = new Gson();
+			    	stammObj = gson.fromJson(response, NutzerStammdaten.class);
+					setDataToSpinner();
 			    }
 			    
 			});
@@ -83,48 +72,17 @@ public class StammdatenActivity extends Activity implements OnItemSelectedListen
 		}
 		
 		public void setDataToSpinner() {
-			Gson gson = new Gson();
-			List<String> list = new ArrayList<String>();
-			list.clear();
-			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(StammdatenActivity.this); 
-			String json = mPrefs.getString("NutzerObj", null);
-			stammObj = gson.fromJson(json, NutzerStammdaten.class);
-			
-	     	list.add(stammObj.getNutStaNam());
-	     	
-			ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
-			dAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-			dAdapter.notifyDataSetChanged();
-			spinnerStmmdtnStmmdtn.postInvalidate();
-			spinnerStmmdtnStmmdtn.setAdapter(dAdapter);
-			
-			spinnerStmmdtnStmmdtn.setOnItemSelectedListener(this);
-
-
-		}
-		
-		@Override
-		public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-			Gson gson = new Gson();
-			SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(StammdatenActivity.this); 
-			String json = mPrefs.getString("NutzerObj", null);
-			stammObj = gson.fromJson(json, NutzerStammdaten.class);
 			nutAnrTxt.setText(stammObj.getNutStaAnr());
 			nutStaNamTxt.setText(stammObj.getNutStaNam());
 			nutStaVorTxt.setText(stammObj.getNutStaVor());
 			nutStaFirTxt.setText(stammObj.getNutStaFir());
-			nutStaDatEinTxt.setText(stammObj.getNutStaDatEin());
-				
-		}
-
-
-		@Override
-		public void onNothingSelected(AdapterView<?> arg0) {
 			
+			Date datum = new Date(Long.parseLong(stammObj.getNutStaDatEin().trim()));
+			SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy  HH:mm:SS");
+			nutStaDatEinTxt.setText(DATE_FORMAT.format(datum));
 		}
 		
 		public void updateStammdaten(View view){
-			
 			stammObj.setNutStaAnr(nutAnrTxt.getText().toString());
 			stammObj.setNutStaNam(nutStaNamTxt.getText().toString());
 			stammObj.setNutStaVor(nutStaVorTxt.getText().toString());
@@ -149,12 +107,9 @@ public class StammdatenActivity extends Activity implements OnItemSelectedListen
 				    public void onSuccess(String response) {
 				        Log.i("Test", response);
 				        Toast.makeText(StammdatenActivity.this, response, Toast.LENGTH_LONG).show();
+				        getDatensatz();
 			 }
-		    
 			});
-			
-			getDatensatz();
-			setDataToSpinner();
 		}
 }
 	

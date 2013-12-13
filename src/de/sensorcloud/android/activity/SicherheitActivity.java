@@ -55,7 +55,6 @@ public class SicherheitActivity extends Activity implements OnItemSelectedListen
 		spinnerSicherheit = (Spinner) findViewById(R.id.spinnerSicherheit);
 		
 		getDatensatz();
-		setDataToSpinner();
 	}
 	
 	public void getDatensatz(){
@@ -67,32 +66,22 @@ public class SicherheitActivity extends Activity implements OnItemSelectedListen
 		client.get( Helper.BASE_URL+"/SensorCloudRest/crud/NutzerSicherheit/NutStaID/"+nutStaID, new AsyncHttpResponseHandler() {
 		    @Override
 		    public void onSuccess(String response) {
-		        Log.i("Test", response);
-		        
-		        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(SicherheitActivity.this);
-		        SharedPreferences.Editor editor = sharedPreferences.edit();
-				editor.putString("NSicherheitList", response);
-				editor.commit();
+		    	Gson gson = new Gson();
+		    	sicherList = gson.fromJson(response, NutzerSicherheitList.class);
+		    	setDataToSpinner();
 		    }
 		    
 		});
 	}
 	
 	public void setDataToSpinner() {
-		
-		Gson gson = new Gson();
 		List<String> list = new ArrayList<String>();
 		list.clear();
-		
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SicherheitActivity.this); 
-		String json = mPrefs.getString("NSicherheitList", null);
-		sicherList = gson.fromJson(json, NutzerSicherheitList.class);
 		
 		for (NutzerSicherheit sicher : sicherList.getList()) {
 			list.add(sicher.getNutSicPas());
 		}
-//		list.add("müüüüüüggggggggg");
-//		list.add("zuoooooooooooo");list.add("ffffffffffffff");
+		
 		ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
 		dAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		dAdapter.notifyDataSetChanged();
@@ -104,30 +93,19 @@ public class SicherheitActivity extends Activity implements OnItemSelectedListen
 	
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
-		
-		Gson gson = new Gson();
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(SicherheitActivity.this); 
-		String json = mPrefs.getString("NSicherheitList", null);
-		sicherList = gson.fromJson(json, NutzerSicherheitList.class);
 		sicherObj = sicherList.getList().get(position);
 		
 		nutSicPasTxt.setText(sicherObj.getNutSicPas());
 		nutSicPubKeyTxt.setText(sicherObj.getNutSicPubKey());
 		nutSicPriKeyTxt.setText(sicherObj.getNutSicPriKey());
-		
-		String data = spinnerSicherheit.getItemAtPosition(position).toString();
-        Toast.makeText(SicherheitActivity.this, data, Toast.LENGTH_SHORT).show();
-		
 	}
 
 
 	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {
-		
-	}
+	public void onNothingSelected(AdapterView<?> arg0) {}
+	
 	
 	public void updateSicherheit(View view){
-		
 		sicherObj.setNutSicPas(nutSicPasTxt.getText().toString());
 		sicherObj.setNutSicPubKey(nutSicPubKeyTxt.getText().toString());
 		sicherObj.setNutSicPriKey(nutSicPriKeyTxt.getText().toString());
@@ -149,12 +127,9 @@ public class SicherheitActivity extends Activity implements OnItemSelectedListen
 			 @Override
 			    public void onSuccess(String response) {
 			        Toast.makeText(SicherheitActivity.this, response, Toast.LENGTH_LONG).show();
+			        getDatensatz();
 		 }
-	    
 		});
-		
-		getDatensatz();
-		setDataToSpinner();
 	}
 
 }

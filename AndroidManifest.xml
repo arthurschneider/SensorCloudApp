@@ -54,7 +54,7 @@
         </activity>
         <activity
             android:name="de.sensorcloud.android.activity.SensorVerbundActivity"
-            android:label="@string/title_activity_verbund" >
+            android:label="@string/title_activity_sensorverbund" >
         </activity>
         <activity
             android:name="de.sensorcloud.android.activity.AktorVerbundActivity"

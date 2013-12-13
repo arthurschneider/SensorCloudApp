@@ -1,13 +1,14 @@
 package de.sensorcloud.android.activity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -37,6 +38,8 @@ public class AktorVerbundActivity extends Activity implements OnItemSelectedList
 	EditText aktDatumTxt;
 	
 	AktorVerbundList verbundList;
+	AktorList aktList;
+	String nutStaID;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +54,7 @@ public class AktorVerbundActivity extends Activity implements OnItemSelectedList
 		spinnerAktVerbAktoren = (Spinner) findViewById(R.id.spinnerAktVerbAktoren);
 		
 		getDatensatzVerbund();
-		setDataToSpinner();
+		
 	}
 
 	public void getDatensatzVerbund(){
@@ -59,134 +62,102 @@ public class AktorVerbundActivity extends Activity implements OnItemSelectedList
 		Gson gson = new Gson();
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(AktorVerbundActivity.this); 
 		String json = mPrefs.getString("NutzerObj", null);
-		String nutStaID = gson.fromJson(json, NutzerStammdaten.class).getNutStaID();
+		nutStaID = gson.fromJson(json, NutzerStammdaten.class).getNutStaID();
 		client.get(Helper.BASE_URL+"/SensorCloudRest/crud/AktorVerbund/NutStaID/"+nutStaID, new AsyncHttpResponseHandler() {
 		    @Override
 		    public void onSuccess(String response) {
-		        Log.i("Test", response);
-		        
-		        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(AktorVerbundActivity.this);
-		        SharedPreferences.Editor editor = sharedPreferences.edit();
-		        
-				editor.putString("AVerbundListe", response);
-				editor.commit();
+		        Gson gson = new Gson();
+		        verbundList = gson.fromJson(response, AktorVerbundList.class);
+		        setDataToSpinnerAktorVerbBez();
 		        
 		    }
 		    
 		});
 	}
 	
-	public void setDataToSpinner() {
-		
-		Gson gson = new Gson();
+	public void setDataToSpinnerAktorVerbBez() {
 		List<String> list = new ArrayList<String>();
 		list.clear();
 		
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(AktorVerbundActivity.this); 
-		String json = mPrefs.getString("AVerbundListe", null);
-		AktorVerbundList verbundList = gson.fromJson(json, AktorVerbundList.class);
-		
+		list.add("--Alle Aktoren anzeigen--");
 		for (AktorVerbund verb : verbundList.getAktVerbundList()) {
         	list.add(verb.getAktVerBez());
 		}
-//		 list.add("müüüüüü1111111üüh");
-//	     list.add("lööööö111111111öö");
-//	     list.add("cffffff1111111111fffff");
-		
 		ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(AktorVerbundActivity.this, android.R.layout.simple_spinner_item, list);
 		dAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		dAdapter.notifyDataSetChanged();
 		spinnerAktVerbBez.postInvalidate();
 		spinnerAktVerbBez.setAdapter(dAdapter);
 		
-		spinnerAktVerbBez.setOnItemSelectedListener(new AuswahlAktor());
+		spinnerAktVerbBez.setOnItemSelectedListener(new AuswahlAktorVerbundListener());
 	}
 	
-	public void setSpinnerAktVerbAktor(int position){
-		AsyncHttpClient client = new AsyncHttpClient();
-		Gson gson = new Gson();
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(AktorVerbundActivity.this); 
-		String json = mPrefs.getString("AVerbundListe", null);
-		verbundList = gson.fromJson(json, AktorVerbundList.class);
+	public void getDatensatzAktoren(int position){
+		if (position == 0) {
+			AsyncHttpClient client = new AsyncHttpClient();
+			client.get(Helper.BASE_URL+"/SensorCloudRest/crud/Aktor/NutStaID/"+nutStaID, new AsyncHttpResponseHandler() {
+			    @Override
+			    public void onSuccess(String response) {
+			    	Gson gson = new Gson();
+			    	aktList = gson.fromJson(response, AktorList.class);
+			    	setDataToSpinnerAktorVerbAktoren();
+			    }
+			    
+			});
+			
+		} else {
+			AsyncHttpClient client = new AsyncHttpClient();
+			AktorVerbund verb = verbundList.getAktVerbundList().get(position-1);
+			client.get(Helper.BASE_URL+"/SensorCloudRest/crud/AktorVerbund/AktVerID/"+verb.getAktVerID(), new AsyncHttpResponseHandler() {
+			    @Override
+			    public void onSuccess(String response) {
+			        Gson gson = new Gson();
+			        aktList = gson.fromJson(response, AktorList.class);
+			        setDataToSpinnerAktorVerbAktoren();
+			    }    
+			});
+		}
+	}
 	
-		AktorVerbund verb = verbundList.getAktVerbundList().get(position);
-        	
-		
-		client.get(Helper.BASE_URL+"/SensorCloudRest/crud/AktorVerbund/AktVerID/"+verb.getAktVerID(), new AsyncHttpResponseHandler() {
-		    @Override
-		    public void onSuccess(String response) {
-		        Log.i("Test", response);
-		        
-		        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(AktorVerbundActivity.this);
-		        SharedPreferences.Editor editor = sharedPreferences.edit();
-//		        editor.remove("SVerbundListe");
-				editor.putString("AktorVListe", response);
-				editor.commit();
-		        
-		    }
-		    
-		});
-
-		List<String> list2 = new ArrayList<String>();
-		list2.clear();
-		
-		
-		json = mPrefs.getString("AktorVListe", null);
-		AktorList aktList = gson.fromJson(json, AktorList.class);
+	public void setDataToSpinnerAktorVerbAktoren(){
+		List<String> list = new ArrayList<String>();
+		list.clear();
 		
 		for (Aktor akt : aktList.getList()) {
-        	list2.add(akt.getAktID());
+        	list.add(akt.getAktID());
 		}
-//     list2.add("müüüüüüüüh");
-//     list2.add("lööööööö");
-//     list2.add("cfffffffffff");
-     
 		
-		ArrayAdapter<String> senAdapter = new ArrayAdapter<String>(AktorVerbundActivity.this, android.R.layout.simple_spinner_item, list2);
+		ArrayAdapter<String> senAdapter = new ArrayAdapter<String>(AktorVerbundActivity.this, android.R.layout.simple_spinner_item, list);
 		senAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		senAdapter.notifyDataSetChanged();
 		spinnerAktVerbAktoren.postInvalidate();
 		spinnerAktVerbAktoren.setAdapter(senAdapter);
-		
 		spinnerAktVerbAktoren.setOnItemSelectedListener(this);
 	}
 	
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
-		Gson gson = new Gson();
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(AktorVerbundActivity.this); 
-		String json = mPrefs.getString("AktorVListe", null);
-		AktorList aktList = gson.fromJson(json, AktorList.class);
-		
 		Aktor akt = aktList.getList().get(position);
-        	
-				
-				aktBezeichnungTxt.setText(akt.getAktBez());
-				aktPositionTxt.setText(akt.getAktPos());
-				aktRaumTxt.setText(akt.getAktRauID());
-				aktDatumTxt.setText(akt.getAktDatEin());
-
-//		String data = spinnerAktVerbAktoren.getItemAtPosition(position).toString();
-//        Toast.makeText(AktorVerbundActivity.this, data, Toast.LENGTH_SHORT).show();
-			
+		aktBezeichnungTxt.setText(akt.getAktBez());
+		aktPositionTxt.setText(akt.getAktPos());
+		aktRaumTxt.setText(akt.getAktRauID());
+		
+		Date datum = new Date(Long.parseLong(akt.getAktDatEin().trim()));
+		SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy  HH:mm:SS");
+		aktDatumTxt.setText(DATE_FORMAT.format(datum));
 	}
-
 
 	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {
-		
-	}
+	public void onNothingSelected(AdapterView<?> arg0) {}
 	
 	
-	public class AuswahlAktor implements OnItemSelectedListener {
+	public class AuswahlAktorVerbundListener implements OnItemSelectedListener {
 		
 		public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
-			
-			setSpinnerAktVerbAktor(position);
+			getDatensatzAktoren(position);
 		}
 
 		@Override
-		public void onNothingSelected(AdapterView<?> arg0) {
-		}
+		public void onNothingSelected(AdapterView<?> arg0) {}
 	}
 }

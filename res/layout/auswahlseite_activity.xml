@@ -11,7 +11,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="15sp"
-            android:text="Zu den Nutzerdaten:" >
+            android:textColor="#2ECCFA"
+            android:text="@string/zuNutzerstammdaten" >
    	 </TextView>
     <Spinner
         android:id="@+id/spinnerNutStmmdtn"
@@ -24,7 +25,8 @@
        android:layout_height="wrap_content"
        android:layout_gravity="center"
        android:textSize="15sp"
-       android:text="Zu den Sensoren und Aktoren" >
+       android:textColor="#2ECCFA"
+       android:text="@string/zuSensorenAktoren" >
    	 </TextView>
     <Spinner
         android:id="@+id/spinnerVerbund"
@@ -38,6 +40,7 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:onClick="goToEvent"
+	    android:textSize="15sp"
 	    android:text="@string/event" />
     
     <TextView
@@ -45,7 +48,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="15sp"
-            android:text="Zu den Gruppen:" >
+            android:layout_marginTop="10dp"
+            android:textColor="#2ECCFA"
+            android:text="@string/zuGruppen" >
    	 </TextView>
     <Spinner
         android:id="@+id/spinnerAusGruppen"
@@ -58,6 +63,7 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:onClick="goToChart"
+	    android:textSize="15sp"
 	    android:text="@string/chart" />
     
     <Button
@@ -65,6 +71,7 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:onClick="goToService"
+	    android:textSize="15sp"
 	    android:text="@string/service" />
 	
 </LinearLayout>

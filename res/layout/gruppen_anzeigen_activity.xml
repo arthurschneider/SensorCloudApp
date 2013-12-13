@@ -9,8 +9,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:textColor="#2ECCFA"
              android:layout_gravity="center"
-            android:text="Gruppe:" >
+            android:text="@string/listGruppen" >
    	 </TextView>
     
     <Spinner
@@ -22,8 +23,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:textColor="#2ECCFA"
              android:layout_gravity="center"
-            android:text="Gruppen-Mitglieder:" >
+            android:text="@string/listMitglied" >
    	 </TextView>
 
     <Spinner
@@ -35,8 +37,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:textColor="#2ECCFA"
              android:layout_gravity="center"
-            android:text="Name des Mitgliedes:" >
+            android:text="@string/nameMitglied" >
    	 </TextView>
     
     <EditText
@@ -51,8 +54,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-             android:layout_gravity="center"
-            android:text="E-Mail des Mitgliedes:" >
+            android:textColor="#2ECCFA"
+            android:layout_gravity="center"
+            android:text="@string/emailMitglied" >
    	 </TextView>
       
    	 <Spinner
@@ -64,9 +68,10 @@
 	        android:id="@+id/grp_verlassen"
 	        android:layout_gravity="center"
 	        android:onClick="verlasseGruppe"
+	        android:textColor="#2ECCFA"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="Gruppe verlassen" />
+	        android:text="@string/gruppeVerlassen" />
 
     
 </LinearLayout>

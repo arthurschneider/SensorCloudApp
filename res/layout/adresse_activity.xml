@@ -4,18 +4,14 @@
     android:layout_gravity="center"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
-
-     <Spinner
-        android:id="@+id/spinnerAdrStmmdtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-     
+    
        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="19sp"
-            android:text="Bezeichnung:" >
+            android:textSize="15sp"
+            android:textColor="#2ECCFA"
+            android:text="@string/bezeichnung" >
    	 </TextView>
      
      <EditText
@@ -25,13 +21,16 @@
             android:layout_height="wrap_content"
             android:inputType="text">
   	</EditText>
+  	
   	  <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="19sp"
-            android:text="Straße:" >
+            android:textSize="15sp"
+            android:textColor="#2ECCFA"
+            android:text="@string/strasse" >
    	 </TextView>
+   	 
   	 <EditText
             android:id="@+id/adr_str"
             android:layout_gravity="center"
@@ -39,13 +38,16 @@
             android:layout_height="wrap_content"
             android:inputType="text">
   	</EditText>
+  	
   	  <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="19sp"
-            android:text="PLZ" >
+            android:textSize="15sp"
+            android:textColor="#2ECCFA"
+            android:text="@string/plz" >
    	 </TextView>
+   	 
   	 <EditText
             android:id="@+id/adr_plz"
             android:layout_gravity="center"
@@ -53,13 +55,16 @@
             android:layout_height="wrap_content"
             android:inputType="text">
   	</EditText>
+  	
   	  <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="19sp"
-            android:text="Ort:" >
+            android:textSize="15sp"
+            android:textColor="#2ECCFA"
+            android:text="@string/ort" >
    	 </TextView>
+   	 
   	 <EditText
             android:id="@+id/adr_ort"
             android:layout_gravity="center"
@@ -67,13 +72,16 @@
             android:layout_height="wrap_content"
             android:inputType="text">
   	</EditText>
+  	
   	  <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="19sp"
-            android:text="Land:" >
+            android:textSize="15sp"
+            android:textColor="#2ECCFA"
+            android:text="@string/land" >
    	 </TextView>
+   	 
   	 <EditText
             android:id="@+id/adr_lan"
             android:layout_gravity="center"
@@ -89,6 +97,10 @@
 	        android:layout_gravity="center_horizontal"
 	        android:layout_width="wrap_content"
 	        android:layout_height="0dp"
+	        android:paddingRight="15dp"
+	        android:paddingLeft="15dp"
+	        android:textColor="#2ECCFA"
+	        android:layout_marginTop="15dp"
 	        android:text="@string/update"
 	         />
 

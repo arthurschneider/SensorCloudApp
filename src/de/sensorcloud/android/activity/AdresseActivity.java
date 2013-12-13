@@ -1,8 +1,6 @@
 package de.sensorcloud.android.activity;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.http.entity.StringEntity;
 import org.apache.http.message.BasicHeader;
@@ -14,11 +12,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -31,9 +25,8 @@ import de.sensorcloud.android.entitaet.Adresse;
 import de.sensorcloud.android.entitaet.NutzerStammdaten;
 import de.sensorcloud.android.helpertools.Helper;
 
-public class AdresseActivity extends Activity implements OnItemSelectedListener {
+public class AdresseActivity extends Activity {
 
-	Spinner spinnerAdrStmmdtn;
 	EditText adrBezTxt;
 	EditText adrStrTxt;
 	EditText adrOrtTxt;
@@ -45,7 +38,6 @@ public class AdresseActivity extends Activity implements OnItemSelectedListener 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.adresse_activity);
 		
@@ -54,10 +46,8 @@ public class AdresseActivity extends Activity implements OnItemSelectedListener 
 		adrOrtTxt = (EditText) findViewById(R.id.adr_ort);
 		adrPlzTxt = (EditText) findViewById(R.id.adr_plz);
 		adrLanTxt = (EditText) findViewById(R.id.adr_lan);
-		spinnerAdrStmmdtn = (Spinner) findViewById(R.id.spinnerAdrStmmdtn);
 		
 		getDatensatz();
-		setDataToSpinner();
 	}
 
 	public void getDatensatz(){
@@ -70,67 +60,22 @@ public class AdresseActivity extends Activity implements OnItemSelectedListener 
 		    @Override
 		    public void onSuccess(String response) {
 		        Log.i("Test", response);
-		        
-		        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(AdresseActivity.this);
-		        SharedPreferences.Editor editor = sharedPreferences.edit();
-				editor.putString("AdressObj", response);
-				editor.commit();
-		    }
-		    
+		        Gson gson = new Gson();
+		        adrObj = gson.fromJson(response, Adresse.class);
+		        setDataToSpinner();
+		    }	    
 		});
 	}
 	
 	public void setDataToSpinner() {
-		Gson gson = new Gson();
-		List<String> list = new ArrayList<String>();
-		list.clear();
-		spinnerAdrStmmdtn.setAdapter(null);
-		spinnerAdrStmmdtn.postInvalidate();
-		
-		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(AdresseActivity.this); 
-		String json = mPrefs.getString("AdressObj", null);
-		adrObj = gson.fromJson(json, Adresse.class);
-		
-     	list.add(adrObj.getAdrBez());
-//     	list.add("maaaaaaä");
-//     	list.add("maadadadadaaaaaä");
-//     	list.add("maaadadadadadadadaaaaä");
-     	
-		ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(AdresseActivity.this, android.R.layout.simple_spinner_item, list);
-		dAdapter.notifyDataSetChanged();
-		dAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinnerAdrStmmdtn.setAdapter(dAdapter);
-		
-		spinnerAdrStmmdtn.setOnItemSelectedListener(this);
-
-
-	}
-	
-	@Override
-	public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
-//		
-//		Gson gson = new Gson();
-//		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(AdresseActivity.this); 
-//		String json = mPrefs.getString("AdressObj", null);
-//		adrObj = gson.fromJson(json, Adresse.class);
-		
-			adrBezTxt.setText(adrObj.getAdrBez());
-			adrStrTxt.setText(adrObj.getAdrStr());
-			adrOrtTxt.setText(adrObj.getAdrOrt());
-			adrPlzTxt.setText(adrObj.getAdrPlz());
-			adrLanTxt.setText(adrObj.getAdrLan());
-		
-			
-	}
-
-
-	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {
-		
+		adrBezTxt.setText(adrObj.getAdrBez());
+		adrStrTxt.setText(adrObj.getAdrStr());
+		adrOrtTxt.setText(adrObj.getAdrOrt());
+		adrPlzTxt.setText(adrObj.getAdrPlz());
+		adrLanTxt.setText(adrObj.getAdrLan());
 	}
 	
 	public void updateAdresse(View view){
-		Log.i("Adresse", ""+adrObj.getAdrID()+" "+ adrObj.getAdrLan());
 		adrObj.setAdrBez(adrBezTxt.getText().toString());
 		adrObj.setAdrStr(adrStrTxt.getText().toString());
 		adrObj.setAdrOrt(adrOrtTxt.getText().toString());
@@ -154,13 +99,9 @@ public class AdresseActivity extends Activity implements OnItemSelectedListener 
 		client.post(null, Helper.BASE_URL+"/SensorCloudRest/crud/Adresse", se, "application/json", new AsyncHttpResponseHandler() {
 			 @Override
 			    public void onSuccess(String response) {
-			        Log.i("Test", response);
 			        Toast.makeText(AdresseActivity.this, response, Toast.LENGTH_LONG).show();
+			        getDatensatz();
 		 }
-	    
 		});
-		
-		getDatensatz();
-		setDataToSpinner();
 	}
 }

@@ -11,6 +11,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:textColor="#2ECCFA"
             android:text="@string/email" >
     </TextView>
 
@@ -25,7 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:text="@string/passwort" >
+            android:textColor="#2ECCFA"
+            android:text="@string/password" >
      </TextView>
    
 
@@ -41,11 +43,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="anmelden"
+            android:textColor="#2ECCFA"
+            android:layout_marginTop="20dp"
             android:text="@string/anmelden" />
 
      <TextView
          android:id="@+id/txtView_info"
          android:text="@string/login_info"
+         android:layout_marginTop="10dp"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content" >
 	</TextView>

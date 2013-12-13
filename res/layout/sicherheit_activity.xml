@@ -9,7 +9,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="15sp"
-            android:text="Verbundname:" >
+            android:textColor="#2ECCFA"
+            android:text="@string/listPassword" >
    	 </TextView>
     <Spinner
         android:id="@+id/spinnerSicherheit"
@@ -20,7 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="15sp"
-            android:text="Passwort:" >
+            android:textColor="#2ECCFA"
+            android:text="@string/password" >
    	 </TextView>
      
      <EditText
@@ -35,7 +37,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="15sp"
-            android:text="Public Key:" >
+            android:textColor="#2ECCFA"
+            android:text="@string/pubKey" >
    	 </TextView>
   	 <EditText
             android:id="@+id/sicherheit_pubKey"
@@ -49,7 +52,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="15sp"
-            android:text="Private Key:" >
+            android:textColor="#2ECCFA"
+            android:text="@string/priKey" >
    	 </TextView>
   	 <EditText
             android:id="@+id/sicherheit_priKey"
@@ -65,7 +69,9 @@
 	        android:onClick="updateSicherheit"
 	        android:layout_gravity="center_horizontal"
 	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
+	        android:layout_height="0dp"
+	        android:layout_marginTop="20dp"
+	        android:textColor="#2ECCFA"
 	        android:text="@string/update"
 	         />
 
