@@ -115,21 +115,22 @@ public final class R {
         public static final int txtView_info=0x7f08003d;
     }
     public static final class layout {
-        public static final int adresse_activity=0x7f030000;
-        public static final int aktorverbund_activity=0x7f030001;
-        public static final int auswahlseite_activity=0x7f030002;
-        public static final int chart_activity=0x7f030003;
-        public static final int email_activity=0x7f030004;
-        public static final int event_dialog=0x7f030005;
-        public static final int eventregel_activity=0x7f030006;
-        public static final int gruppe_erstellen_activity=0x7f030007;
-        public static final int gruppen_anzeigen_activity=0x7f030008;
-        public static final int gruppen_mit_einladen_activity=0x7f030009;
-        public static final int main_activity=0x7f03000a;
-        public static final int sensorverbund_activity=0x7f03000b;
-        public static final int sicherheit_activity=0x7f03000c;
-        public static final int stammdaten_activity=0x7f03000d;
-        public static final int telefon_activity=0x7f03000e;
+        public static final int activity_list=0x7f030000;
+        public static final int adresse_activity=0x7f030001;
+        public static final int aktorverbund_activity=0x7f030002;
+        public static final int auswahlseite_activity=0x7f030003;
+        public static final int chart_activity=0x7f030004;
+        public static final int email_activity=0x7f030005;
+        public static final int event_dialog=0x7f030006;
+        public static final int eventregel_activity=0x7f030007;
+        public static final int gruppe_erstellen_activity=0x7f030008;
+        public static final int gruppen_anzeigen_activity=0x7f030009;
+        public static final int gruppen_mit_einladen_activity=0x7f03000a;
+        public static final int main_activity=0x7f03000b;
+        public static final int sensorverbund_activity=0x7f03000c;
+        public static final int sicherheit_activity=0x7f03000d;
+        public static final int stammdaten_activity=0x7f03000e;
+        public static final int telefon_activity=0x7f03000f;
     }
     public static final class menu {
         public static final int adresse=0x7f070000;

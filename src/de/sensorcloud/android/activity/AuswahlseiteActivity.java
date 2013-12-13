@@ -1,185 +1,86 @@
 package de.sensorcloud.android.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.ListView;
 import de.sensorcloud.android.R;
 
-public class AuswahlseiteActivity extends Activity {
+public class AuswahlseiteActivity extends ListActivity {
 
-	Spinner spinnerNutStmmdtn;
-	Spinner spinnerVerbund;
-	Spinner spinnerAusGruppen;
+	static final String[] ACTIVITIES = new String[] { "Adressdaten anzeigen/bearbeiten", "Profildaten anzeigen/bearbeiten", "Telefondaten anzeigen/bearbeiten", "E-Maildaten anzeigen/bearbeiten", "Sicherheitsdaten anzeigen/bearbeiten", "Event anzeigen/bearbeiten",
+		"Gruppe erstellen", "Mitglied in Gruppe einladen", "Gruppen anzeigen", "Aktor/Verbund anzeigen ", "Sensor/Verbund anzeigen",
+		"Chart anzeigen", };
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.auswahlseite_activity);
-		addItemsOnSpinnerAuswahl();
-		addListenerOnSpinnerAuswahlItemSelection();
-		addItemsOnSpinnerVerbund();
-		addListenerOnSpinnerVerbundItemSelection();
-		addItemsOnSpinnerGruppenAuswahl();
-	}
+		setListAdapter(new ArrayAdapter<String>(this, R.layout.activity_list, ACTIVITIES));
+ 
+		ListView listView = getListView();
+		listView.setTextFilterEnabled(true);
+ 
+		listView.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Intent intent;
+			   switch (position) {
+			case 0:
+				intent  = new Intent(AuswahlseiteActivity.this, AdresseActivity.class);
+				startActivity(intent);
+				break;
+			case 1:
+				intent  = new Intent(AuswahlseiteActivity.this, StammdatenActivity.class);
+				startActivity(intent);
+				break;
+			case 2:
+				intent  = new Intent(AuswahlseiteActivity.this, TelefonActivity.class);
+				startActivity(intent);
+				break;
+			case 3:
+				intent  = new Intent(AuswahlseiteActivity.this, EmailActivity.class);
+				startActivity(intent);
+				break;
+			case 4:
+				intent  = new Intent(AuswahlseiteActivity.this, SicherheitActivity.class);
+				startActivity(intent);
+				break;
+			case 5:
+				intent  = new Intent(AuswahlseiteActivity.this, EventRegelActivity.class);
+				startActivity(intent);
+				break;
+			case 6:
+				intent  = new Intent(AuswahlseiteActivity.this, GruppeErstellenActivity.class);
+				startActivity(intent);
+				break;
+			case 7:
+				intent  = new Intent(AuswahlseiteActivity.this, GruppenMitEinladenActivity.class);
+				startActivity(intent);
+				break;
+			case 8:
+				intent  = new Intent(AuswahlseiteActivity.this, GruppenAnzeigenActivity.class);
+				startActivity(intent);
+				break;
+			case 9:
+				intent  = new Intent(AuswahlseiteActivity.this, AktorVerbundActivity.class);
+				startActivity(intent);
+				break;
+			case 10:
+				intent  = new Intent(AuswahlseiteActivity.this, SensorVerbundActivity.class);
+				startActivity(intent);
+				break;
+			case 11:
+				intent  = new Intent(AuswahlseiteActivity.this, ChartActivity.class);
+				startActivity(intent);
+				break;
 
-	
-	public void addItemsOnSpinnerAuswahl() {
-		 
-		spinnerNutStmmdtn = (Spinner) findViewById(R.id.spinnerNutStmmdtn);
-		spinnerVerbund = (Spinner) findViewById(R.id.spinnerVerbund);
-		List<String> list = new ArrayList<String>();
-		list.add("--------");
-		list.add("Adresse");
-		list.add("Stammdaten");
-		list.add("Telefon");
-		list.add("Email");
-		list.add("Sicherheit");
-		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(AuswahlseiteActivity.this, android.R.layout.simple_spinner_item, list);
-		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinnerNutStmmdtn.setAdapter(dataAdapter);
-		spinnerNutStmmdtn.setSelection(0);
-	}
-	
-	public void addListenerOnSpinnerAuswahlItemSelection() {
-		
-		spinnerNutStmmdtn = (Spinner) findViewById(R.id.spinnerNutStmmdtn);
-		spinnerNutStmmdtn.setOnItemSelectedListener(new AuswahlNutStmmdtnListener());
-	}	
-	
-	public void addItemsOnSpinnerGruppenAuswahl() {
-		 
-		spinnerAusGruppen = (Spinner) findViewById(R.id.spinnerAusGruppen);
-		
-		List<String> list = new ArrayList<String>();
-		list.add("--------");
-		list.add("Gruppe erstellen");
-		list.add("Mitglied in Gruppe einladen");
-		list.add("Gruppen anzeigen");
-		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(AuswahlseiteActivity.this, android.R.layout.simple_spinner_item, list);
-		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinnerAusGruppen.setAdapter(dataAdapter);
-		spinnerAusGruppen.setSelection(0);
-		spinnerAusGruppen.setOnItemSelectedListener(new GruppenAuswahlListener());
-	}
-	
-	public class GruppenAuswahlListener implements OnItemSelectedListener {
-		
-		public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
-			
-			if (position == 1){
-				Intent intent  = new Intent(AuswahlseiteActivity.this, GruppeErstellenActivity.class);
-				startActivity(intent);
+			default:
+				break;
 			}
-			if (position == 2){
-				Intent intent  = new Intent(AuswahlseiteActivity.this, GruppenMitEinladenActivity.class);
-				startActivity(intent);
 			}
-			if (position == 3){
-				Intent intent  = new Intent(AuswahlseiteActivity.this, GruppenAnzeigenActivity.class);
-				startActivity(intent);
-			}	
-		}
-
-		@Override
-		public void onNothingSelected(AdapterView<?> arg0) {
-		}
-	}
-	
-	
-	public void addItemsOnSpinnerVerbund() {
-		 
-		spinnerVerbund = (Spinner) findViewById(R.id.spinnerVerbund);
-		
-		List<String> list = new ArrayList<String>();
-		list.add("--------");
-		list.add("Aktor/Verbund");
-		list.add("Sensor/Verbund");
-		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(AuswahlseiteActivity.this, android.R.layout.simple_spinner_item, list);
-		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinnerVerbund.setAdapter(dataAdapter);
-		spinnerVerbund.setSelection(0);
-	}
-	
-	public void addListenerOnSpinnerVerbundItemSelection() {
-		
-		spinnerVerbund = (Spinner) findViewById(R.id.spinnerVerbund);
-		spinnerVerbund.setOnItemSelectedListener(new AuswahlVerbundListener());
-	}	
-	
-	public class AuswahlNutStmmdtnListener implements OnItemSelectedListener {
-		
-		public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
-			
-			if (position == 1){
-				Intent intent  = new Intent(AuswahlseiteActivity.this, AdresseActivity.class);
-				startActivity(intent);
-			}
-			if (position == 2){
-				Intent intent  = new Intent(AuswahlseiteActivity.this, StammdatenActivity.class);
-				startActivity(intent);
-			}
-			if (position == 3){
-				Intent intent  = new Intent(AuswahlseiteActivity.this, TelefonActivity.class);
-				startActivity(intent);
-			}
-			if (position == 4){
-				Intent intent  = new Intent(AuswahlseiteActivity.this, EmailActivity.class);
-				startActivity(intent);
-			}
-			if (position == 5){
-				Intent intent  = new Intent(AuswahlseiteActivity.this, SicherheitActivity.class);
-				startActivity(intent);
-			}
-			
-			
-		}
-
-		@Override
-		public void onNothingSelected(AdapterView<?> arg0) {
-		}
-	}
-	
-	public class AuswahlVerbundListener implements OnItemSelectedListener {
-		
-		public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
-			
-			if (position == 1){
-				Intent intent  = new Intent(AuswahlseiteActivity.this, AktorVerbundActivity.class);
-				startActivity(intent);
-			}
-			if (position == 2){
-				Intent intent  = new Intent(AuswahlseiteActivity.this, SensorVerbundActivity.class);
-				startActivity(intent);
-			}
-			
-		}
-
-		@Override
-		public void onNothingSelected(AdapterView<?> arg0) {
-		}
-	}
-	
-	public void goToEvent(View view){
-		Intent intent  = new Intent(AuswahlseiteActivity.this, EventRegelActivity.class);
-		startActivity(intent);
-	}
-	
-	public void goToChart(View view){
-		Intent intent  = new Intent(AuswahlseiteActivity.this, ChartActivity.class);
-		startActivity(intent);
-	}
-	
-	
-	public void goToGruppe(View view){
-		Intent intent  = new Intent(AuswahlseiteActivity.this, GruppenAnzeigenActivity.class);
-		startActivity(intent);
+		});
 	}
 }
