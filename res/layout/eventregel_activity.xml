@@ -10,6 +10,15 @@
         android:gravity="center"
         android:orientation="vertical">
         
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:textColor="#2ECCFA"
+            android:text="Liste von Events:" >
+   	 	</TextView>
+        
         <Spinner
         android:id="@+id/spinnerEventBez"
         android:layout_width="match_parent"
@@ -17,59 +26,88 @@
         android:layout_height="wrap_content" />
         
         
-        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:layout_marginTop="20dp"
+            android:textColor="#2ECCFA"
+            android:text="Sensorevents zu einem Event:" >
+   	 </TextView>
         <Spinner
 	        android:id="@+id/spinnerSensorEvent"
 	        android:layout_width="match_parent"
 	        android:layout_gravity="center_horizontal"
 	        android:layout_height="wrap_content" />
         
-         <LinearLayout
-	        android:layout_width="fill_parent" 
-	        android:layout_gravity="center_horizontal"
-	        android:layout_height="fill_parent"
-	        android:orientation="horizontal">
-       
+        
+       <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:textColor="#2ECCFA"
+            android:text="Sensorbezeichnung:" >
+   	 	</TextView>
              <EditText
 	            android:id="@+id/eve_seneve_bez"
 	            android:layout_gravity="center"
 	            android:layout_weight="1"
-	            android:layout_width="fill_parent"
+	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:inputType="text">
 		  	</EditText>
+		  	<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:textColor="#2ECCFA"
+            android:text="Parameter:" >
+   	 	</TextView>
 		  	 <EditText
 	            android:id="@+id/eve_seneve_parameter"
 	            android:layout_gravity="center"
 	            android:layout_weight="1"
-	            android:layout_width="fill_parent" 
+	            android:layout_width="wrap_content" 
 	            android:layout_height="wrap_content"
 	            android:inputType="text">
 	  		</EditText>
-    	</LinearLayout>
-    	<LinearLayout
-	        android:layout_width="fill_parent" 
-	        android:layout_gravity="center_horizontal"
-	        android:layout_height="fill_parent"
-	        android:orientation="horizontal">
-       
+    	
+       <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:textColor="#2ECCFA"
+            android:text="Operator:" >
+   	 	</TextView>
              <EditText
 	            android:id="@+id/eve_seneve_operator"
 	            android:layout_gravity="center"
 	            android:layout_weight="1"
-	            android:layout_width="fill_parent"
+	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:inputType="text">
 		  	</EditText>
+		  	<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:textColor="#2ECCFA"
+            android:text="Schwellenwert:" >
+   	 	</TextView>
 		  	 <EditText
 	            android:id="@+id/eve_seneve_schwwert"
 	            android:layout_gravity="center"
 	            android:layout_weight="1"
-	            android:layout_width="fill_parent"
+	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:inputType="text">
 	  		</EditText>
-    	</LinearLayout>
+    
     	
     	<Button
 	        android:id="@+id/eve_seneve_save"
@@ -77,43 +115,65 @@
 	        android:onClick="saveSenEveContent"
 	        android:layout_width="wrap_content"
 	        android:layout_height="0dp"
-	        android:text="@string/save"
+	        android:textColor="#2ECCFA"
+	        android:text="Übernehmen"
 	         />
     	
+    	<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:layout_marginTop="20dp"
+            android:textColor="#2ECCFA"
+            android:text="Eventaktionen zu einem Event:" >
+   	 </TextView>
          <Spinner
 	        android:id="@+id/spinnerEveAktion"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content" />
          
-         <LinearLayout
-	        android:layout_width="fill_parent" 
-	        android:layout_gravity="center_horizontal"
-	        android:layout_height="fill_parent"
-	        android:orientation="horizontal">
-       
+       <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:textColor="#2ECCFA"
+            android:text="Verbund:" >
+   	 	</TextView>
              <EditText
 	            android:id="@+id/eve_eveakt_akt"
 	            android:layout_gravity="center"
 	            android:layout_weight="1"
-	            android:layout_width="fill_parent"
+	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:inputType="text">
 		  	</EditText>
+		  	<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:textColor="#2ECCFA"
+            android:text="AktorBez:" >
+   	 	</TextView>
 		  	 <EditText
 	            android:id="@+id/eve_eveakt_bez"
 	            android:layout_weight="1"
 	            android:layout_gravity="center"
-	            android:layout_width="fill_parent"
+	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:inputType="text">
 	  		</EditText>
-    	</LinearLayout>
-    	<LinearLayout
-	        android:layout_width="fill_parent" 
-	        android:layout_gravity="center_horizontal"
-	        android:layout_height="fill_parent"
-	        android:orientation="horizontal">
-       
+    	
+		  	 <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:textColor="#2ECCFA"
+            android:text="Funktion:" >
+   	 	</TextView>
              <EditText
 	            android:id="@+id/eve_eveakt_funkt"
 	            android:layout_gravity="center"
@@ -122,6 +182,14 @@
 	            android:layout_height="wrap_content"
 	            android:inputType="text">
 		  	</EditText>
+		  	<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:textColor="#2ECCFA"
+            android:text="Wert:" >
+   	 	</TextView>
 		  	
 		  	 <EditText
 	            android:id="@+id/eve_eveakt_wert"
@@ -131,15 +199,15 @@
 	            android:layout_height="wrap_content"
 	            android:inputType="text">
 	  		</EditText>
-    	</LinearLayout>
-    	
+    
     	<Button
 	        android:id="@+id/eve_eveakt_save"
 	        android:layout_weight="1"
 	        android:onClick="saveEveAktContent"
 	        android:layout_width="wrap_content"
 	        android:layout_height="0dp"
-	        android:text="@string/save"
+	        android:textColor="#2ECCFA"
+	        android:text="Übernehmen"
 	         />
     	
     	
@@ -148,7 +216,8 @@
 	        android:layout_weight="1"
 	        android:layout_width="wrap_content"
 	        android:layout_height="0dp"
-	        android:text="@string/showEveContent"
+	        android:textColor="#2ECCFA"
+	        android:text="Zeige weiteren Inhalt"
 	         />
     	
     	
@@ -158,6 +227,7 @@
 	        android:onClick="updateEventRegel"
 	        android:layout_width="wrap_content"
 	        android:layout_height="0dp"
+	        android:textColor="#2ECCFA"
 	        android:text="@string/update"
 	         />
     	

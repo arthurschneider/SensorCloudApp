@@ -9,6 +9,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="15sp"
+            android:textColor="#2ECCFA"
             android:text="Nachricht:" >
    	 </TextView>
      <EditText
@@ -23,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="15sp"
+            android:textColor="#2ECCFA"
             android:text="Eventart:" >
    	 </TextView>
      <EditText
@@ -37,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="15sp"
+            android:textColor="#2ECCFA"
             android:text="Adresse/Telefon:" >
    	 </TextView>
      <EditText
@@ -51,7 +54,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="15sp"
-            android:text="Erstellungsdatum:" >
+            android:textColor="#2ECCFA"
+            android:text="@string/erstellungsDatum" >
    	 </TextView>
      <EditText
             android:id="@+id/evedia_time"
@@ -66,6 +70,7 @@
 	        android:layout_gravity="center"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
+	        android:textColor="#2ECCFA"
 	        android:text="@string/close"
 	         />
 
