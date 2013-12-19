@@ -41,7 +41,6 @@ public class MainActivity extends Activity {
 		eMailTxt = (EditText) findViewById(R.id.email);
 		passwortTxt = (EditText) findViewById(R.id.passwort);
 		infoLbl = (TextView) findViewById(R.id.txtView_info);
-		Log.i("Debug", "oncreate läuft");
 	}
 	
 	public void anmelden(View vw) {
@@ -56,7 +55,6 @@ public class MainActivity extends Activity {
         Gson gson = new Gson();
         JsonElement jsonElement = gson.toJsonTree(login);
 		StringEntity se = null;
-		Log.i("Debug", "Werte eingelesen");
 		try {
 		    se = new StringEntity(jsonElement.toString());
 		} catch (UnsupportedEncodingException e) {
@@ -68,9 +66,7 @@ public class MainActivity extends Activity {
 		client.post(null, Helper.BASE_URL+"/SensorCloudRest/crud/Login/authetifizieren", se, "application/json", new AsyncHttpResponseHandler() {
 		    @Override
 		    public void onSuccess(String response) {
-		        Log.i("Test", response);
-		        
-
+		    	
 		        if (response.length() <= 4) {
 		        	infoLbl.setTextColor(Color.RED);
 		        	infoLbl.setText("Anmeldung nicht gelungen");
@@ -80,10 +76,13 @@ public class MainActivity extends Activity {
 					editor.putString("NutzerObj", response);
 					editor.commit();
 					startActivity(intent);
-				}
-		        
+				} 
 		    }
-		    
 		});
 	}	
+	
+	public void registrieren(View view){
+		Intent intent  = new Intent(this, NutzerAnlegenActivity.class);
+		startActivity(intent);
+	}
 }

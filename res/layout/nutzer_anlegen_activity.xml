@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" 
+    android:gravity="center"
+    android:layout_height="fill_parent">
+    
+    
+	<LinearLayout 
+	    android:layout_width="fill_parent"
+	    android:gravity="center"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+	
+	    <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:textSize="15sp"
+	            android:textColor="#2ECCFA"
+	            android:text="Anrede:" >
+	   	 </TextView>
+	     
+	     <EditText
+	            android:id="@+id/nutzer_anlegen_anrede"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  	</EditText>
+	  	
+	  	  <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:textSize="15sp"
+	            android:textColor="#2ECCFA"
+	            android:text="Vorname:" >
+	   	 </TextView>
+	   	 
+	  	 <EditText
+	            android:id="@+id/nutzer_anlegen_vorname"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  	</EditText>
+	  	
+	  	 <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:textSize="15sp"
+	            android:textColor="#2ECCFA"
+	            android:text="Name:" >
+	   	 </TextView>
+	   	 
+	  	 <EditText
+	            android:id="@+id/nutzer_anlegen_name"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  	</EditText>
+	  	
+	  	 <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:textSize="15sp"
+	            android:textColor="#2ECCFA"
+	            android:text="Firma:" >
+	   	 </TextView>
+	   	 
+	  	 <EditText
+	            android:id="@+id/nutzer_anlegen_firma"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  	</EditText>
+	  	
+	  	 
+	  	 
+	  	 
+	  	 <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:textSize="15sp"
+	            android:textColor="#2ECCFA"
+	            android:text="Telnummer:" >
+	   	 </TextView>
+	   	 
+	  	 <EditText
+	            android:id="@+id/nutzer_anlegen_telnr"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  	</EditText>
+	  	
+	  	 <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:textSize="15sp"
+	            android:textColor="#2ECCFA"
+	            android:text="Telefonbezeichnung:" >
+	   	 </TextView>
+	   	 
+	  	 <EditText
+	            android:id="@+id/nutzer_anlegen_telbez"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  	</EditText>
+	  	
+	  	 
+	  	 
+	  	 
+	  	 <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:textSize="15sp"
+	            android:textColor="#2ECCFA"
+	            android:text="E-Mail-Adresse" >
+	   	 </TextView>
+	   	 
+	  	 <EditText
+	            android:id="@+id/nutzer_anlegen_emaadr"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  	</EditText>
+	  	
+	  	 <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:textSize="15sp"
+	            android:textColor="#2ECCFA"
+	            android:text="E-Mailbezeichnung:" >
+	   	 </TextView>
+	   	 
+	  	 <EditText
+	            android:id="@+id/nutzer_anlegen_emabez"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  	</EditText>
+	  	
+	  	 
+	  	 
+	  	 
+	  	 <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:textSize="15sp"
+	            android:textColor="#2ECCFA"
+	            android:text="Passwort:" >
+	   	 </TextView>
+	   	 
+	  	 <EditText
+	            android:id="@+id/nutzer_anlegen_pass"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  	</EditText>
+	  	
+	  	 <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:textSize="15sp"
+	            android:textColor="#2ECCFA"
+	            android:text="Public-Key:" >
+	   	 </TextView>
+	   	 
+	  	 <EditText
+	            android:id="@+id/nutzer_anlegen_pubKey"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  	</EditText>
+	  	
+	  	 <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:textSize="15sp"
+	            android:textColor="#2ECCFA"
+	            android:text="Private-Key:" >
+	   	 </TextView>
+	   	 
+	  	 <EditText
+	            android:id="@+id/nutzer_anlegen_priKey"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  	</EditText>
+	  	
+	  	 
+	  	 
+	  	 <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:textSize="15sp"
+	            android:textColor="#2ECCFA"
+	            android:text="Adressenbezeichnung:" >
+	   	 </TextView>
+	   	 
+	  	 <EditText
+	            android:id="@+id/nutzer_anlegen_adrBez"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  	</EditText>
+	  	
+	  	<TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:textSize="15sp"
+	            android:textColor="#2ECCFA"
+	            android:text="Straße:" >
+	   	 </TextView>
+	   	 
+	  	 <EditText
+	            android:id="@+id/nutzer_anlegen_strasse"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  	</EditText>
+	  	
+	  	 <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:textSize="15sp"
+	            android:textColor="#2ECCFA"
+	            android:text="PLZ:" >
+	   	 </TextView>
+	   	 
+	  	 <EditText
+	            android:id="@+id/nutzer_anlegen_plz"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  	</EditText>
+	  	
+	  	 <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:textSize="15sp"
+	            android:textColor="#2ECCFA"
+	            android:text="Ort:" >
+	   	 </TextView>
+	   	 
+	  	 <EditText
+	            android:id="@+id/nutzer_anlegen_ort"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  	</EditText>
+	  	
+	  	 <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:textSize="15sp"
+	            android:textColor="#2ECCFA"
+	            android:text="Land:" >
+	   	 </TextView>
+	   	 
+	  	 <EditText
+	            android:id="@+id/nutzer_anlegen_land"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  	</EditText> 
+	  	
+	  	 <Button
+		        android:id="@+id/insert_neuen_nutzer"
+		        android:layout_weight="1"
+		        android:onClick="insertNutzer"
+		        android:layout_gravity="center"
+		        android:layout_width="wrap_content"
+		        android:layout_height="0dp"
+		        android:paddingRight="15dp"
+		        android:paddingLeft="15dp"
+		        android:textColor="#2ECCFA"
+		        android:layout_marginTop="15dp"
+		        android:text="@string/insert"
+		         />
+	
+	</LinearLayout>
+	
+</ScrollView>

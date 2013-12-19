@@ -14,7 +14,8 @@ public class AuswahlseiteActivity extends ListActivity {
 
 	static final String[] ACTIVITIES = new String[] { "Adressdaten anzeigen/bearbeiten", "Profildaten anzeigen/bearbeiten", "Telefondaten anzeigen/bearbeiten", "E-Maildaten anzeigen/bearbeiten", "Sicherheitsdaten anzeigen/bearbeiten", "Event anzeigen/bearbeiten",
 		"Gruppe erstellen", "Mitglied in Gruppe einladen", "Gruppen anzeigen", "Aktor/Verbund anzeigen ", "Sensor/Verbund anzeigen",
-		"Chart anzeigen", };
+		"Chart anzeigen", "Aktor mit Aktorverbund verbinden", "Sensor mit Sensorverbund verbinden",
+		"ServiceLinie anlegen", "ServiceLinie anzeigen"};
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,22 @@ public class AuswahlseiteActivity extends ListActivity {
 				break;
 			case 11:
 				intent  = new Intent(AuswahlseiteActivity.this, ChartActivity.class);
+				startActivity(intent);
+				break;
+			case 12:
+				intent  = new Intent(AuswahlseiteActivity.this, AktorVerbundAnlegenActivity.class);
+				startActivity(intent);
+				break;
+			case 13:
+				intent  = new Intent(AuswahlseiteActivity.this, SensorVerbundAnlegenActivity.class);
+				startActivity(intent);
+				break;
+			case 14:
+				intent  = new Intent(AuswahlseiteActivity.this, ServiceLinieSenAnlegenActivity.class);
+				startActivity(intent);
+				break;
+			case 15:
+				intent  = new Intent(AuswahlseiteActivity.this, ServiceLinienAnzeigenActivity.class);
 				startActivity(intent);
 				break;
 

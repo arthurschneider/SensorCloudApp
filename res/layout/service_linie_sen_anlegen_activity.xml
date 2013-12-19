@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" 
+    android:gravity="center"
+    android:layout_height="fill_parent">
+    
+	<LinearLayout 
+		    android:layout_width="fill_parent"
+		    android:gravity="center"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical" >
+	    
+		<TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:textSize="15sp"
+	        android:textColor="#2ECCFA"
+	        android:text="Liste aller meiner Sensoren:" >
+	   	 </TextView>
+	   	 
+	     <Spinner
+	        android:id="@+id/spinnerSLSensor"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" />
+	    
+	     <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:textSize="15sp"
+	            android:textColor="#2ECCFA"
+	            android:text="Services zum ausgewaehlten Sensor:" >
+	   	 </TextView>
+	   	 
+	     <Spinner
+	        android:id="@+id/spinnerSLServices"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" />
+	     
+	     <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:textSize="15sp"
+	            android:layout_marginTop="20dp"
+	            android:textColor="#2ECCFA"
+	            android:text="Liste aller meiner Servicelinien" >
+	   	 </TextView>
+	   	 
+	     <Spinner
+	        android:id="@+id/spinnerSLServLinien"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" />
+	     
+	      <Button
+		        android:id="@+id/ser_mit_linie_update"
+		        android:layout_weight="1"
+		        android:onClick="updateServiceLinie"
+		        android:layout_gravity="center_horizontal"
+		        android:layout_width="wrap_content"
+		        android:layout_height="0dp"
+		        android:paddingRight="15dp"
+		        android:paddingLeft="15dp"
+		        android:textColor="#2ECCFA"
+		        android:layout_marginTop="25dp"
+		        android:text="Service zur Servicelinie hinzufuegen" />
+		        
+		 <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	            android:layout_marginTop="50dp"
+	            android:textSize="15sp"
+	            android:textColor="#2ECCFA"
+	            android:text="Name der neuen Servicelinie:" >
+	   	 </TextView>
+	   	 
+	  	 <EditText
+	            android:id="@+id/neue_servlinie"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:inputType="text">
+	  	</EditText>
+	  	
+	  	 <Button
+		        android:id="@+id/servicelinie_anlegen"
+		        android:layout_weight="1"
+		        android:onClick="insertServiceInLinie"
+		        android:layout_gravity="center_horizontal"
+		        android:layout_width="wrap_content"
+		        android:layout_height="0dp"
+		        android:paddingRight="15dp"
+		        android:paddingLeft="15dp"
+		        android:textColor="#2ECCFA"
+		        android:layout_marginTop="15dp"
+		        android:text="Neue Servicelinie mit Service anlegen"
+		         />
+	    
+	</LinearLayout>
+</ScrollView>

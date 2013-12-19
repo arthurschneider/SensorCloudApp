@@ -81,6 +81,30 @@
             android:name="de.sensorcloud.android.activity.GruppenMitEinladenActivity"
             android:label="@string/title_activity_gruppen_mit_einladen" >
         </activity>
+        <activity
+            android:name="de.sensorcloud.android.activity.NutzerAnlegenActivity"
+            android:label="@string/title_activity_nutzer_anlegen" >
+        </activity>
+        <activity
+            android:name="de.sensorcloud.android.activity.AktorVerbundAnlegenActivity"
+            android:label="@string/title_activity_aktor_verbund_anlegen" >
+        </activity>
+        <activity
+            android:name="de.sensorcloud.android.activity.SensorVerbundAnlegenActivity"
+            android:label="@string/title_activity_sensor_verbund_anlegen" >
+        </activity>
+        <activity
+            android:name="de.sensorcloud.android.activity.ServiceLinieSenAnlegenActivity"
+            android:label="@string/title_activity_service_linie" >
+        </activity>
+        <activity
+            android:name="de.sensorcloud.android.activity.ServiceLinienAnzeigenActivity"
+            android:label="@string/title_activity_service_linien_anzeigen" >
+        </activity>
+        <activity
+            android:name="de.sensorcloud.android.activity.ServiceLinienAktAnlegenActivity"
+            android:label="@string/title_activity_service_linien_akt_anlegen" >
+        </activity>
     </application>
 
 </manifest>

@@ -46,6 +46,16 @@
             android:textColor="#2ECCFA"
             android:layout_marginTop="20dp"
             android:text="@string/anmelden" />
+     
+     <Button
+            android:id="@+id/bn_registrieren"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="registrieren"
+            android:textColor="#2ECCFA"
+            
+            android:layout_marginTop="120dp"
+            android:text="Registrieren" />
 
      <TextView
          android:id="@+id/txtView_info"
