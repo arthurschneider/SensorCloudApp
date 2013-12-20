@@ -18,15 +18,19 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import de.sensorcloud.android.R;
+import de.sensorcloud.android.entitaet.Aktor;
+import de.sensorcloud.android.entitaet.AktorList;
+import de.sensorcloud.android.entitaet.AktorServiceFunktion;
+import de.sensorcloud.android.entitaet.AktorServiceFunktionList;
 import de.sensorcloud.android.entitaet.NutzerStammdaten;
 import de.sensorcloud.android.entitaet.Sensor;
 import de.sensorcloud.android.entitaet.SensorList;
-import de.sensorcloud.android.entitaet.SensorService;
 import de.sensorcloud.android.entitaet.SensorServiceFunktion;
 import de.sensorcloud.android.entitaet.SensorServiceFunktionList;
-import de.sensorcloud.android.entitaet.SensorServiceList;
 import de.sensorcloud.android.entitaet.ServiceLinien;
 import de.sensorcloud.android.entitaet.ServiceLinienList;
+import de.sensorcloud.android.entitaet.ServiceMitTyp;
+import de.sensorcloud.android.entitaet.ServiceMitTypList;
 import de.sensorcloud.android.helpertools.Helper;
 
 public class ServiceLinienAnzeigenActivity extends Activity {
@@ -39,13 +43,14 @@ public class ServiceLinienAnzeigenActivity extends Activity {
 	String nutStaID;
 	
 	SensorList senList;
-	SensorServiceList senServList;
+	AktorList aktList;
+	ServiceMitTypList servList;
 	
-	SensorServiceFunktionList funktionList;
-	
+	SensorServiceFunktionList senfunktionList;
+	AktorServiceFunktionList aktfunktionList;
 	
 	Sensor sensor;
-	SensorService sensorService;
+	ServiceMitTyp service;
 	
 	ServiceLinienList servLinList;
 	ServiceLinien servLin;
@@ -73,7 +78,6 @@ public class ServiceLinienAnzeigenActivity extends Activity {
 		    public void onSuccess(String response) {
 		        Gson gson = new Gson();
 		        servLinList = gson.fromJson(response, ServiceLinienList.class);
-		        
 		        setDataToSpinnerServiceLinien();
 		    }
 		});
@@ -112,7 +116,7 @@ public class ServiceLinienAnzeigenActivity extends Activity {
 		    @Override
 		    public void onSuccess(String response) {
 		        Gson gson = new Gson();
-		        senServList = gson.fromJson(response, SensorServiceList.class);
+		        servList = gson.fromJson(response, ServiceMitTypList.class);
 		        setDataToSpinnerServices();
 		    }
 		});
@@ -121,8 +125,8 @@ public class ServiceLinienAnzeigenActivity extends Activity {
 	public void setDataToSpinnerServices() {
 		List<String> list = new ArrayList<String>();
 		list.clear();
-		for (SensorService serv : senServList.getList()) {
-        	list.add(serv.getSenSerBez());
+		for (ServiceMitTyp serv : servList.getList()) {
+        	list.add(serv.getSerBez());
 		}
 		ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(ServiceLinienAnzeigenActivity.this, android.R.layout.simple_spinner_item, list);
 		dAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -136,9 +140,9 @@ public class ServiceLinienAnzeigenActivity extends Activity {
 	public class AuswahlServiceListener implements OnItemSelectedListener {
 		
 		public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
-			sensorService = senServList.getList().get(position);
+			service = servList.getList().get(position);
 			getDatensatzFunktionen();
-			getDatensatzSensoren();
+			getDatensatzSensorenAktoren();
 		}
 
 		@Override
@@ -147,21 +151,38 @@ public class ServiceLinienAnzeigenActivity extends Activity {
 	
 	public void getDatensatzFunktionen(){
 		AsyncHttpClient client = new AsyncHttpClient();
-		String senSerID = sensorService.getSenSerID();
-		client.get(Helper.BASE_URL+"/SensorCloudRest/crud/SensorServiceFunktion/SenSerID/"+senSerID, new AsyncHttpResponseHandler() {
-		    @Override
-		    public void onSuccess(String response) {
-		        Gson gson = new Gson();
-		        funktionList = gson.fromJson(response, SensorServiceFunktionList.class);
-		        setDataToSpinnerFunktionen();
-		    }
-		});
+		
+		if (service.getSerTyp().equals("SensorService")) {
+			String senSerID = service.getSerID();
+			client.get(Helper.BASE_URL+"/SensorCloudRest/crud/SensorServiceFunktion/SenSerID/"+senSerID, new AsyncHttpResponseHandler() {
+			    @Override
+			    public void onSuccess(String response) {
+			        Gson gson = new Gson();
+			        senfunktionList = gson.fromJson(response, SensorServiceFunktionList.class);
+			        setDataToSpinnerFunktionenSensor();
+			    }
+			});
+		}
+		
+		if (service.getSerTyp().equals("AktorService")) {
+			String aktSerID = service.getSerID();
+			client.get(Helper.BASE_URL+"/SensorCloudRest/crud/AktorServiceFunktion/AktSerID/"+aktSerID, new AsyncHttpResponseHandler() {
+			    @Override
+			    public void onSuccess(String response) {
+			        Gson gson = new Gson();
+			        aktfunktionList = gson.fromJson(response, AktorServiceFunktionList.class);
+			        setDataToSpinnerFunktionenAktor();
+			    }
+			});
+		}
+		
 	}
 	
-	public void setDataToSpinnerFunktionen() {
+	public void setDataToSpinnerFunktionenSensor() {
 		List<String> list = new ArrayList<String>();
 		list.clear();
-		for (SensorServiceFunktion funk : funktionList.getList()) {
+		
+		for (SensorServiceFunktion funk : senfunktionList.getList()) {
         	list.add(funk.getSenSerFunNam());
 		}
 		ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(ServiceLinienAnzeigenActivity.this, android.R.layout.simple_spinner_item, list);
@@ -169,32 +190,50 @@ public class ServiceLinienAnzeigenActivity extends Activity {
 		dAdapter.notifyDataSetChanged();
 		spinnerFunktionen.postInvalidate();
 		spinnerFunktionen.setAdapter(dAdapter);
-		
-//		spinnerServices.setOnItemSelectedListener(new AuswahlServiceListener());
+
 	}
 	
-//	public class AuswahlServiceListener implements OnItemSelectedListener {
-//		
-//		public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
-//			sensorService = senServList.getList().get(position);
-//			getDatensatzFunktionen();
-//		}
-//
-//		@Override
-//		public void onNothingSelected(AdapterView<?> arg0) {}
-//	}
+	public void setDataToSpinnerFunktionenAktor() {
+		List<String> list = new ArrayList<String>();
+		list.clear();
+		for (AktorServiceFunktion funk : aktfunktionList.getList()) {
+        	list.add(funk.getAktSerFunNam());
+		}
+		ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(ServiceLinienAnzeigenActivity.this, android.R.layout.simple_spinner_item, list);
+		dAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		dAdapter.notifyDataSetChanged();
+		spinnerFunktionen.postInvalidate();
+		spinnerFunktionen.setAdapter(dAdapter);
+	}
 	
-	public void getDatensatzSensoren(){
+
+	
+	public void getDatensatzSensorenAktoren(){
 		AsyncHttpClient client = new AsyncHttpClient();
-		String senSerID = sensorService.getSenSerID();
-		client.get(Helper.BASE_URL+"/SensorCloudRest/crud/Sensor/SenSerID/"+senSerID, new AsyncHttpResponseHandler() {
-		    @Override
-		    public void onSuccess(String response) {
-		        Gson gson = new Gson();
-		        senList = gson.fromJson(response, SensorList.class);
-		        setDataToSpinnerSensoren();
-		    }
-		});
+		
+		if (service.getSerTyp().equals("SensorService")) {
+			String senSerID = service.getSerID();
+			client.get(Helper.BASE_URL+"/SensorCloudRest/crud/Sensor/SenSerID/"+senSerID, new AsyncHttpResponseHandler() {
+			    @Override
+			    public void onSuccess(String response) {
+			        Gson gson = new Gson();
+			        senList = gson.fromJson(response, SensorList.class);
+			        setDataToSpinnerSensoren();
+			    }
+			});
+		}
+		
+		if (service.getSerTyp().equals("AktorService")) {
+			String senSerID = service.getSerID();
+			client.get(Helper.BASE_URL+"/SensorCloudRest/crud/Aktor/AktSerID/"+senSerID, new AsyncHttpResponseHandler() {
+			    @Override
+			    public void onSuccess(String response) {
+			        Gson gson = new Gson();
+			        aktList = gson.fromJson(response, AktorList.class);
+			        setDataToSpinnerAktoren();
+			    }
+			});
+		}
 	}
 	
 	public void setDataToSpinnerSensoren() {
@@ -209,6 +248,19 @@ public class ServiceLinienAnzeigenActivity extends Activity {
 		spinnerSensoren.postInvalidate();
 		spinnerSensoren.setAdapter(dAdapter);
 		
-//		spinnerServices.setOnItemSelectedListener(new AuswahlServiceListener());
+	}
+	
+	public void setDataToSpinnerAktoren() {
+		List<String> list = new ArrayList<String>();
+		list.clear();
+		for (Aktor akt : aktList.getList()) {
+        	list.add(akt.getAktBez());
+		}
+		ArrayAdapter<String> dAdapter = new ArrayAdapter<String>(ServiceLinienAnzeigenActivity.this, android.R.layout.simple_spinner_item, list);
+		dAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		dAdapter.notifyDataSetChanged();
+		spinnerSensoren.postInvalidate();
+		spinnerSensoren.setAdapter(dAdapter);
+		
 	}
 }

@@ -192,8 +192,7 @@ public class ServiceLinienAktAnlegenActivity extends Activity {
 		public void onNothingSelected(AdapterView<?> arg0) {}
 	}
 	
-	public void updateServiceLinie(View view) {
-		Log.i("Debug", "Methode triggert?");
+	public void updateServiceLinieAkt(View view) {
 		AktorServiceMitServiceLinie servLinServ = new AktorServiceMitServiceLinie();
 		servLinServ.setService(aktorService);
 		servLinServ.setServiceLinie(servLin);
@@ -210,7 +209,7 @@ public class ServiceLinienAktAnlegenActivity extends Activity {
 		
 		AsyncHttpClient client = new AsyncHttpClient();
 		se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-		client.post(null, Helper.BASE_URL+"/SensorCloudRest/crud/ServiceLinien", se, "application/json", new AsyncHttpResponseHandler() {
+		client.post(null, Helper.BASE_URL+"/SensorCloudRest/crud/ServiceLinien/Aktor", se, "application/json", new AsyncHttpResponseHandler() {
 			 @Override
 			 public void onSuccess(String response) {
 		        Toast.makeText(ServiceLinienAktAnlegenActivity.this, response, Toast.LENGTH_LONG).show();
@@ -218,7 +217,7 @@ public class ServiceLinienAktAnlegenActivity extends Activity {
 		});
 	}
 	
-	public void insertServiceInLinie(View view) {
+	public void insertServiceInLinieAkt(View view) {
 		String name = servLinieName.getText().toString();
 		
 		AktorServiceMitServiceLinie servLinServ = new AktorServiceMitServiceLinie();
@@ -242,7 +241,7 @@ public class ServiceLinienAktAnlegenActivity extends Activity {
 		
 		AsyncHttpClient client = new AsyncHttpClient();
 		se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-		client.put(null, Helper.BASE_URL+"/SensorCloudRest/crud/ServiceLinien", se, "application/json", new AsyncHttpResponseHandler() {
+		client.put(null, Helper.BASE_URL+"/SensorCloudRest/crud/ServiceLinien/Aktor", se, "application/json", new AsyncHttpResponseHandler() {
 			 @Override
 			 public void onSuccess(String response) {
 		        Toast.makeText(ServiceLinienAktAnlegenActivity.this, response, Toast.LENGTH_LONG).show();
