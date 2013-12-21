@@ -30,6 +30,7 @@ import de.sensorcloud.android.R;
 import de.sensorcloud.android.entitaet.Gruppen;
 import de.sensorcloud.android.entitaet.GruppenList;
 import de.sensorcloud.android.entitaet.GruppenMitglied;
+import de.sensorcloud.android.entitaet.NeueGruppeMitNutzer;
 import de.sensorcloud.android.entitaet.NutzerStammdaten;
 import de.sensorcloud.android.helpertools.Helper;
 
@@ -37,6 +38,7 @@ public class GruppenMitEinladenActivity extends Activity {
 	
 	Spinner spinnerGruppen;
 	EditText grpMitgEmail;
+	EditText grpNameTxt;
 	
 	int gruppePosition;
 	String nutStaID;
@@ -47,6 +49,7 @@ public class GruppenMitEinladenActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gruppen_mit_einladen_activity);
 		grpMitgEmail = (EditText) findViewById(R.id.grp_mitg_email_adr);
+		grpNameTxt = (EditText) findViewById(R.id.grp_erstellen_name);
 		spinnerGruppen = (Spinner) findViewById(R.id.spinnerGruppenMitEinladen);
 		
 		getDatensatzGruppen();
@@ -62,10 +65,8 @@ public class GruppenMitEinladenActivity extends Activity {
 		client.get(Helper.BASE_URL+"/SensorCloudRest/crud/Gruppen/NutStaID/"+nutStaID, new AsyncHttpResponseHandler() {
 		    @Override
 		    public void onSuccess(String response) {
-		        Log.i("Test", response);
 		        Gson gson = new Gson();
 		        grpList = gson.fromJson(response, GruppenList.class);
-		        
 		        setDataToSpinner();
 		    }	    
 		});
@@ -123,10 +124,47 @@ public class GruppenMitEinladenActivity extends Activity {
 		se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 		client.put(null,  Helper.BASE_URL+"/SensorCloudRest/crud/Gruppen/inviteMitglied", se, "application/json", new AsyncHttpResponseHandler() {
 			 @Override
-			    public void onSuccess(String response) {
-			        Toast.makeText(GruppenMitEinladenActivity.this, response, Toast.LENGTH_LONG).show();
+			 public void onSuccess(String response) {
+		        Toast.makeText(GruppenMitEinladenActivity.this, response, Toast.LENGTH_LONG).show();
 		 }
-	    
+		});
+	}
+	
+	
+	public void erstelleGruppe(View view){
+		Gson gson = new Gson();
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(GruppenMitEinladenActivity.this); 
+		String json = mPrefs.getString("NutzerObj", null);
+		String nutStaID = gson.fromJson(json, NutzerStammdaten.class).getNutStaID();
+		String gruBez = grpNameTxt.getText().toString();
+		NeueGruppeMitNutzer gruppeNutzer = new NeueGruppeMitNutzer();
+		gruppeNutzer.setGruBez(gruBez);
+		gruppeNutzer.setNutStaID(nutStaID);
+		insertGruppe(gruppeNutzer);
+	}
+	
+	public void insertGruppe(NeueGruppeMitNutzer gruppeNutzer){
+		
+		
+		Gson gson = new Gson();
+		JsonElement jsonElement = gson.toJsonTree(gruppeNutzer);
+		
+		StringEntity se = null;
+		
+		try {
+		    se = new StringEntity(jsonElement.toString());
+		} catch (UnsupportedEncodingException e) {
+			Log.e("Fehler", "Json-String konnte nicht verarbeitet werden!");
+		}		
+		
+		AsyncHttpClient client = new AsyncHttpClient();
+		se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+		client.put(null,  Helper.BASE_URL+"/SensorCloudRest/crud/Gruppen/createGruppe", se, "application/json", new AsyncHttpResponseHandler() {
+			 @Override
+			 public void onSuccess(String response) {
+		        Toast.makeText(GruppenMitEinladenActivity.this, response, Toast.LENGTH_LONG).show();
+		        getDatensatzGruppen();
+		 }
 		});
 	}
 }

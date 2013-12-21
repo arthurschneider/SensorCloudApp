@@ -5,11 +5,38 @@
     android:background="#000000"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
+    <!-- Gruppe erstellen -->
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:text="Bezeichnung der Gruppe:" >
+   	 </TextView>
+    
+    <EditText
+            android:id="@+id/grp_erstellen_name"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text">
+  	</EditText>
+  	
+    <Button
+	        android:id="@+id/grp_verlassen"
+	        android:layout_gravity="center"
+	        android:onClick="erstelleGruppe"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Gruppe erstellen" />
+    
+    <!-- Einladen in Gruppe -->
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:layout_marginTop="80dp"
              android:layout_gravity="center"
             android:text="Gruppen:" >
    	 </TextView>
