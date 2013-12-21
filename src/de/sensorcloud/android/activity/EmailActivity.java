@@ -151,26 +151,31 @@ public class EmailActivity extends Activity implements OnItemSelectedListener {
 	
 	
 	public void deleteEmail(View view){
-		Gson gson = new Gson();
-		JsonElement jsonElement = gson.toJsonTree(mailObj.getNutEmaID());
+		if (emailListe.getList().size() > 1) {
+			Gson gson = new Gson();
+			JsonElement jsonElement = gson.toJsonTree(mailObj.getNutEmaID());
+			
+			StringEntity se = null;
+			
+			try {
+			    se = new StringEntity(jsonElement.toString());
+			} catch (UnsupportedEncodingException e) {
+				Log.e("Fehler", "Json-String konnte nicht verarbeitet werden!");
+			}		
+			
+			AsyncHttpClient client = new AsyncHttpClient();
+			se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+			client.post(null,  Helper.BASE_URL+"/SensorCloudRest/crud/NutzerEmail/delete", se, "application/json", new AsyncHttpResponseHandler() {
+				 @Override
+				    public void onSuccess(String response) {
+				        Toast.makeText(EmailActivity.this, response, Toast.LENGTH_LONG).show();
+				        getDatensatz();
+			 }
+			});
+		} else {
+			Toast.makeText(EmailActivity.this, "Das letzte Element darf nicht geloescht werden", Toast.LENGTH_LONG).show();
+		}
 		
-		StringEntity se = null;
-		
-		try {
-		    se = new StringEntity(jsonElement.toString());
-		} catch (UnsupportedEncodingException e) {
-			Log.e("Fehler", "Json-String konnte nicht verarbeitet werden!");
-		}		
-		
-		AsyncHttpClient client = new AsyncHttpClient();
-		se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-		client.post(null,  Helper.BASE_URL+"/SensorCloudRest/crud/NutzerEmail/delete", se, "application/json", new AsyncHttpResponseHandler() {
-			 @Override
-			    public void onSuccess(String response) {
-			        Toast.makeText(EmailActivity.this, response, Toast.LENGTH_LONG).show();
-			        getDatensatz();
-		 }
-		});
 	}
 
 }

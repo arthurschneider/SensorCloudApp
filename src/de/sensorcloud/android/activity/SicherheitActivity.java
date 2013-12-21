@@ -161,24 +161,30 @@ public class SicherheitActivity extends Activity implements OnItemSelectedListen
 	
 	
 	public void deleteSic(View view){
-		Gson gson = new Gson();
-		JsonElement jsonElement = gson.toJsonTree(sicherObj.getNutSicID());
-		StringEntity se = null;
-		
-		try {
-		    se = new StringEntity(jsonElement.toString());
-		} catch (UnsupportedEncodingException e) {
-			Log.e("Fehler", "Json-String konnte nicht verarbeitet werden!");
-		}		
-		
-		AsyncHttpClient client = new AsyncHttpClient();
-		se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-		client.post(null,  Helper.BASE_URL+"/SensorCloudRest/crud/NutzerSicherheit/delete", se, "application/json", new AsyncHttpResponseHandler() {
-			 @Override
-			    public void onSuccess(String response) {
-			        Toast.makeText(SicherheitActivity.this, response, Toast.LENGTH_LONG).show();
-			        getDatensatz();
-		 }
-		});
+		if (sicherList.getList().size() > 1) {
+			Gson gson = new Gson();
+			JsonElement jsonElement = gson.toJsonTree(sicherObj.getNutSicID());
+			StringEntity se = null;
+			
+			try {
+			    se = new StringEntity(jsonElement.toString());
+			} catch (UnsupportedEncodingException e) {
+				Log.e("Fehler", "Json-String konnte nicht verarbeitet werden!");
+			}		
+			
+			AsyncHttpClient client = new AsyncHttpClient();
+			se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+			client.post(null,  Helper.BASE_URL+"/SensorCloudRest/crud/NutzerSicherheit/delete", se, "application/json", new AsyncHttpResponseHandler() {
+				 @Override
+				    public void onSuccess(String response) {
+				        Toast.makeText(SicherheitActivity.this, response, Toast.LENGTH_LONG).show();
+				        getDatensatz();
+			 }
+			});
+		} else {
+			Toast.makeText(SicherheitActivity.this, "Das letzte Element darf nicht geloescht werden", Toast.LENGTH_LONG).show();
+		}
 	}
+	
+	
 }
