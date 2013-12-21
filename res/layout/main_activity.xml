@@ -3,68 +3,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" 
     android:background="#000000"
+    android:gravity="center"
     android:orientation="vertical"
-    android:gravity="center">
-    
+    tools:context=".MainActivity" >
+
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="@string/email" >
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/email"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
     </TextView>
 
     <EditText
-            android:id="@+id/email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress">
-  	</EditText>
-            
-     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="@string/password" >
-     </TextView>
-   
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress" >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/password"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
 
     <EditText
-            android:id="@+id/passwort"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword" > 
+        android:id="@+id/passwort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword" >
     </EditText>
-            
-     <Button
-            android:id="@+id/bn_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="anmelden"
-            android:textColor="#2ECCFA"
-            android:layout_marginTop="20dp"
-            android:text="@string/anmelden" />
-     
-     <Button
-            android:id="@+id/bn_registrieren"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="registrieren"
-            android:textColor="#2ECCFA"
-            
-            android:layout_marginTop="120dp"
-            android:text="Registrieren" />
 
-     <TextView
-         android:id="@+id/txtView_info"
-         android:text="@string/login_info"
-         android:layout_marginTop="10dp"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content" >
-	</TextView>
-            
+    <Button
+        android:id="@+id/bn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:onClick="anmelden"
+        android:text="@string/anmelden"
+        android:textColor="#2ECCFA" />
+
+    <Button
+        android:id="@+id/bn_registrieren"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:onClick="registrieren"
+        android:text="Registrieren"
+        android:textColor="#2ECCFA" />
+
+    <TextView
+        android:id="@+id/txtView_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/login_info" >
+    </TextView>
 
 </LinearLayout>

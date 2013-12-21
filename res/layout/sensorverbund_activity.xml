@@ -1,97 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:background="#000000"
-    android:layout_height="wrap_content"
     android:orientation="vertical" >
-	<TextView
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="15sp"
+        android:text="@string/listSenVerbund"
         android:textColor="#2ECCFA"
-        android:text="@string/listSenVerbund" >
-   	 </TextView>
-   	 
+        android:textSize="15sp" >
+    </TextView>
+
     <Spinner
         android:id="@+id/spinnerSenVerbBez"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    
+
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="@string/listSensor" >
-   	 </TextView>
-   	 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/listSensor"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
     <Spinner
         android:id="@+id/spinnerSenVerbSensoren"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:layout_marginTop="30dp"
-            android:textColor="#2ECCFA"
-            android:text="@string/bezeichnung" >
-   	 </TextView>
-     <EditText
-            android:id="@+id/senBezeichnung"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text">
-  	</EditText>
-  	<TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="@string/senPosition" >
-   	 </TextView>
-  	 <EditText
-            android:id="@+id/senPosition"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text">
-    </EditText>     
-       <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="@string/raum" >
-   	 </TextView>
-  	<EditText
-            android:id="@+id/senRaum"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text">
-  	</EditText>
-  	<TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="@string/erstellungsDatum" >
-   	 </TextView>
-  	 <EditText
-            android:id="@+id/senDatum"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text">
-	</EditText>
-	
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="@string/bezeichnung"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/senBezeichnung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text" >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/senPosition"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/senPosition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text" >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/raum"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/senRaum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text" >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/erstellungsDatum"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/senDatum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text" >
+    </EditText>
+
 </LinearLayout>

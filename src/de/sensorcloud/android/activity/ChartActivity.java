@@ -192,15 +192,10 @@ public class ChartActivity extends Activity implements OnItemSelectedListener {
         return null;
     }
     
-    
-    
-    
-    
-    
     public void startChart(View view){
     	 Toast.makeText(getBaseContext(),"zeichne Chart",Toast.LENGTH_SHORT).show();
-    	  AsyncHttpClient client = new AsyncHttpClient();
-    	  client.get(Helper.BASE_URL+"/SensorCloudRest/crud/Messwert/SenID/"+senID+"/MesWerNam/"+senWer+"/MesWerTimYea/"+year+"/MesWerTimMon/"+month+"/MesWerTimDay/"+day, new AsyncHttpResponseHandler() {
+		  AsyncHttpClient client = new AsyncHttpClient();
+		  client.get(Helper.BASE_URL+"/SensorCloudRest/crud/Messwert/SenID/"+senID+"/MesWerNam/"+senWer+"/MesWerTimYea/"+year+"/MesWerTimMon/"+month+"/MesWerTimDay/"+day, new AsyncHttpResponseHandler() {
   		    @Override
   		    public void onSuccess(String response) {
   		    	Gson gson = new Gson();

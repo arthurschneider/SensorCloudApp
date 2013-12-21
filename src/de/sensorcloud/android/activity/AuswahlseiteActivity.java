@@ -13,7 +13,7 @@ import de.sensorcloud.android.R;
 public class AuswahlseiteActivity extends ListActivity {
 
 	static final String[] ACTIVITIES = new String[] { "Adressdaten anzeigen/bearbeiten", "Profildaten anzeigen/bearbeiten", "Telefondaten anzeigen/bearbeiten", "E-Maildaten anzeigen/bearbeiten", "Sicherheitsdaten anzeigen/bearbeiten", "Event anzeigen/bearbeiten",
-		"Gruppe erstellen", "Mitglied in Gruppe einladen", "Gruppen anzeigen", "Aktor/Verbund anzeigen ", "Sensor/Verbund anzeigen",
+		"Mitglied in Gruppe einladen", "Gruppen anzeigen", "Aktor/Verbund anzeigen ", "Sensor/Verbund anzeigen",
 		"Chart anzeigen", "Aktor mit Aktorverbund verbinden", "Sensor mit Sensorverbund verbinden",
 		"ServiceLinie (Sensor) anlegen","ServiceLinie (Aktor) anlegen", "ServiceLinie anzeigen"};
 	
@@ -53,47 +53,47 @@ public class AuswahlseiteActivity extends ListActivity {
 				intent  = new Intent(AuswahlseiteActivity.this, EventRegelActivity.class);
 				startActivity(intent);
 				break;
+//			case 6:
+//				intent  = new Intent(AuswahlseiteActivity.this, GruppeErstellenActivity.class);
+//				startActivity(intent);
+//				break;
 			case 6:
-				intent  = new Intent(AuswahlseiteActivity.this, GruppeErstellenActivity.class);
-				startActivity(intent);
-				break;
-			case 7:
 				intent  = new Intent(AuswahlseiteActivity.this, GruppenMitEinladenActivity.class);
 				startActivity(intent);
 				break;
-			case 8:
+			case 7:
 				intent  = new Intent(AuswahlseiteActivity.this, GruppenAnzeigenActivity.class);
 				startActivity(intent);
 				break;
-			case 9:
+			case 8:
 				intent  = new Intent(AuswahlseiteActivity.this, AktorVerbundActivity.class);
 				startActivity(intent);
 				break;
-			case 10:
+			case 9:
 				intent  = new Intent(AuswahlseiteActivity.this, SensorVerbundActivity.class);
 				startActivity(intent);
 				break;
-			case 11:
+			case 10:
 				intent  = new Intent(AuswahlseiteActivity.this, ChartActivity.class);
 				startActivity(intent);
 				break;
-			case 12:
+			case 11:
 				intent  = new Intent(AuswahlseiteActivity.this, AktorVerbundAnlegenActivity.class);
 				startActivity(intent);
 				break;
-			case 13:
+			case 12:
 				intent  = new Intent(AuswahlseiteActivity.this, SensorVerbundAnlegenActivity.class);
 				startActivity(intent);
 				break;
-			case 14:
+			case 13:
 				intent  = new Intent(AuswahlseiteActivity.this, ServiceLinieSenAnlegenActivity.class);
 				startActivity(intent);
 				break;
-			case 15:
+			case 14:
 				intent  = new Intent(AuswahlseiteActivity.this, ServiceLinienAktAnlegenActivity.class);
 				startActivity(intent);
 				break;
-			case 16:
+			case 15:
 				intent  = new Intent(AuswahlseiteActivity.this, ServiceLinienAnzeigenActivity.class);
 				startActivity(intent);
 				break;

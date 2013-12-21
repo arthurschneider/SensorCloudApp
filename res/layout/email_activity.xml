@@ -1,94 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:background="#000000"
-    android:layout_height="wrap_content"
     android:orientation="vertical" >
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-             android:layout_gravity="center"
-            android:text="@string/listEmail" >
-   	 </TextView>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/listEmail"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
 
     <Spinner
         android:id="@+id/spinnerEmaStmmdtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    
-    
+
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="@string/bezeichnung" >
-   	 </TextView>
-     <EditText
-            android:id="@+id/ema_bez"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text">
-  	</EditText>
-  	
-  	
-    
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/bezeichnung"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/ema_bez"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text" >
+    </EditText>
+
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-             android:layout_gravity="center"
-            android:text="@string/email" >
-   	 </TextView>
-  	 <EditText
-            android:id="@+id/ema_adr"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text">
-  	</EditText>
-  	
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/email"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/ema_adr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text" >
+    </EditText>
+
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="horizontal" >
-	    
-	    <Button
-	        android:id="@+id/ema_update"
-	        android:layout_weight="1"
-	        android:onClick="updateEmail"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textColor="#2ECCFA"
-	        android:text="@string/update"
-	         />
-	    
-	    <Button
-	        android:id="@+id/ema_insert"
-	        android:layout_weight="1"
-	        android:onClick="insertEmail"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textColor="#2ECCFA"
-	        android:text="@string/insert"
-	         />
-	    
-	    <Button
-	        android:id="@+id/ema_delete"
-	        android:layout_weight="1"
-	        android:onClick="deleteEmail"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textColor="#2ECCFA"
-	        android:text="@string/delete"
-	         />
-	</LinearLayout>
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/ema_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="updateEmail"
+            android:text="@string/update"
+            android:textColor="#2ECCFA" />
+
+        <Button
+            android:id="@+id/ema_insert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="insertEmail"
+            android:text="@string/insert"
+            android:textColor="#2ECCFA" />
+
+        <Button
+            android:id="@+id/ema_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="deleteEmail"
+            android:text="@string/delete"
+            android:textColor="#2ECCFA" />
+    </LinearLayout>
+
 </LinearLayout>

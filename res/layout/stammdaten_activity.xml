@@ -1,101 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:background="#000000"
-    android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="@string/anrede" >
-   	 </TextView>
-     <EditText
-            android:id="@+id/stmmdtn_anrede"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text">
-  	</EditText>
-  	<TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="@string/name" >
-   	 </TextView>
-  	 <EditText
-            android:id="@+id/stmmdtn_name"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text">
-  	</EditText>
-  	<TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="@string/vorname" >
-   	 </TextView>
-  	 <EditText
-            android:id="@+id/stmmdtn_vorname"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text">
-  	</EditText>
-  	<TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="@string/firma" >
-   	 </TextView>
-  	 <EditText
-            android:id="@+id/stmmdtn_firma"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text">
-  	</EditText>
-  	<TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="@string/erstellungsDatum" >
-   	 </TextView>
-  	 <EditText
-            android:id="@+id/stmmdtn_datumeintritt"
-            android:layout_gravity="center"
-            android:clickable="false" 
-            android:inputType="none"
-        	android:cursorVisible="false" 
-        	android:focusable="false" 
-        	android:focusableInTouchMode="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-  	</EditText>
-  	
-  	 <Button
-	        android:id="@+id/stmmdtn_update"
-	        android:layout_weight="1"
-	        android:onClick="updateStammdaten"
-	        android:layout_gravity="center_horizontal"
-	        android:layout_width="wrap_content"
-	        android:layout_height="0dp"
-	        android:layout_marginTop="20dp"
-	        android:textColor="#2ECCFA"
-	        android:text="@string/update"
-	         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/anrede"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/stmmdtn_anrede"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text" >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/name"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/stmmdtn_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text" >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/vorname"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/stmmdtn_vorname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text" >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/firma"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/stmmdtn_firma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text" >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/erstellungsDatum"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/stmmdtn_datumeintritt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="none" >
+    </EditText>
+
+    <Button
+        android:id="@+id/stmmdtn_update"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:onClick="updateStammdaten"
+        android:text="@string/update"
+        android:textColor="#2ECCFA" />
 
 </LinearLayout>

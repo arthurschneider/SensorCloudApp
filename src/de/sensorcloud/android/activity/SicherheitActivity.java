@@ -132,4 +132,53 @@ public class SicherheitActivity extends Activity implements OnItemSelectedListen
 		});
 	}
 
+	public void insertSic(View view){
+		sicherObj.setNutSicPas(nutSicPasTxt.getText().toString());
+		sicherObj.setNutSicPubKey(nutSicPubKeyTxt.getText().toString());
+		sicherObj.setNutSicPriKey(nutSicPriKeyTxt.getText().toString());
+		sicherObj.setNutSicID(Helper.generateUUID());
+		Gson gson = new Gson();
+		JsonElement jsonElement = gson.toJsonTree(sicherObj);
+		
+		StringEntity se = null;
+		
+		try {
+		    se = new StringEntity(jsonElement.toString());
+		} catch (UnsupportedEncodingException e) {
+			Log.e("Fehler", "Json-String konnte nicht verarbeitet werden!");
+		}		
+		
+		AsyncHttpClient client = new AsyncHttpClient();
+		se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+		client.put(null,  Helper.BASE_URL+"/SensorCloudRest/crud/NutzerSicherheit", se, "application/json", new AsyncHttpResponseHandler() {
+			 @Override
+			    public void onSuccess(String response) {
+			        Toast.makeText(SicherheitActivity.this, response, Toast.LENGTH_LONG).show();
+			        getDatensatz();
+		 }
+		});
+	}
+	
+	
+	public void deleteSic(View view){
+		Gson gson = new Gson();
+		JsonElement jsonElement = gson.toJsonTree(sicherObj.getNutSicID());
+		StringEntity se = null;
+		
+		try {
+		    se = new StringEntity(jsonElement.toString());
+		} catch (UnsupportedEncodingException e) {
+			Log.e("Fehler", "Json-String konnte nicht verarbeitet werden!");
+		}		
+		
+		AsyncHttpClient client = new AsyncHttpClient();
+		se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+		client.post(null,  Helper.BASE_URL+"/SensorCloudRest/crud/NutzerSicherheit/delete", se, "application/json", new AsyncHttpResponseHandler() {
+			 @Override
+			    public void onSuccess(String response) {
+			        Toast.makeText(SicherheitActivity.this, response, Toast.LENGTH_LONG).show();
+			        getDatensatz();
+		 }
+		});
+	}
 }

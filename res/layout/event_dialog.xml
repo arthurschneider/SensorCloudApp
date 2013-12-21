@@ -1,78 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="#000000"
     android:layout_height="match_parent"
+    android:background="#000000"
     android:orientation="vertical" >
-    
+
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="Nachricht:" >
-   	 </TextView>
-     <EditText
-            android:id="@+id/evedia_nachricht"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text">
-  	</EditText>
-  	<TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="Eventart:" >
-   	 </TextView>
-     <EditText
-            android:id="@+id/evedia_art"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text">
-  	</EditText>
-  	<TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="Adresse/Telefon:" >
-   	 </TextView>
-     <EditText
-            android:id="@+id/evedia_weg"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text">
-  	</EditText>
-  	<TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="@string/erstellungsDatum" >
-   	 </TextView>
-     <EditText
-            android:id="@+id/evedia_time"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text">
-  	</EditText>
-  	
-     <Button
-	        android:id="@+id/dialog_close"
-	        android:layout_gravity="center"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textColor="#2ECCFA"
-	        android:text="@string/close"
-	         />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Nachricht:"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/evedia_nachricht"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text" >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Eventart:"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/evedia_art"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text" >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Adresse/Telefon:"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/evedia_weg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text" >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/erstellungsDatum"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/evedia_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text" >
+    </EditText>
+
+    <Button
+        android:id="@+id/dialog_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/close"
+        android:textColor="#2ECCFA" />
 
 </LinearLayout>

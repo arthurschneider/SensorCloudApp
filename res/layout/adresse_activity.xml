@@ -1,108 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:background="#000000"
-    android:layout_height="wrap_content"
     android:orientation="vertical" >
-    
-       <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="@string/bezeichnung" >
-   	 </TextView>
-     
-     <EditText
-            android:id="@+id/adr_bez"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text">
-  	</EditText>
-  	
-  	  <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="@string/strasse" >
-   	 </TextView>
-   	 
-  	 <EditText
-            android:id="@+id/adr_str"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text">
-  	</EditText>
-  	
-  	  <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="@string/plz" >
-   	 </TextView>
-   	 
-  	 <EditText
-            android:id="@+id/adr_plz"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text">
-  	</EditText>
-  	
-  	  <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="@string/ort" >
-   	 </TextView>
-   	 
-  	 <EditText
-            android:id="@+id/adr_ort"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text">
-  	</EditText>
-  	
-  	  <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:textColor="#2ECCFA"
-            android:text="@string/land" >
-   	 </TextView>
-   	 
-  	 <EditText
-            android:id="@+id/adr_lan"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text">
-  	</EditText>
-  	
-  	 <Button
-	        android:id="@+id/adr_update"
-	        android:layout_weight="1"
-	        android:onClick="updateAdresse"
-	        android:layout_gravity="center_horizontal"
-	        android:layout_width="wrap_content"
-	        android:layout_height="0dp"
-	        android:paddingRight="15dp"
-	        android:paddingLeft="15dp"
-	        android:textColor="#2ECCFA"
-	        android:layout_marginTop="15dp"
-	        android:text="@string/update"
-	         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/bezeichnung"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/adr_bez"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text" >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/strasse"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/adr_str"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text" >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/plz"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/adr_plz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text" >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/ort"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/adr_ort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text" >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/land"
+        android:textColor="#2ECCFA"
+        android:textSize="15sp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/adr_lan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text" >
+    </EditText>
+
+    <Button
+        android:id="@+id/adr_update"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_weight="1"
+        android:onClick="updateAdresse"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="@string/update"
+        android:textColor="#2ECCFA" />
 
 </LinearLayout>
