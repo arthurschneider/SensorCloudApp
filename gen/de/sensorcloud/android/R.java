@@ -165,7 +165,7 @@ public final class R {
         public static final int gruppen_anzeigen_activity=0x7f030008;
         public static final int gruppen_mit_einladen_activity=0x7f030009;
         public static final int main_activity=0x7f03000a;
-        public static final int nutzer_anlegen_activity=0x7f03000b;
+        public static final int registrieren_activity=0x7f03000b;
         public static final int sensor_verbund_anlegen_activity=0x7f03000c;
         public static final int sensorverbund_activity=0x7f03000d;
         public static final int service_linie_sen_anlegen_activity=0x7f03000e;

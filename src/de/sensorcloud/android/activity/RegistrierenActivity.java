@@ -28,7 +28,7 @@ import de.sensorcloud.android.entitaet.NutzerTelefon;
 import de.sensorcloud.android.entitaet.Registrieren;
 import de.sensorcloud.android.helpertools.Helper;
 
-public class NutzerAnlegenActivity extends Activity {
+public class RegistrierenActivity extends Activity {
 	
 	EditText anrede;
 	EditText name;
@@ -54,7 +54,7 @@ public class NutzerAnlegenActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.nutzer_anlegen_activity);
+		setContentView(R.layout.registrieren_activity);
 		
 		anrede = (EditText) findViewById(R.id.nutzer_anlegen_anrede);
 		name = (EditText) findViewById(R.id.nutzer_anlegen_name);
@@ -103,7 +103,7 @@ public class NutzerAnlegenActivity extends Activity {
 			
 			Date datum = new Date();
 			long timestamp = datum.getTime();
-			stammdaten.setNutStaDatEin(""+timestamp);
+			stammdaten.setNutStaDatEin(timestamp);
 			
 			stammdaten.setNutStaFir(firma.getText().toString());
 			
@@ -115,7 +115,7 @@ public class NutzerAnlegenActivity extends Activity {
 			regist.setStammdaten(stammdaten);
 			stammdatenVoll = true;
 		} else {
-			Toast.makeText(NutzerAnlegenActivity.this, "NutzerStammdaten sind unvollstaendig!", Toast.LENGTH_LONG).show();
+			Toast.makeText(RegistrierenActivity.this, "NutzerStammdaten sind unvollstaendig!", Toast.LENGTH_LONG).show();
 		}
 		
 		
@@ -129,7 +129,7 @@ public class NutzerAnlegenActivity extends Activity {
 			regist.setEmail(mailObj);
 			emailVoll = true;
 		} else {
-			Toast.makeText(NutzerAnlegenActivity.this, "Emaildaten sind unvollstaendig!", Toast.LENGTH_LONG).show();
+			Toast.makeText(RegistrierenActivity.this, "Emaildaten sind unvollstaendig!", Toast.LENGTH_LONG).show();
 		}
 		
 		
@@ -143,7 +143,7 @@ public class NutzerAnlegenActivity extends Activity {
 			regist.setTelefon(telObj);
 			telefonVoll = true;
 		} else {
-			Toast.makeText(NutzerAnlegenActivity.this, "Telefondaten sind unvollstaendig!", Toast.LENGTH_LONG).show();
+			Toast.makeText(RegistrierenActivity.this, "Telefondaten sind unvollstaendig!", Toast.LENGTH_LONG).show();
 		}
 		
 		
@@ -160,7 +160,7 @@ public class NutzerAnlegenActivity extends Activity {
 			regist.setSicherheit(sichObj);
 			sicherVoll = true;
 		} else {
-			Toast.makeText(NutzerAnlegenActivity.this, "Sicherheitsdaten sind unvollstaendig!", Toast.LENGTH_LONG).show();
+			Toast.makeText(RegistrierenActivity.this, "Sicherheitsdaten sind unvollstaendig!", Toast.LENGTH_LONG).show();
 		}
 		
 		
@@ -178,7 +178,7 @@ public class NutzerAnlegenActivity extends Activity {
 			regist.setAdresse(adresse);
 			adresseVoll = true;
 		} else {
-			Toast.makeText(NutzerAnlegenActivity.this, "Adressdaten sind unvollstaendig!", Toast.LENGTH_LONG).show();
+			Toast.makeText(RegistrierenActivity.this, "Adressdaten sind unvollstaendig!", Toast.LENGTH_LONG).show();
 		}
 		
 		if (stammdatenVoll && telefonVoll && emailVoll && sicherVoll && adresseVoll ) {
@@ -198,11 +198,11 @@ public class NutzerAnlegenActivity extends Activity {
 			client.put(null,  Helper.BASE_URL+"/SensorCloudRest/crud/NutzerStammdaten", se, "application/json", new AsyncHttpResponseHandler() {
 				 @Override
 				 public void onSuccess(String response) {
-				 Toast.makeText(NutzerAnlegenActivity.this, response, Toast.LENGTH_LONG).show();
+				 Toast.makeText(RegistrierenActivity.this, response, Toast.LENGTH_LONG).show();
 			 }
 			});
 		} else {
-			Toast.makeText(NutzerAnlegenActivity.this, "Insert wurde nicht ausgefuehrt!", Toast.LENGTH_LONG).show();
+			Toast.makeText(RegistrierenActivity.this, "Insert wurde nicht ausgefuehrt!", Toast.LENGTH_LONG).show();
 		}
 		
 		

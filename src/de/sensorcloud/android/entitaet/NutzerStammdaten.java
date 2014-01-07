@@ -7,7 +7,8 @@ public class NutzerStammdaten {
 	private String nutStaNam;
 	private String nutStaVor;
 	private String nutStaFir;
-	private String nutStaDatEin;
+	private long nutStaDatEin;
+
 	
 	public String getNutStaID() {
 		return nutStaID;
@@ -57,11 +58,11 @@ public class NutzerStammdaten {
 		this.nutStaFir = nutStaFir;
 	}
 
-	public String getNutStaDatEin() {
+	public long getNutStaDatEin() {
 		return nutStaDatEin;
 	}
 
-	public void setNutStaDatEin(String nutStaDatEin) {
+	public void setNutStaDatEin(long nutStaDatEin) {
 		this.nutStaDatEin = nutStaDatEin;
 	}
 

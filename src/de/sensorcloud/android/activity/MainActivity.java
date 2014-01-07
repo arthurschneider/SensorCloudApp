@@ -43,10 +43,10 @@ public class MainActivity extends Activity {
 		infoLbl = (TextView) findViewById(R.id.txtView_info);
 	}
 	
-	public void anmelden(View vw) {
+	public void anmelden(View view) {
 		infoLbl.setText("");
 		
-		final Intent intent  = new Intent(this, AuswahlseiteActivity.class);
+		final Intent intent = new Intent(this, AuswahlseiteActivity.class);
 		
 		Login login = new Login();
 		login.setEmail(eMailTxt.getText().toString());
@@ -66,11 +66,11 @@ public class MainActivity extends Activity {
 		client.post(null, Helper.BASE_URL+"/SensorCloudRest/crud/Login/authetifizieren", se, "application/json", new AsyncHttpResponseHandler() {
 		    @Override
 		    public void onSuccess(String response) {
-		    	
-		        if (response.length() <= 4) {
+		    	Log.i("Debug", response);
+		        if (response.equals("Denied")) {
 		        	infoLbl.setTextColor(Color.RED);
 		        	infoLbl.setText("Anmeldung nicht gelungen");
-				} else {
+				}else {
 					SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 			        SharedPreferences.Editor editor = sharedPreferences.edit();
 					editor.putString("NutzerObj", response);
@@ -82,7 +82,7 @@ public class MainActivity extends Activity {
 	}	
 	
 	public void registrieren(View view){
-		Intent intent  = new Intent(this, NutzerAnlegenActivity.class);
+		Intent intent  = new Intent(this, RegistrierenActivity.class);
 		startActivity(intent);
 	}
 }

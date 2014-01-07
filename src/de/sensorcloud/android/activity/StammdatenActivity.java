@@ -77,7 +77,7 @@ public class StammdatenActivity extends Activity {
 			nutStaVorTxt.setText(stammObj.getNutStaVor());
 			nutStaFirTxt.setText(stammObj.getNutStaFir());
 			
-			Date datum = new Date(Long.parseLong(stammObj.getNutStaDatEin().trim()));
+			Date datum = new Date(stammObj.getNutStaDatEin());
 			SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy  HH:mm:SS");
 			nutStaDatEinTxt.setText(DATE_FORMAT.format(datum));
 		}
@@ -87,7 +87,7 @@ public class StammdatenActivity extends Activity {
 			stammObj.setNutStaNam(nutStaNamTxt.getText().toString());
 			stammObj.setNutStaVor(nutStaVorTxt.getText().toString());
 			stammObj.setNutStaFir(nutStaFirTxt.getText().toString());
-			stammObj.setNutStaDatEin(nutStaDatEinTxt.getText().toString());
+			
 			
 			Gson gson = new Gson();
 			JsonElement jsonElement = gson.toJsonTree(stammObj);

@@ -92,9 +92,15 @@ public class EventRegelActivity extends Activity {
 		client.get(Helper.BASE_URL+"/SensorCloudRest/crud/Event/NutStaID/"+nutStaID, new AsyncHttpResponseHandler() {
 		    @Override
 		    public void onSuccess(String response) {
-		    	Gson gson = new Gson();
-		    	eventList = gson.fromJson(response, EventList.class);
-		    	setDataToSpinner();
+		    	Log.i("Debug", response);
+		    	if (response.equals("leer")) {
+		    		Toast.makeText(EventRegelActivity.this, "Sie haben keine Regeln", Toast.LENGTH_LONG).show();
+				} else {
+					Gson gson = new Gson();
+			    	eventList = gson.fromJson(response, EventList.class);
+			    	setDataToSpinner();
+				}
+		    	
 		    }
 		});
 	}

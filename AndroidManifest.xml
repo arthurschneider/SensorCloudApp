@@ -14,7 +14,7 @@
         android:allowBackup="true"
         android:icon="@drawable/unbenannt"
         android:label="@string/app_name" >
-        <!--  android:theme="@style/AppTheme" > -->
+       
         <activity
             android:name="de.sensorcloud.android.activity.MainActivity"
             android:label="@string/app_name" >
@@ -82,7 +82,7 @@
             android:label="@string/title_activity_gruppen_mit_einladen" >
         </activity>
         <activity
-            android:name="de.sensorcloud.android.activity.NutzerAnlegenActivity"
+            android:name="de.sensorcloud.android.activity.RegistrierenActivity"
             android:label="@string/title_activity_nutzer_anlegen" >
         </activity>
         <activity

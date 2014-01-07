@@ -70,7 +70,7 @@
     <string name="nameMitglied">Name des Mitgliedes:</string>
     <string name="emailMitglied">E-Mail des Mitgliedes: </string>
     <string name="gruppeVerlassen">Gruppe verlassen:</string>
-    <string name="title_activity_nutzer_anlegen">Nutzer anlegen</string>
+    <string name="title_activity_nutzer_anlegen">Registrieren</string>
     <string name="title_activity_aktor_verbund_anlegen">AktorVerbundAnlegenActivity</string>
     <string name="title_activity_sensor_verbund_anlegen">Sensorverbund anlegen</string>
     <string name="title_activity_service_linie">Servicelinie</string>
