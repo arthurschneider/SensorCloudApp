@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Liste mit Sensorverbuenden:"
+        android:text="Liste mit Verbuenden:"
         android:textColor="#2ECCFA"
         android:textSize="15sp" >
     </TextView>
@@ -44,7 +44,7 @@
         android:onClick="insertSensorVerbund"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:text="Sensor zu Sensorverbund hinzufuegen"
+        android:text="Sensor zum Verbund(Sensor) hinzufuegen"
         android:textColor="#2ECCFA" />
 
     <TextView
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:text="Name des neuen Sensorverbundes:"
+        android:text="Name des neuen Verbundes(Sensor):"
         android:textColor="#2ECCFA"
         android:textSize="15sp" >
     </TextView>
@@ -75,7 +75,7 @@
         android:onClick="anlegenNeuVerb"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:text="Neuen Sensorverbund mit Sensor anlegen"
+        android:text="Neuen Verbund mit Sensor anlegen"
         android:textColor="#2ECCFA" />
 
 </LinearLayout>

@@ -44,7 +44,7 @@
         android:onClick="insertAktorVerbund"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:text="Aktor zu Aktorverbund hinzufuegen"
+        android:text="Aktor zu Verbund(Aktor) hinzufuegen"
         android:textColor="#2ECCFA" />
 
     <TextView
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:text="Name des neuen Aktorverbundes:"
+        android:text="Name des neuen Verbundes(Aktor):"
         android:textColor="#2ECCFA"
         android:textSize="15sp" >
     </TextView>
@@ -75,7 +75,7 @@
         android:onClick="anlegenNeuVerb"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:text="Neuen Aktorverbund mit Aktor anlegen"
+        android:text="Neuen Verbund mit Aktor anlegen"
         android:textColor="#2ECCFA" />
 
 </LinearLayout>

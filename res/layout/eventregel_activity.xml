@@ -141,7 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Aktor/Verbund:"
+            android:text="Aktor-/Verbundbezeichnung:"
             android:textColor="#2ECCFA"
             android:textSize="15sp" >
         </TextView>

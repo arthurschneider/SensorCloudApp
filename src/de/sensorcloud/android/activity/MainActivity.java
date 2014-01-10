@@ -66,7 +66,6 @@ public class MainActivity extends Activity {
 		client.post(null, Helper.BASE_URL+"/SensorCloudRest/crud/Login/authetifizieren", se, "application/json", new AsyncHttpResponseHandler() {
 		    @Override
 		    public void onSuccess(String response) {
-		    	Log.i("Debug", response);
 		        if (response.equals("Denied")) {
 		        	infoLbl.setTextColor(Color.RED);
 		        	infoLbl.setText("Anmeldung nicht gelungen");

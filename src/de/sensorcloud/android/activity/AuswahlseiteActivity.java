@@ -14,7 +14,7 @@ public class AuswahlseiteActivity extends ListActivity {
 
 	static final String[] ACTIVITIES = new String[] { "Adressdaten anzeigen/bearbeiten", "Profildaten anzeigen/bearbeiten", "Telefondaten anzeigen/bearbeiten", "E-Maildaten anzeigen/bearbeiten", "Sicherheitsdaten anzeigen/bearbeiten", "Event anzeigen/bearbeiten",
 		"Mitglied in Gruppe einladen", "Gruppen anzeigen", "Aktor/Verbund anzeigen ", "Sensor/Verbund anzeigen",
-		"Chart anzeigen", "Aktor mit Aktorverbund verbinden", "Sensor mit Sensorverbund verbinden",
+		"Diagramm erstellen", "Aktor zum Verbund(Aktor) einfügen", "Sensor zum Verbund(Sensor) einfügen",
 		"ServiceLinie (Sensor) anlegen","ServiceLinie (Aktor) anlegen", "ServiceLinie anzeigen"};
 	
 	@Override

@@ -24,7 +24,7 @@
     <string name="service">Servicelinie</string>
     <string name="datepicker">Datum :</string>
     <string name="drawChart">Chart zeichnen</string>
-    <string name="title_activity_auswahlseite">Auswahlseite</string>
+    <string name="title_activity_auswahlseite">Hauptmenü</string>
     <string name="title_activity_nutzerStammdaten">NutzerStammdaten</string>
     <string name="title_activity_telefon">Telefon</string>
     <string name="title_activity_email">Email</string>
@@ -34,7 +34,7 @@
     <string name="title_activity_sensorverbund">Sensorverbund</string>
     <string name="title_activity_aktorverbund">Aktorverbund</string>
     <string name="title_activity_event_regel">EventRegel</string>
-    <string name="title_activity_chart">Charts</string>
+    <string name="title_activity_chart">Diagramm erstellen</string>
     <string name="title_activity_show_chart">ShowChart</string>
     <string name="title_activity_gruppen">GruppenActivity</string>
     <string name="title_activity_gruppe_erstellen">Gruppe erstellen</string>
@@ -71,8 +71,8 @@
     <string name="emailMitglied">E-Mail des Mitgliedes: </string>
     <string name="gruppeVerlassen">Gruppe verlassen:</string>
     <string name="title_activity_nutzer_anlegen">Registrieren</string>
-    <string name="title_activity_aktor_verbund_anlegen">AktorVerbundAnlegenActivity</string>
-    <string name="title_activity_sensor_verbund_anlegen">Sensorverbund anlegen</string>
+    <string name="title_activity_aktor_verbund_anlegen">Aktor zum Verbund einfügen</string>
+    <string name="title_activity_sensor_verbund_anlegen">Sensor zum Verbund einfügen</string>
     <string name="title_activity_service_linie">Servicelinie</string>
     <string name="title_activity_service_linien_anzeigen">Servicelinien anzeigen</string>
     <string name="title_activity_service_linien_akt_anlegen">Aktoren Servicelinie anlegen</string>
