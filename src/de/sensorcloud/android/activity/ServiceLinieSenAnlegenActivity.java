@@ -195,7 +195,6 @@ public class ServiceLinieSenAnlegenActivity extends Activity {
 	}
 	
 	public void updateServiceLinie(View view) {
-		Log.i("Debug", "Methode triggert?");
 		SensorServiceMitServiceLinie servLinServ = new SensorServiceMitServiceLinie();
 		servLinServ.setService(sensorService);
 		servLinServ.setServiceLinie(servLin);
@@ -222,8 +221,6 @@ public class ServiceLinieSenAnlegenActivity extends Activity {
 	
 	public void insertServiceInLinie(View view) {
 		String name = servLinieName.getText().toString();
-		
-		Log.i("Debug"," Sensor = "+ sensor.getSenBez()+" Verbundname = "+name);
 		SensorServiceMitServiceLinie servLinServ = new SensorServiceMitServiceLinie();
 		servLinServ.setService(sensorService);
 		

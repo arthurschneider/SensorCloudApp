@@ -44,7 +44,7 @@ public class SensorVerbundActivity extends Activity implements OnItemSelectedLis
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.sensorverbund_activity);
+		setContentView(R.layout.sensor_verbund_activity);
 		
 		senBezeichnungTxt = (EditText) findViewById(R.id.senBezeichnung);
 		senPositionTxt = (EditText) findViewById(R.id.senPosition);

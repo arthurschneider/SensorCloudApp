@@ -63,7 +63,7 @@ public class StammdatenActivity extends Activity {
 			    public void onSuccess(String response) {
 			    	Gson gson = new Gson();
 			    	stammObj = gson.fromJson(response, NutzerStammdaten.class);
-					setDataToSpinner();
+			    	setDataToView();
 			    }
 			    
 			});
@@ -71,7 +71,7 @@ public class StammdatenActivity extends Activity {
 			
 		}
 		
-		public void setDataToSpinner() {
+		public void setDataToView() {
 			nutAnrTxt.setText(stammObj.getNutStaAnr());
 			nutStaNamTxt.setText(stammObj.getNutStaNam());
 			nutStaVorTxt.setText(stammObj.getNutStaVor());

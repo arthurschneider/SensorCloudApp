@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
 	public void anmelden(View view) {
 		infoLbl.setText("");
 		
-		final Intent intent = new Intent(this, AuswahlseiteActivity.class);
+		final Intent intent = new Intent(this, HauptmenueActivity.class);
 		
 		Login login = new Login();
 		login.setEmail(eMailTxt.getText().toString());

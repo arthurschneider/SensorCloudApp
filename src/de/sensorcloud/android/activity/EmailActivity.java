@@ -128,17 +128,20 @@ public class EmailActivity extends Activity implements OnItemSelectedListener {
 		mailObj.setNutEmaBez(emaBezTxt.getText().toString());
 		mailObj.setNutEmaAdr(emaAdrTxt.getText().toString());
 		Gson gson = new Gson();
+		// Java Objekt wird in einen JSON formatierten String umgewandelt.
 		JsonElement jsonElement = gson.toJsonTree(mailObj);
 		
 		StringEntity se = null;
 		
 		try {
+			// Erstellung des Parametrs aus dem JSON String
 		    se = new StringEntity(jsonElement.toString());
 		} catch (UnsupportedEncodingException e) {
 			Log.e("Fehler", "Json-String konnte nicht verarbeitet werden!");
 		}		
 		
 		AsyncHttpClient client = new AsyncHttpClient();
+		//Einfügen des parametrs in das Body der HTTP Anfrage
 		se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 		client.put(null,  Helper.BASE_URL+"/SensorCloudRest/crud/NutzerEmail", se, "application/json", new AsyncHttpResponseHandler() {
 			 @Override

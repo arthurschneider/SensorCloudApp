@@ -44,7 +44,7 @@ public class AktorVerbundActivity extends Activity implements OnItemSelectedList
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.aktorverbund_activity);
+		setContentView(R.layout.aktor_verbund_activity);
 		
 		aktBezeichnungTxt = (EditText) findViewById(R.id.aktBezeichnung);
 		aktPositionTxt = (EditText) findViewById(R.id.aktPosition);

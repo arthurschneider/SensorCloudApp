@@ -62,12 +62,12 @@ public class AdresseActivity extends Activity {
 		        Log.i("Test", response);
 		        Gson gson = new Gson();
 		        adrObj = gson.fromJson(response, Adresse.class);
-		        setDataToSpinner();
+		        setDataToView();
 		    }	    
 		});
 	}
 	
-	public void setDataToSpinner() {
+	public void setDataToView() {
 		adrBezTxt.setText(adrObj.getAdrBez());
 		adrStrTxt.setText(adrObj.getAdrStr());
 		adrOrtTxt.setText(adrObj.getAdrOrt());

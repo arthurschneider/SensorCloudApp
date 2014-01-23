@@ -138,12 +138,9 @@ public class ChartActivity extends Activity implements OnItemSelectedListener {
 		    @Override
 		    public void onSuccess(String response) {
 		    	Gson gson = new Gson();
-		    	Log.i("Chart", response);
 				semantik = gson.fromJson(response, SensorProduktSemantik.class);
-				
 				setDataToSenWerSpinner();
 		    }
-		    
 		});
 	}
 	

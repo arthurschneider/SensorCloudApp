@@ -1,7 +1,9 @@
 package de.sensorcloud.android.activity;
 
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.http.entity.StringEntity;
@@ -185,7 +187,10 @@ public class EventRegelActivity extends Activity {
 			nachricht.setText(eventRegel.getEvent().getEveNac());
 			art.setText(eventRegel.getEvent().getEveArt());
 			nachrichtWeg.setText(eventRegel.getEventBen().getEveBenWeg());
-			timestmp.setText(eventRegel.getEvent().getEveTimSta());
+			
+			Date datum = new Date(Long.parseLong(eventRegel.getEvent().getEveTimSta()));
+			SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy  HH:mm:SS");
+			timestmp.setText(DATE_FORMAT.format(datum));
 			
 			canbtn.setOnClickListener(new View.OnClickListener() {
 				
